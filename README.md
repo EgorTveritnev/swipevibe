@@ -1,2 +1,2 @@
-# fitnesspush
+# SwipeVibe
 Project for University
