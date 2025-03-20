@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwipeVibe - Делись моментами</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/neomorphism.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+    <style>
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a1a, #0c0c0c);
+            color: #6a67ce;
+        }
+        
+        .video-placeholder h3 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .video-placeholder p {
+            opacity: 0.8;
+            font-size: 14px;
+            max-width: 80%;
+        }
+    </style>
+</head>
+<body class="desktop-mode">
+    <div class="desktop-container">
+        <div class="side-nav d-none d-lg-block">
+            <div class="side-nav-logo">
+                <i class="fas fa-music animate-glow-text"></i>
+                <span>SwipeVibe</span>
+            </div>
+            
+            <div class="search-box neomorph-card">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Поиск видео, авторов и тем">
+            </div>
+            
+            <div class="side-nav-group">
+                <a href="index.html" class="side-nav-item active neomorph-btn">
+                    <i class="fas fa-home animate-glow-text"></i>
+                    <span>Рекомендации</span>
+                </a>
+                <a href="watch.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-compass"></i>
+                    <span>Смотреть</span>
+                </a>
+                <a href="subscriptions.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-users"></i>
+                    <span>Подписки</span>
+                    <div class="notification-badge">2</div>
+                </a>
+                <a href="friends.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Друзья</span>
+                    <div class="notification-badge">3</div>
+                </a>
+            </div>
+            <a href="upload.html" class="upload-button neomorph-btn">
+                <i class="fas fa-plus"></i> Загрузить видео
+            </a>
+            
+            <div class="side-nav-group">
+                <a href="activity.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-bell"></i>
+                    <span>Активность</span>
+                </a>
+                <a href="shop.html" class="side-nav-item neomorph-btn shop-nav-item">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Магазин</span>
+                </a>
+                <a href="stream.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-video"></i>
+                    <span>Трансляция</span>
+                </a>
+                <a href="pages/profile.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-user"></i>
+                    <span>Профиль</span>
+                </a>
+                <a href="#" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <span>Еще</span>
+                </a>
+            </div>
+            
+            <div class="side-nav-divider"></div>
+            
+            <div class="subscriptions">
+                <div class="side-nav-section">Подписки на аккаунты</div>
+                
+                <a href="pages/profile.html?username=username1" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Аватар пользователя Alex">
+                    </div>
+                    <span>@alexgamer</span>
+                </a>
+                <a href="pages/profile.html?username=username2" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Аватар пользователя Sarah">
+                    </div>
+                    <span>@sarahstreamer</span>
+                </a>
+                <a href="pages/profile.html?username=username3" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&h=100&fit=crop" alt="Аватар пользователя Mike">
+                    </div>
+                    <span>@mikepro</span>
+                </a>
+                <a href="pages/profile.html?username=username4" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Аватар пользователя Emma">
+                    </div>
+                    <span>@emmagames</span>
+                </a>
+                <a href="pages/profile.html?username=username5" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Аватар пользователя David">
+                    </div>
+                    <span>@davidtech</span>
+                </a>
+                
+                <button class="show-more neomorph-btn">
+                    <i class="fas fa-chevron-down"></i> Показать больше
+                </button>
+            </div>
+            
+            <div class="side-nav-divider"></div>
+            
+            <div class="side-nav-categories">
+                <div class="side-nav-section">Популярные категории</div>
+                
+                <div class="category-tags">
+                    <a href="category.html?type=music" class="category-tag neomorph-btn">
+                        <i class="fas fa-music animate-icon-pulse"></i>
+                        <span>Музыка</span>
+                    </a>
+                    <a href="category.html?type=gaming" class="category-tag neomorph-btn">
+                        <i class="fas fa-gamepad animate-icon-pulse"></i>
+                        <span>Игры</span>
+                    </a>
+                    <a href="category.html?type=movies" class="category-tag neomorph-btn">
+                        <i class="fas fa-film animate-icon-pulse"></i>
+                        <span>Фильмы</span>
+                    </a>
+                    <a href="category.html?type=humor" class="category-tag neomorph-btn">
+                        <i class="fas fa-laugh-beam animate-icon-pulse"></i>
+                        <span>Юмор</span>
+                    </a>
+                    <a href="category.html?type=food" class="category-tag neomorph-btn">
+                        <i class="fas fa-utensils animate-icon-pulse"></i>
+                        <span>Еда</span>
+                    </a>
+                    <a href="category.html?type=art" class="category-tag neomorph-btn">
+                        <i class="fas fa-paint-brush animate-icon-pulse"></i>
+                        <span>Искусство</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="side-nav-footer">
+                <div class="side-nav-links">
+                    <a href="about.html">О нас</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="policy.html">Политика</a>
+                </div>
+                <div class="copyright">
+                    © 2023 SwipeVibe
+                </div>
+            </div>
+        </div>
+        
+        <!-- Основной контент -->
+        <div class="main-content">
+            <div class="desktop-video-container neomorph-card">
+                <div class="desktop-video-feed">
+                    <div class="video-card active neomorph-card animate-fade-in">
+                        <div class="video-wrapper">
+                            <video src="assets/videos/demo1.mp4" loop poster="https://images.unsplash.com/photo-1605806616949-1fe88c133380?w=1200&h=800&fit=crop"></video>
+                            
+                            <div class="video-overlay-text">
+                                <h1>ВОТ КАКИМИ ДОЛЖНЫ<br>БЫТЬ ХОРРОРЫ</h1>
+                            </div>
+                            
+                            <div class="video-info-tiktok">
+                                <div class="tiktok-user-info">
+                                    <h3>TheMart1ano | Стример</h3>
+                                    <p>Часть 1 | Наконец-то нормальный Silent Hill? Жестокий психологи... <span>ещё</span></p>
+                                </div>
+                                
+                                <div class="tiktok-bottom-info">
+                                    <div class="tiktok-playlist">
+                                        <i class="fas fa-list-ul"></i> Плейлист • <span>GAMES NEWS</span>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                    
+                                    <div class="tiktok-category">
+                                        <span>Scary</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tiktok-controls">
+                                <div class="tiktok-control-item tiktok-author">
+                                    <div class="tiktok-author-avatar neomorph-icon animate-glow">
+                                        <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop" alt="Автор TheMart1ano">
+                                    </div>
+                                    <div class="subscribe-btn neomorph-btn">
+                                        <i class="fas fa-plus"></i> Подписаться
+                                    </div>
+                                </div>
+                                
+                                <div class="tiktok-control-item">
+                                    <div class="tiktok-control-icon like-btn neomorph-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <span class="tiktok-control-count">423.2K</span>
+                                </div>
+                                
+                                <div class="tiktok-control-item">
+                                    <div class="tiktok-control-icon comment-btn neomorph-icon">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                    <span class="tiktok-control-count">1.4K</span>
+                                </div>
+                                
+                                <div class="tiktok-control-item">
+                                    <div class="tiktok-control-icon share-btn neomorph-icon">
+                                        <i class="fas fa-share"></i>
+                                    </div>
+                                    <span class="tiktok-control-count">320</span>
+                                </div>
+                                
+                                <div class="tiktok-control-item">
+                                    <div class="tiktok-control-icon bookmark-btn neomorph-icon">
+                                        <i class="fas fa-bookmark"></i>
+                                    </div>
+                                    <span class="tiktok-control-count">82</span>
+                                </div>
+                            </div>
+                            
+                            <div class="video-controls">
+                                <div class="play-control">
+                                    <i class="fas fa-pause"></i>
+                                </div>
+                                <div class="volume-control">
+                                    <i class="fas fa-volume-up"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="video-progress">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card next neomorph-card">
+                        <div class="video-wrapper">
+                            <video src="assets/videos/demo2.mp4" loop poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&h=800&fit=crop"></video>
+                            
+                            <div class="video-overlay-text">
+                                <h1>CYBERPUNK 2077: PHANTOM LIBERTY</h1>
+                            </div>
+                            
+                            <div class="video-info-tiktok">
+                                <div class="tiktok-user-info">
+                                    <h3>CyberGamer | Блогер</h3>
+                                    <p>Первый взгляд на новое дополнение. Стоит ли оно своих денег? <span>ещё</span></p>
+                                </div>
+                                
+                                <div class="tiktok-bottom-info">
+                                    <div class="tiktok-playlist">
+                                        <i class="fas fa-list-ul"></i> Плейлист • <span>ПЕРВЫЙ ВЗГЛЯД</span>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                    
+                                    <div class="tiktok-category">
+                                        <span>Gaming</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tiktok-controls">
+                                <div class="tiktok-control-item tiktok-author">
+                                    <div class="tiktok-author-avatar neomorph-icon animate-glow">
+                                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop" alt="Автор CyberGamer">
+                                    </div>
+                                    <div class="subscribe-btn neomorph-btn">
+                                        <i class="fas fa-plus"></i> Подписаться
+                                    </div>
+                                </div>
+                                
+                                <div class="tiktok-control-item">
+                                    <div class="tiktok-control-icon like-btn neomorph-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <span class="tiktok-control-count">189.5K</span>
+                                </div>
+                                
+                                <div class="tiktok-control-item">
+                                    <div class="tiktok-control-icon comment-btn neomorph-icon">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                    <span class="tiktok-control-count">856</span>
+                                </div>
+                                
+                                <div class="tiktok-control-item">
+                                    <div class="tiktok-control-icon share-btn neomorph-icon">
+                                        <i class="fas fa-share"></i>
+                                    </div>
+                                    <span class="tiktok-control-count">215</span>
+                                </div>
+                                
+                                <div class="tiktok-control-item">
+                                    <div class="tiktok-control-icon bookmark-btn neomorph-icon">
+                                        <i class="fas fa-bookmark"></i>
+                                    </div>
+                                    <span class="tiktok-control-count">45</span>
+                                </div>
+                            </div>
+                            
+                            <div class="video-controls">
+                                <div class="play-control">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="volume-control">
+                                    <i class="fas fa-volume-up"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="video-progress">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card neomorph-card">
+                        <div class="video-wrapper">
+                            <div class="video-placeholder" style="background-image: url('https://images.unsplash.com/photo-1614294148960-9aa740632a87?w=1200&h=800&fit=crop'); background-size: cover; background-position: center;">
+                                <div style="background: rgba(0,0,0,0.7); padding: 20px; border-radius: 10px;">
+                                    <h3>Новый Assassin's Creed</h3>
+                                    <p>Первый взгляд на геймплей и обзор новых механик</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-navigation">
+                        <button class="nav-btn prev-btn neomorph-icon">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                        <button class="nav-btn next-btn neomorph-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="swipe-indicator">
+                        <i class="fas fa-arrows-alt-v"></i> Свайпните для прокрутки
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="mobile-nav d-block d-lg-none">
+            <a href="index.html" class="mobile-nav-item active">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="watch.html" class="mobile-nav-item">
+                <i class="fas fa-compass"></i>
+            </a>
+            <a href="subscriptions.html" class="mobile-nav-item">
+                <i class="fas fa-users"></i>
+            </a>
+            <a href="friends.html" class="mobile-nav-item">
+                <i class="fas fa-user-friends"></i>
+                <div class="mobile-notification"></div>
+            </a>
+            <a href="pages/profile.html" class="mobile-nav-item">
+                <i class="fas fa-user"></i>
+            </a>
+        </nav>
+        
+        <!-- Быстрая загрузка (кнопка для мобильных) -->
+        <div class="mobile-upload-btn d-block d-lg-none">
+            <a href="upload.html">
+                <i class="fas fa-plus"></i>
+            </a>
+        </div>
+        
+        <div class="comments-container">
+            <div class="comments-header">
+                <div class="comments-title">Комментарии (1.4K)</div>
+                <div class="comments-close"><i class="fas fa-times"></i></div>
+            </div>
+            
+            <div class="comments-list">
+                <div class="comment-item">
+                    <div class="comment-avatar">
+                        <img src="https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=100&h=100&fit=crop" alt="Аватар game_lover">
+                    </div>
+                    <div class="comment-content">
+                        <div class="comment-username">@game_lover</div>
+                        <div class="comment-text">Не могу дождаться, когда смогу сыграть в эту игру. Выглядит потрясающе!</div>
+                        <div class="comment-actions">
+                            <div class="comment-time">2 часа назад</div>
+                            <div class="comment-like"><i class="fas fa-heart"></i> 128</div>
+                            <div class="comment-reply">Ответить</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comment-item">
+                    <div class="comment-avatar">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop" alt="Аватар horror_fan">
+                    </div>
+                    <div class="comment-content">
+                        <div class="comment-username">@horror_fan</div>
+                        <div class="comment-text">Наконец-то достойный хоррор, после всего того мусора, что выходил в последнее время. Обзор очень полезный!</div>
+                        <div class="comment-actions">
+                            <div class="comment-time">4 часа назад</div>
+                            <div class="comment-like"><i class="fas fa-heart"></i> 97</div>
+                            <div class="comment-reply">Ответить</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comment-item">
+                    <div class="comment-avatar">
+                        <img src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=100&h=100&fit=crop" alt="Аватар gaming_geek">
+                    </div>
+                    <div class="comment-content">
+                        <div class="comment-username">@gaming_geek</div>
+                        <div class="comment-text">Графика конечно на уровне. Интересно, какие требования к железу?</div>
+                        <div class="comment-actions">
+                            <div class="comment-time">5 часов назад</div>
+                            <div class="comment-like"><i class="fas fa-heart"></i> 54</div>
+                            <div class="comment-reply">Ответить</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comment-item">
+                    <div class="comment-avatar">
+                        <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?w=100&h=100&fit=crop" alt="Аватар silent_watcher">
+                    </div>
+                    <div class="comment-content">
+                        <div class="comment-username">@silent_watcher</div>
+                        <div class="comment-text">Всегда любил серию Silent Hill, надеюсь эта игра вернет нам то чувство ужаса, которое было в оригинальных играх</div>
+                        <div class="comment-actions">
+                            <div class="comment-time">6 часов назад</div>
+                            <div class="comment-like"><i class="fas fa-heart"></i> 42</div>
+                            <div class="comment-reply">Ответить</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comment-item">
+                    <div class="comment-avatar">
+                        <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=100&h=100&fit=crop" alt="Аватар game_dev">
+                    </div>
+                    <div class="comment-content">
+                        <div class="comment-username">@game_dev</div>
+                        <div class="comment-text">С точки зрения разработчика, игра выглядит очень впечатляюще! Особенно радует акцент на сюжете и атмосфере.</div>
+                        <div class="comment-actions">
+                            <div class="comment-time">7 часов назад</div>
+                            <div class="comment-like"><i class="fas fa-heart"></i> 38</div>
+                            <div class="comment-reply">Ответить</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comment-form">
+                <input type="text" class="comment-input" placeholder="Добавить комментарий...">
+                <div class="comment-submit">Отправить</div>
+            </div>
+        </div>
+        
+        <!-- Тосты для уведомлений -->
+    </div>
+    
+    <!-- Bootstrap JS и зависимости -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Основные скрипты приложения -->
+    <script src="js/app.js"></script>
+</body>
+</html> 

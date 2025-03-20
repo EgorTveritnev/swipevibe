@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwipeVibe - Друзья</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/neomorphism.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="css/friends.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="desktop-mode">
+    <div class="desktop-container">
+        <div class="side-nav d-none d-lg-block">
+            <div class="side-nav-logo">
+                <i class="fas fa-music animate-glow-text"></i>
+                <span>SwipeVibe</span>
+            </div>
+            
+            <div class="search-box neomorph-card">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Поиск видео, авторов и тем">
+            </div>
+            
+            <div class="side-nav-group">
+                <a href="index.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-home"></i>
+                    <span>Рекомендации</span>
+                </a>
+                <a href="watch.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-compass"></i>
+                    <span>Смотреть</span>
+                </a>
+                <a href="subscriptions.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-users"></i>
+                    <span>Подписки</span>
+                </a>
+                <a href="friends.html" class="side-nav-item active neomorph-btn">
+                    <i class="fas fa-user-friends animate-glow-text"></i>
+                    <span>Друзья</span>
+                    <div class="notification-badge">3</div>
+                </a>
+            </div>
+            
+            <a href="upload.html" class="upload-button neomorph-btn">
+                <i class="fas fa-plus"></i> Загрузить видео
+            </a>            
+            <div class="side-nav-group">
+                <a href="activity.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-bell"></i>
+                    <span>Активность</span>
+                </a>
+                <a href="#" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-comment"></i>
+                    <span>Сообщения</span>
+                </a>
+                <a href="shop.html" class="side-nav-item neomorph-btn shop-nav-item">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Магазин</span>
+                </a>
+                <a href="stream.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-video"></i>
+                    <span>Трансляция</span>
+                </a>
+                <a href="pages/profile.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-user"></i>
+                    <span>Профиль</span>
+                </a>
+                <a href="#" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <span>Еще</span>
+                </a>
+            </div>
+            
+            <div class="side-nav-divider"></div>
+            
+            <div class="subscriptions">
+                <div class="side-nav-section">Подписки на аккаунты</div>
+                
+                <a href="#" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="assets/images/avatar1.jpg" alt="Аватар">
+                    </div>
+                    <span>@username1</span>
+                </a>
+                <a href="#" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="assets/images/avatar2.jpg" alt="Аватар">
+                    </div>
+                    <span>@username2</span>
+                </a>
+                <a href="#" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="assets/images/avatar3.jpg" alt="Аватар">
+                    </div>
+                    <span>@username3</span>
+                </a>
+                <a href="#" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="assets/images/avatar1.jpg" alt="Аватар">
+                    </div>
+                    <span>@username4</span>
+                </a>
+                <a href="#" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="assets/images/avatar2.jpg" alt="Аватар">
+                    </div>
+                    <span>@username5</span>
+                </a>
+                
+                <button class="show-more neomorph-btn">
+                    <i class="fas fa-chevron-down"></i> Показать больше
+                </button>
+            </div>
+            
+            <div class="side-nav-divider"></div>
+            
+            <div class="side-nav-categories">
+                <div class="side-nav-section">Популярные категории</div>
+                
+                <div class="category-tags">
+                    <a href="#" class="category-tag neomorph-btn">
+                        <i class="fas fa-music animate-icon-pulse"></i>
+                        <span>Музыка</span>
+                    </a>
+                    <a href="#" class="category-tag neomorph-btn">
+                        <i class="fas fa-gamepad animate-icon-pulse"></i>
+                        <span>Игры</span>
+                    </a>
+                    <a href="#" class="category-tag neomorph-btn">
+                        <i class="fas fa-film animate-icon-pulse"></i>
+                        <span>Фильмы</span>
+                    </a>
+                    <a href="#" class="category-tag neomorph-btn">
+                        <i class="fas fa-laugh-beam animate-icon-pulse"></i>
+                        <span>Юмор</span>
+                    </a>
+                    <a href="#" class="category-tag neomorph-btn">
+                        <i class="fas fa-utensils animate-icon-pulse"></i>
+                        <span>Еда</span>
+                    </a>
+                    <a href="#" class="category-tag neomorph-btn">
+                        <i class="fas fa-paint-brush animate-icon-pulse"></i>
+                        <span>Искусство</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="side-nav-footer">
+                <div class="side-nav-links">
+                    <a href="#">О нас</a>
+                    <a href="#">Контакты</a>
+                    <a href="#">Политика</a>
+                </div>
+                <div class="copyright">
+                    © 2023 SwipeVibe
+                </div>
+            </div>
+        </div>
+        
+        <main class="main-content friends-content">
+            <div class="friends-header">
+                <h1 class="animate-glow-text">Ваши <span>друзья</span></h1>
+                <p>Общайтесь, делитесь контентом и находите новых друзей</p>
+            </div>
+            
+            <div class="friends-controls neomorph-card">
+                <div class="friends-controls-tabs">
+                    <button class="control-tab active neomorph-btn">
+                        <i class="fas fa-user-friends"></i> Все друзья
+                    </button>
+                    <button class="control-tab neomorph-btn">
+                        <i class="fas fa-user-plus"></i> Запросы <span class="badge">3</span>
+                    </button>
+                    <button class="control-tab neomorph-btn">
+                        <i class="fas fa-compass"></i> Найти друзей
+                    </button>
+                </div>
+                <div class="search-filter">
+                    <div class="friend-search neomorph-inset">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Найти друга...">
+                    </div>
+                    <div class="filter-dropdown">
+                        <button class="filter-btn neomorph-btn">
+                            <i class="fas fa-sliders-h"></i>
+                        </button>
+                        <div class="filter-dropdown-menu neomorph-card">
+                            <div class="filter-header">
+                                <h4>Фильтры</h4>
+                                <button class="close-filter"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="filter-group">
+                                <h5>Статус</h5>
+                                <div class="filter-options">
+                                    <label class="filter-option">
+                                        <input type="checkbox" checked> Онлайн
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="checkbox" checked> Недавно активны
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="checkbox" checked> Оффлайн
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <h5>Сортировка</h5>
+                                <div class="filter-options">
+                                    <label class="filter-option">
+                                        <input type="radio" name="sort" checked> По имени
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="radio" name="sort"> По популярности
+                                    </label>
+                                    <label class="filter-option">
+                                        <input type="radio" name="sort"> По дате добавления
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="filter-footer">
+                                <button class="reset-filters neomorph-btn">Сбросить</button>
+                                <button class="apply-filters neomorph-btn">Применить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="friends-list">
+                <div class="friends-category">
+                    <h3><i class="fas fa-circle online-icon"></i> Онлайн <span>(5)</span></h3>
+                    
+                    <div class="friends-grid">
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status online"></div>
+                            <div class="friend-avatar neomorph-icon animate-glow">
+                                <img src="assets/images/avatar1.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Анна Иванова</h4>
+                                <p class="friend-username">@anna_ivanova</p>
+                                <div class="friend-stats">
+                                    <span><i class="fas fa-eye"></i> 1.2k</span>
+                                    <span><i class="fas fa-heart"></i> 45k</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn message-btn neomorph-btn">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="action-btn video-call-btn neomorph-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status online"></div>
+                            <div class="friend-avatar neomorph-icon animate-glow">
+                                <img src="assets/images/avatar2.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Максим Петров</h4>
+                                <p class="friend-username">@max_petrov</p>
+                                <div class="friend-stats">
+                                    <span><i class="fas fa-eye"></i> 3.5k</span>
+                                    <span><i class="fas fa-heart"></i> 78k</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn message-btn neomorph-btn">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="action-btn video-call-btn neomorph-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status online"></div>
+                            <div class="friend-avatar neomorph-icon animate-glow">
+                                <img src="assets/images/avatar3.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Елена Смирнова</h4>
+                                <p class="friend-username">@elena_s</p>
+                                <div class="friend-stats">
+                                    <span><i class="fas fa-eye"></i> 2.1k</span>
+                                    <span><i class="fas fa-heart"></i> 56k</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn message-btn neomorph-btn">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="action-btn video-call-btn neomorph-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status online streaming"></div>
+                            <div class="friend-avatar neomorph-icon animate-pulse">
+                                <img src="assets/images/avatar1.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Дмитрий Козлов</h4>
+                                <p class="friend-username">@dima_k</p>
+                                <div class="friend-stats live-now">
+                                    <span><i class="fas fa-broadcast-tower"></i> LIVE</span>
+                                    <span><i class="fas fa-eye"></i> 321</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn watch-stream-btn neomorph-btn animate-pulse">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status online"></div>
+                            <div class="friend-avatar neomorph-icon animate-glow">
+                                <img src="assets/images/avatar2.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Ольга Морозова</h4>
+                                <p class="friend-username">@olga_m</p>
+                                <div class="friend-stats">
+                                    <span><i class="fas fa-eye"></i> 2.8k</span>
+                                    <span><i class="fas fa-heart"></i> 62k</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn message-btn neomorph-btn">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="action-btn video-call-btn neomorph-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="friends-category">
+                    <h3><i class="fas fa-history"></i> Недавно активные <span>(3)</span></h3>
+                    
+                    <div class="friends-grid">
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status recent"></div>
+                            <div class="friend-avatar neomorph-icon">
+                                <img src="assets/images/avatar3.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Игорь Васильев</h4>
+                                <p class="friend-username">@igor_v</p>
+                                <div class="friend-stats">
+                                    <span><i class="fas fa-eye"></i> 1.6k</span>
+                                    <span><i class="fas fa-heart"></i> 39k</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn message-btn neomorph-btn">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="action-btn video-call-btn neomorph-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status recent"></div>
+                            <div class="friend-avatar neomorph-icon">
+                                <img src="assets/images/avatar1.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Светлана Кузнецова</h4>
+                                <p class="friend-username">@sveta_k</p>
+                                <div class="friend-stats">
+                                    <span><i class="fas fa-eye"></i> 2.3k</span>
+                                    <span><i class="fas fa-heart"></i> 51k</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn message-btn neomorph-btn">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="action-btn video-call-btn neomorph-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status recent"></div>
+                            <div class="friend-avatar neomorph-icon">
+                                <img src="assets/images/avatar2.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Александр Николаев</h4>
+                                <p class="friend-username">@alex_n</p>
+                                <div class="friend-stats">
+                                    <span><i class="fas fa-eye"></i> 1.9k</span>
+                                    <span><i class="fas fa-heart"></i> 44k</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn message-btn neomorph-btn">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="action-btn video-call-btn neomorph-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="friends-category">
+                    <h3><i class="fas fa-users"></i> Все друзья <span>(15)</span></h3>
+                    
+                    <div class="friends-grid">
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status offline"></div>
+                            <div class="friend-avatar neomorph-icon">
+                                <img src="assets/images/avatar3.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Мария Соколова</h4>
+                                <p class="friend-username">@maria_s</p>
+                                <div class="friend-stats">
+                                    <span><i class="fas fa-eye"></i> 1.8k</span>
+                                    <span><i class="fas fa-heart"></i> 42k</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn message-btn neomorph-btn">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="action-btn video-call-btn neomorph-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-card neomorph-card">
+                            <div class="friend-status offline"></div>
+                            <div class="friend-avatar neomorph-icon">
+                                <img src="assets/images/avatar1.jpg" alt="Аватар друга">
+                            </div>
+                            <div class="friend-info">
+                                <h4 class="friend-name">Андрей Белов</h4>
+                                <p class="friend-username">@andrey_b</p>
+                                <div class="friend-stats">
+                                    <span><i class="fas fa-eye"></i> 2.2k</span>
+                                    <span><i class="fas fa-heart"></i> 49k</span>
+                                </div>
+                            </div>
+                            <div class="friend-actions">
+                                <button class="action-btn message-btn neomorph-btn">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button class="action-btn video-call-btn neomorph-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="show-more-friends neomorph-btn">
+                        <i class="fas fa-chevron-down"></i> Показать больше
+                    </button>
+                </div>
+            </div>
+            
+            <div class="friends-recommendations neomorph-card">
+                <h3><i class="fas fa-user-plus"></i> Рекомендации</h3>
+                <p>Люди, которых вы можете знать</p>
+                
+                <div class="recommendation-list">
+                    <div class="recommendation-item">
+                        <div class="recommendation-avatar neomorph-icon">
+                            <img src="assets/images/avatar2.jpg" alt="Аватар">
+                        </div>
+                        <div class="recommendation-info">
+                            <h4>Николай Сергеев</h4>
+                            <p>@nikolay_s</p>
+                            <span class="mutual-friends">5 общих друзей</span>
+                        </div>
+                        <button class="add-friend-btn neomorph-btn">
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="recommendation-item">
+                        <div class="recommendation-avatar neomorph-icon">
+                            <img src="assets/images/avatar3.jpg" alt="Аватар">
+                        </div>
+                        <div class="recommendation-info">
+                            <h4>Татьяна Попова</h4>
+                            <p>@tatiana_p</p>
+                            <span class="mutual-friends">3 общих друга</span>
+                        </div>
+                        <button class="add-friend-btn neomorph-btn">
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="recommendation-item">
+                        <div class="recommendation-avatar neomorph-icon">
+                            <img src="assets/images/avatar1.jpg" alt="Аватар">
+                        </div>
+                        <div class="recommendation-info">
+                            <h4>Виктор Новиков</h4>
+                            <p>@viktor_n</p>
+                            <span class="mutual-friends">2 общих друга</span>
+                        </div>
+                        <button class="add-friend-btn neomorph-btn">
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <nav class="mobile-nav d-block d-lg-none">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="watch.html" class="mobile-nav-item">
+            <i class="fas fa-compass"></i>
+        </a>
+        <a href="subscriptions.html" class="mobile-nav-item">
+            <i class="fas fa-users"></i>
+        </a>
+        <a href="friends.html" class="mobile-nav-item active">
+            <i class="fas fa-user-friends"></i>
+            <div class="mobile-notification"></div>
+        </a>
+        <a href="pages/profile.html" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+        </a>
+    </nav>
+    
+    <div class="mobile-upload-btn d-block d-lg-none">
+        <a href="upload.html">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+    
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/friends.js"></script>
+</body>
+</html> 
