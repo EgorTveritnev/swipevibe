@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwipeVibe - Загрузить видео</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/neomorphism.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="css/upload.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="desktop-container">
+        <div class="side-nav">
+            <div class="side-nav-logo">
+                <i class="fas fa-music animate-glow-text"></i>
+                <span>SwipeVibe</span>
+            </div>
+            
+            <div class="search-box neomorph-card">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Поиск видео, авторов и тем">
+            </div>
+            
+            <div class="side-nav-group">
+                <a href="index.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-home"></i>
+                    <span>Рекомендации</span>
+                </a>
+                <a href="#" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-compass"></i>
+                    <span>Смотреть</span>
+                </a>
+                <a href="#" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-users"></i>
+                    <span>Подписки</span>
+                    <div class="notification-badge">2</div>
+                </a>
+                <a href="#" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Друзья</span>
+                </a>
+            </div>
+            
+            <a href="upload.html" class="upload-button neomorph-btn active">
+                <i class="fas fa-plus"></i> Загрузить видео
+            </a>
+            
+            <div class="side-nav-group">
+                <a href="activity.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-bell"></i>
+                    <span>Активность</span>
+                </a>
+                <a href="#" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-comment"></i>
+                    <span>Сообщения</span>
+                </a>
+                <a href="shop.html" class="side-nav-item neomorph-btn shop-nav-item">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Магазин</span>
+                </a>
+                <a href="stream.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-video"></i>
+                    <span>Трансляция</span>
+                </a>
+                <a href="pages/profile.html" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-user"></i>
+                    <span>Профиль</span>
+                </a>
+                <a href="#" class="side-nav-item neomorph-btn">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <span>Еще</span>
+                </a>
+            </div>
+            
+            <div class="side-nav-divider"></div>
+            
+            <div class="subscriptions">
+                <div class="side-nav-section">Подписки на аккаунты</div>
+                
+                <a href="#" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="assets/images/avatar1.jpg" alt="Аватар">
+                    </div>
+                    <span>@username1</span>
+                </a>
+                <a href="#" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="assets/images/avatar2.jpg" alt="Аватар">
+                    </div>
+                    <span>@username2</span>
+                </a>
+                <a href="#" class="subscription-item neomorph-btn">
+                    <div class="subscription-avatar neomorph-icon animate-glow">
+                        <img src="assets/images/avatar3.jpg" alt="Аватар">
+                    </div>
+                    <span>@username3</span>
+                </a>
+                
+                <button class="show-more neomorph-btn">
+                    <i class="fas fa-chevron-down"></i> Показать больше
+                </button>
+            </div>
+            
+            <div class="side-nav-divider"></div>
+            
+            <div class="side-nav-categories">
+                <div class="side-nav-section">Популярные категории</div>
+                
+                <div class="category-tags">
+                    <a href="#" class="category-tag neomorph-btn">
+                        <i class="fas fa-music animate-icon-pulse"></i>
+                        <span>Музыка</span>
+                    </a>
+                    <a href="#" class="category-tag neomorph-btn">
+                        <i class="fas fa-gamepad animate-icon-pulse"></i>
+                        <span>Игры</span>
+                    </a>
+                    <a href="#" class="category-tag neomorph-btn">
+                        <i class="fas fa-film animate-icon-pulse"></i>
+                        <span>Фильмы</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="side-nav-footer">
+                <div class="side-nav-links">
+                    <a href="#">О нас</a>
+                    <a href="#">Контакты</a>
+                    <a href="#">Политика</a>
+                </div>
+                <div class="copyright">
+                    © 2023 SwipeVibe
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content upload-content">
+            <div class="upload-container neomorph-card">
+                <div class="upload-header">
+                    <h1>Загрузить видео</h1>
+                    <p>Поделитесь своими лучшими моментами на SwipeVibe</p>
+                </div>
+                
+                <div class="upload-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="upload-preview-container neomorph-card">
+                                <div id="dropzone" class="upload-dropzone">
+                                    <i class="fas fa-cloud-upload-alt animate-glow-text"></i>
+                                    <h3>Перетащите видео сюда</h3>
+                                    <p>или</p>
+                                    <label for="video-upload" class="upload-btn neomorph-btn">
+                                        <i class="fas fa-file-video"></i>
+                                        Выбрать файл
+                                    </label>
+                                    <input type="file" id="video-upload" accept="video/*" style="display: none;">
+                                    <div class="upload-info">MP4 или WebM • Макс. размер: 50 МБ • До 3 минут</div>
+                                </div>
+                                
+                                <div class="video-preview-container" style="display: none;">
+                                    <video id="video-preview" controls></video>
+                                    <div class="preview-controls">
+                                        <button class="preview-control-btn neomorph-btn" id="trim-video">
+                                            <i class="fas fa-cut"></i> Обрезать
+                                        </button>
+                                        <button class="preview-control-btn neomorph-btn" id="remove-video">
+                                            <i class="fas fa-trash"></i> Удалить
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="upload-progress neomorph-card" style="display: none;">
+                                <div class="progress-header">
+                                    <span class="progress-title">Загрузка видео...</span>
+                                    <span class="progress-percentage">0%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="upload-form">
+                                <div class="form-group">
+                                    <label for="video-title">Название</label>
+                                    <input type="text" id="video-title" class="neomorph-input" placeholder="Добавьте название для вашего видео...">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="video-description">Описание</label>
+                                    <textarea id="video-description" class="neomorph-input" rows="4" placeholder="Расскажите о вашем видео подробнее..."></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="video-tags">Теги</label>
+                                    <input type="text" id="video-tags" class="neomorph-input" placeholder="Добавьте теги через запятую #музыка, #тренды...">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Категория</label>
+                                    <div class="category-selection">
+                                        <button class="category-btn neomorph-btn active">
+                                            <i class="fas fa-music"></i> Музыка
+                                        </button>
+                                        <button class="category-btn neomorph-btn">
+                                            <i class="fas fa-laugh-beam"></i> Комедия
+                                        </button>
+                                        <button class="category-btn neomorph-btn">
+                                            <i class="fas fa-gamepad"></i> Игры
+                                        </button>
+                                        <button class="category-btn neomorph-btn">
+                                            <i class="fas fa-utensils"></i> Еда
+                                        </button>
+                                        <button class="category-btn neomorph-btn">
+                                            <i class="fas fa-film"></i> Развлечения
+                                        </button>
+                                        <button class="category-btn neomorph-btn">
+                                            <i class="fas fa-shopping-bag"></i> Мода
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Доступ</label>
+                                    <div class="access-options">
+                                        <label class="access-option neomorph-btn">
+                                            <input type="radio" name="access" value="public" checked style="display: none;">
+                                            <i class="fas fa-globe"></i> Публичное
+                                        </label>
+                                        <label class="access-option neomorph-btn">
+                                            <input type="radio" name="access" value="friends" style="display: none;">
+                                            <i class="fas fa-user-friends"></i> Друзья
+                                        </label>
+                                        <label class="access-option neomorph-btn">
+                                            <input type="radio" name="access" value="private" style="display: none;">
+                                            <i class="fas fa-lock"></i> Личное
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button class="cancel-btn neomorph-btn">Отмена</button>
+                                    <button class="submit-btn neomorph-btn" disabled>
+                                        <i class="fas fa-cloud-upload-alt"></i> Опубликовать
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mobile-nav d-block d-lg-none">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Главная</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-compass"></i>
+            <span>Исследовать</span>
+        </a>
+        <a href="upload.html" class="nav-item active">
+            <div class="upload-btn">
+                <div class="neomorph-icon animate-glow">
+                    <i class="fas fa-plus"></i>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span>Активность</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Профиль</span>
+        </a>
+    </div>
+    
+    <div class="toast-container"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/upload.js"></script>
+</body>
+</html> 
