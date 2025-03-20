@@ -85,7 +85,7 @@ SwipeVibe/
 
 1. Клонируйте репозиторий:
 ```
-git clone https://github.com/EgorTveritnev/swipevibe.git
+git clone https://github.com/username/swipevibe.git
 ```
 
 2. Перейдите в директорию проекта:

@@ -1,33 +1,44 @@
+/* Файл с темной темой для SwipeVibe */
+
 :root {
     --bg-primary: #121212;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #242424;
+    
     --neomorph-bg: #181818;
     --neomorph-shadow-dark: #0f0f0f;
     --neomorph-shadow-light: #252525;
+    
     --neomorph-gradient-1: linear-gradient(145deg, #191919, #151515);
     --neomorph-gradient-2: linear-gradient(145deg, #1c1c1c, #171717);
+    
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-tertiary: rgba(255, 255, 255, 0.5);
+    
     --accent-color-1: #6a67ce;
     --accent-color-2: #8a7dff;
     --accent-color-3: #7367f0;
+    
     --shop-color-1: #ff9a44;
     --shop-color-2: #fc6076;
     --shop-gradient: linear-gradient(135deg, var(--shop-color-1), var(--shop-color-2));
+    
     --notification-color: #ff5454;
     --like-color: #ff1744;
     --comment-color: #0091ea;
     --share-color: #00c853;
     --achievement-color: #ffd600;
+    
     --success-color: #4caf50;
     --error-color: #f44336;
     --warning-color: #ff9800;
     --info-color: #2196f3;
+    
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
+    
     --transition-speed: 0.3s;
     --transition-function: ease;
 }
@@ -148,34 +159,45 @@ body {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+/* SwipeVibe - Темная тема */
 
 :root {
     --bg-primary: #121212;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #2a2a2a;
+    
     --neomorphic-light: rgba(255, 255, 255, 0.05);
     --neomorphic-dark: rgba(0, 0, 0, 0.6);
+    
     --neomorphic-shadow-1: -5px -5px 10px var(--neomorphic-light);
     --neomorphic-shadow-2: 5px 5px 10px var(--neomorphic-dark);
     --neomorphic-shadow-inset: inset 5px 5px 10px var(--neomorphic-dark), 
                                inset -5px -5px 10px var(--neomorphic-light);
+    
     --text-primary: rgba(255, 255, 255, 0.9);
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-tertiary: rgba(255, 255, 255, 0.5);
+    
     --accent-primary: #ff5454;
     --accent-secondary: #ff9d54;
     --accent-tertiary: #8a55ff;
+    
     --notification-color: #ff5454;
+    
     --gradient-primary: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
     --gradient-secondary: linear-gradient(45deg, var(--accent-primary), var(--accent-tertiary));
+    
     --border-light: 1px solid rgba(255, 255, 255, 0.1);
     --border-medium: 1px solid rgba(255, 255, 255, 0.15);
+    
     --border-radius-sm: 8px;
     --border-radius-md: 12px;
     --border-radius-lg: 20px;
+    
     --transition-normal: all 0.3s ease;
     --transition-fast: all 0.15s ease;
 }
+
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);

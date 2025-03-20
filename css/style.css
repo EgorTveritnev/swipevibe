@@ -1,3 +1,6 @@
+/* Основные стили для SwipeVibe */
+
+
 * {
     margin: 0;
     padding: 0;
@@ -29,6 +32,7 @@ button {
     cursor: pointer;
     background: none;
 }
+
 .mobile-nav {
     display: flex;
     justify-content: space-around;
@@ -64,18 +68,18 @@ body.desktop-mode {
     align-items: center;
     background-color: #0a0a0a;
     min-height: 100vh;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .desktop-video-container {
     width: 100%;
-    max-width: 800px; 
+    max-width: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     position: relative;
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 0;
 }
 
@@ -85,7 +89,7 @@ body.desktop-mode {
     height: 90vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     position: relative;
     overflow: hidden;
     margin: 0 auto;
@@ -112,8 +116,8 @@ body.desktop-mode {
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1); 
-    transform: translateY(100%); 
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    transform: translateY(100%);
     z-index: -1;
     display: flex;
     justify-content: center;
@@ -444,6 +448,7 @@ body.desktop-mode {
     box-shadow: 0 0 15px rgba(106, 103, 206, 0.5);
 }
 
+
 .like-btn, .comment-btn, .share-btn, .bookmark-btn {
     font-size: 22px;
 }
@@ -697,7 +702,6 @@ body.desktop-mode {
         width: calc(100% - 70px);
     }
 }
-
 .toast-container {
     position: fixed;
     bottom: 20px;
