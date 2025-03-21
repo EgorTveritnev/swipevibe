@@ -1,0 +1,67 @@
+@{
+    ViewBag.Title = "Друзья";
+}
+
+@section Styles {
+    @Styles.Render("~/Content/friends")
+}
+
+<div class="friends-container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="friends-sidebar">
+                <div class="search-box">
+                    <input type="text" placeholder="Найти друзей..." class="form-control" id="friend-search" />
+                </div>
+                
+                <div class="friends-tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active"><a href="#all-friends" role="tab" data-toggle="tab">Все друзья</a></li>
+                        <li><a href="#online" role="tab" data-toggle="tab">Онлайн</a></li>
+                        <li><a href="#pending" role="tab" data-toggle="tab">Заявки</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="friends-content">
+                <h2>Мои друзья</h2>
+                
+                <div class="friends-grid">
+                    <div class="friend-card">
+                        <a href="@Url.Action("Profile", "Friends", new { id = 1 })">
+                            <img src="~/Content/assets/images/avatar1.jpg" alt="Друг 1" />
+                            <div class="friend-info">
+                                <h3>Имя Фамилия 1</h3>
+                                <p>Онлайн</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="friend-card">
+                        <a href="@Url.Action("Profile", "Friends", new { id = 2 })">
+                            <img src="~/Content/assets/images/avatar2.jpg" alt="Друг 2" />
+                            <div class="friend-info">
+                                <h3>Имя Фамилия 2</h3>
+                                <p>Был 2 часа назад</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="friend-card">
+                        <a href="@Url.Action("Profile", "Friends", new { id = 3 })">
+                            <img src="~/Content/assets/images/avatar3.jpg" alt="Друг 3" />
+                            <div class="friend-info">
+                                <h3>Имя Фамилия 3</h3>
+                                <p>Онлайн</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/friends")
+} 

@@ -1,0 +1,78 @@
+@{
+    ViewBag.Title = "Активность";
+}
+
+@section Styles {
+    @Styles.Render("~/Content/activity")
+}
+
+<div class="activity-container">
+    <h2>Активность</h2>
+    
+    <div class="activity-filter">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default active" data-filter="all">Все</button>
+            <button type="button" class="btn btn-default" data-filter="videos">Видео</button>
+            <button type="button" class="btn btn-default" data-filter="friends">Друзья</button>
+            <button type="button" class="btn btn-default" data-filter="comments">Комментарии</button>
+        </div>
+    </div>
+    
+    <div class="activity-timeline">
+        <div class="activity-item" data-type="videos">
+            <div class="activity-icon">
+                <i class="fa fa-video-camera"></i>
+            </div>
+            <div class="activity-content">
+                <div class="activity-header">
+                    <span class="activity-user">Пользователь 1</span>
+                    <span class="activity-action">загрузил новое видео</span>
+                    <span class="activity-time">2 часа назад</span>
+                </div>
+                <div class="activity-details">
+                    <a href="@Url.Action("Video", "Watch", new { id = 1 })">
+                        <img src="~/Content/assets/images/video1.jpg" alt="Видео 1" />
+                        <span class="video-title">Название видео 1</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="activity-item" data-type="friends">
+            <div class="activity-icon">
+                <i class="fa fa-user-plus"></i>
+            </div>
+            <div class="activity-content">
+                <div class="activity-header">
+                    <span class="activity-user">Пользователь 2</span>
+                    <span class="activity-action">добавил в друзья</span>
+                    <span class="activity-user">Пользователь 3</span>
+                    <span class="activity-time">5 часов назад</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="activity-item" data-type="comments">
+            <div class="activity-icon">
+                <i class="fa fa-comment"></i>
+            </div>
+            <div class="activity-content">
+                <div class="activity-header">
+                    <span class="activity-user">Пользователь 4</span>
+                    <span class="activity-action">прокомментировал видео</span>
+                    <span class="activity-time">вчера</span>
+                </div>
+                <div class="activity-details">
+                    <p class="comment-text">"Отличное видео! Спасибо за контент!"</p>
+                    <a href="@Url.Action("Video", "Watch", new { id = 2 })">
+                        <span class="video-title">Название видео 2</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/activity")
+} 

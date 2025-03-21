@@ -1,0 +1,362 @@
+/* Анимации для SwipeVibe в тёмной теме */
+
+/* Базовые анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Анимации свечения */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(106, 103, 206, 0.5), 
+                    0 0 10px rgba(106, 103, 206, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(106, 103, 206, 0.7), 
+                    0 0 20px rgba(106, 103, 206, 0.5),
+                    0 0 30px rgba(106, 103, 206, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(106, 103, 206, 0.5), 
+                    0 0 10px rgba(106, 103, 206, 0.3);
+    }
+}
+
+@keyframes glowText {
+    0% {
+        text-shadow: 0 0 5px rgba(106, 103, 206, 0.5), 
+                    0 0 10px rgba(106, 103, 206, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(106, 103, 206, 0.7), 
+                    0 0 20px rgba(106, 103, 206, 0.5),
+                    0 0 30px rgba(106, 103, 206, 0.3);
+        color: #a5a2ff;
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(106, 103, 206, 0.5), 
+                    0 0 10px rgba(106, 103, 206, 0.3);
+    }
+}
+
+@keyframes iconPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(106, 103, 206, 0.7), 
+                     0 0 20px rgba(106, 103, 206, 0.5);
+        color: #a5a2ff;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Анимации для всплывающих элементов */
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Анимации для кнопок */
+@keyframes press {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Анимации для лайков, закладок */
+@keyframes like {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+        color: #ff5577;
+        text-shadow: 0 0 10px rgba(255, 85, 119, 0.7),
+                     0 0 20px rgba(255, 85, 119, 0.5);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+        color: #ff5577;
+    }
+}
+
+@keyframes bookmark {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+        color: #ffcc00;
+        text-shadow: 0 0 10px rgba(255, 204, 0, 0.7),
+                     0 0 20px rgba(255, 204, 0, 0.5);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+        color: #ffcc00;
+    }
+}
+
+/* Анимация для появления тостов */
+@keyframes toastIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes toastOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.8);
+    }
+}
+
+/* Классы для применения анимаций */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-pulse {
+    animation: pulse 1s infinite ease-in-out;
+}
+
+.animate-rotate {
+    animation: rotate 2s linear infinite;
+}
+
+.animate-glow {
+    animation: glow 2s infinite ease-in-out;
+}
+
+.animate-glow-text {
+    animation: glowText 2s infinite ease-in-out;
+}
+
+.animate-icon-pulse {
+    animation: iconPulse 2s infinite ease-in-out;
+}
+
+.animate-pop-in {
+    animation: popIn 0.3s ease forwards;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.3s ease forwards;
+}
+
+.animate-slide-down {
+    animation: slideDown 0.3s ease forwards;
+}
+
+.animate-press {
+    animation: press 0.2s ease forwards;
+}
+
+.animate-like {
+    animation: like 0.5s ease forwards;
+    color: #ff5577;
+}
+
+.animate-bookmark {
+    animation: bookmark 0.5s ease forwards;
+    color: #ffcc00;
+}
+
+/* Стили для тостов с анимациями */
+.toast {
+    animation: toastIn 0.3s ease forwards;
+}
+
+.toast.hide {
+    animation: toastOut 0.3s ease forwards;
+}
+
+/* Специальные стили для активных элементов */
+.side-nav-item.active i {
+    animation: glowText 2s infinite ease-in-out;
+    color: #a5a2ff;
+}
+
+.like-btn.active i {
+    color: #ff5577;
+    text-shadow: 0 0 10px rgba(255, 85, 119, 0.7);
+}
+
+.bookmark-btn.active i {
+    color: #ffcc00;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+}
+
+/* Анимации для hover-эффектов */
+.neomorph-btn:hover,
+.neomorph-icon:hover {
+    animation: pulse 1s infinite ease-in-out;
+}
+
+/* Эффекты появления */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* Анимации для страницы загрузки */
+@keyframes toast-in {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toast-out {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+/* Стили для toast-уведомлений */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-notification i {
+    font-size: 18px;
+}
+
+.toast-notification.success {
+    background: linear-gradient(90deg, rgba(47, 155, 68, 0.9), rgba(39, 174, 96, 0.9));
+    border-left: 4px solid #27ae60;
+}
+
+.toast-notification.error {
+    background: linear-gradient(90deg, rgba(192, 57, 43, 0.9), rgba(231, 76, 60, 0.9));
+    border-left: 4px solid #e74c3c;
+}
+
+.toast-notification.warning {
+    background: linear-gradient(90deg, rgba(211, 144, 44, 0.9), rgba(243, 156, 18, 0.9));
+    border-left: 4px solid #f39c12;
+}
+
+.toast-notification.info {
+    background: linear-gradient(90deg, rgba(41, 128, 185, 0.9), rgba(52, 152, 219, 0.9));
+    border-left: 4px solid #3498db;
+} 

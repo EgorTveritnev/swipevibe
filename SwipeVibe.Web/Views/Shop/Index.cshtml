@@ -1,0 +1,48 @@
+@{
+    ViewBag.Title = "Магазин";
+}
+
+@section Styles {
+    @Styles.Render("~/Content/shop")
+}
+
+<div class="shop-container">
+    <h2>Магазин SwipeVibe</h2>
+    
+    <div class="product-grid">
+        <div class="product-card">
+            <a href="@Url.Action("Product", "Shop", new { id = 1 })">
+                <img src="~/Content/assets/images/product1.jpg" alt="Товар 1" />
+                <div class="product-info">
+                    <h3>Название товара 1</h3>
+                    <p>Цена: 1,200 руб.</p>
+                </div>
+            </a>
+            <button class="btn btn-primary add-to-cart" data-product-id="1">В корзину</button>
+        </div>
+        <div class="product-card">
+            <a href="@Url.Action("Product", "Shop", new { id = 2 })">
+                <img src="~/Content/assets/images/product2.jpg" alt="Товар 2" />
+                <div class="product-info">
+                    <h3>Название товара 2</h3>
+                    <p>Цена: 2,500 руб.</p>
+                </div>
+            </a>
+            <button class="btn btn-primary add-to-cart" data-product-id="2">В корзину</button>
+        </div>
+        <div class="product-card">
+            <a href="@Url.Action("Product", "Shop", new { id = 3 })">
+                <img src="~/Content/assets/images/product3.jpg" alt="Товар 3" />
+                <div class="product-info">
+                    <h3>Название товара 3</h3>
+                    <p>Цена: 3,800 руб.</p>
+                </div>
+            </a>
+            <button class="btn btn-primary add-to-cart" data-product-id="3">В корзину</button>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/shop")
+} 

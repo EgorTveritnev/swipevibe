@@ -1,0 +1,67 @@
+@{
+    ViewBag.Title = "Стримы";
+}
+
+@section Styles {
+    @Styles.Render("~/Content/stream")
+}
+
+<div class="stream-container">
+    <h2>Популярные стримы</h2>
+    
+    <div class="stream-grid">
+        <div class="stream-card live">
+            <a href="@Url.Action("Live", "Stream", new { id = 1 })">
+                <div class="stream-thumbnail">
+                    <img src="~/Content/assets/images/stream1.jpg" alt="Стрим 1" />
+                    <div class="stream-badge">LIVE</div>
+                    <div class="stream-viewers">1,234 зрителей</div>
+                </div>
+                <div class="stream-info">
+                    <h3>Название стрима 1</h3>
+                    <p>Автор: Пользователь 1</p>
+                    <p>Категория: Игры</p>
+                </div>
+            </a>
+        </div>
+        
+        <div class="stream-card live">
+            <a href="@Url.Action("Live", "Stream", new { id = 2 })">
+                <div class="stream-thumbnail">
+                    <img src="~/Content/assets/images/stream2.jpg" alt="Стрим 2" />
+                    <div class="stream-badge">LIVE</div>
+                    <div class="stream-viewers">567 зрителей</div>
+                </div>
+                <div class="stream-info">
+                    <h3>Название стрима 2</h3>
+                    <p>Автор: Пользователь 2</p>
+                    <p>Категория: Музыка</p>
+                </div>
+            </a>
+        </div>
+        
+        <div class="stream-card">
+            <a href="@Url.Action("Live", "Stream", new { id = 3 })">
+                <div class="stream-thumbnail">
+                    <img src="~/Content/assets/images/stream3.jpg" alt="Стрим 3" />
+                    <div class="stream-badge scheduled">Завтра в 18:00</div>
+                </div>
+                <div class="stream-info">
+                    <h3>Название стрима 3</h3>
+                    <p>Автор: Пользователь 3</p>
+                    <p>Категория: Образование</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="start-stream-section">
+        <h3>Начать свой стрим</h3>
+        <p>Поделитесь своими моментами в прямом эфире с сообществом SwipeVibe!</p>
+        <a href="#" class="btn btn-primary btn-lg">Начать стрим</a>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/stream")
+} 
