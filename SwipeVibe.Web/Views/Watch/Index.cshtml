@@ -1,0 +1,48 @@
+@{
+    ViewBag.Title = "Смотреть видео";
+}
+
+@section Styles {
+    @Styles.Render("~/Content/watch")
+}
+
+<div class="watch-container">
+    <h2>Популярные видео</h2>
+    
+    <div class="video-grid">
+        <div class="video-card">
+            <a href="@Url.Action("Video", "Watch", new { id = 1 })">
+                <img src="~/Content/assets/images/video1.jpg" alt="Видео 1" />
+                <div class="video-info">
+                    <h3>Название видео 1</h3>
+                    <p>Автор: Пользователь 1</p>
+                    <p>Просмотры: 1,234</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-card">
+            <a href="@Url.Action("Video", "Watch", new { id = 2 })">
+                <img src="~/Content/assets/images/video2.jpg" alt="Видео 2" />
+                <div class="video-info">
+                    <h3>Название видео 2</h3>
+                    <p>Автор: Пользователь 2</p>
+                    <p>Просмотры: 5,678</p>
+                </div>
+            </a>
+        </div>
+        <div class="video-card">
+            <a href="@Url.Action("Video", "Watch", new { id = 3 })">
+                <img src="~/Content/assets/images/video3.jpg" alt="Видео 3" />
+                <div class="video-info">
+                    <h3>Название видео 3</h3>
+                    <p>Автор: Пользователь 3</p>
+                    <p>Просмотры: 9,012</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/watch")
+} 
