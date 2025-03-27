@@ -88,8 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             this.style.transform = 'scale(1)';
         }, 200);
-        
-        // Можно добавить перенаправление на страницу оплаты
     }
     
     function handlePromoClick(e) {

@@ -1,5 +1,3 @@
-// JavaScript для страницы активности
-
 document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -49,8 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    
-    // Функционал чата
     const chatItems = document.querySelectorAll('.chat-item');
     chatItems.forEach(chat => {
         chat.addEventListener('click', () => {
@@ -100,8 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
             messageInput.value = '';
             
             messageInput.focus();
-            
-            // Симуляция ответа через 1-3 секунды
             setTimeout(simulateReply, Math.random() * 2000 + 1000);
         }
         

@@ -1,6 +1,9 @@
+﻿
 @{
-    ViewBag.Title = "Смотреть видео";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 @section Styles {
     @Styles.Render("~/Content/watch")
@@ -8,7 +11,7 @@
 
 <div class="watch-container">
     <h2>Популярные видео</h2>
-    
+
     <div class="video-grid">
         <div class="video-card">
             <a href="@Url.Action("Video", "Watch", new { id = 1 })">
@@ -45,4 +48,5 @@
 
 @section scripts {
     @Scripts.Render("~/bundles/watch")
-} 
+}
+

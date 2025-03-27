@@ -1,5 +1,3 @@
-/* Файл с темной темой для SwipeVibe */
-
 :root {
     --bg-primary: #121212;
     --bg-secondary: #1a1a1a;
@@ -158,8 +156,6 @@ body {
     color: white !important;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
-
-/* SwipeVibe - Темная тема */
 
 :root {
     --bg-primary: #121212;

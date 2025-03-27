@@ -1,3 +1,4 @@
+﻿@using System.Web.Optimization
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SwipeVibe</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
     @if (IsSectionDefined("Styles"))
     {
         @RenderSection("Styles", required: false)
@@ -40,16 +42,17 @@
             </div>
         </nav>
     </header>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - SwipeVibe</p>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
-</html> 
+</html>

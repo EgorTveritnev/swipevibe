@@ -1,9 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 
-namespace SwipeVibe.Web
+namespace SwipeVibe.Web.App_Start
 {
-    public class BundleConfig
+	public class BundleConfig
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
@@ -18,7 +21,6 @@ namespace SwipeVibe.Web
                       "~/Content/css/animations.css",
                       "~/Content/css/theme.css"));
 
-            // Добавляем бандлы для разных страниц
             bundles.Add(new StyleBundle("~/Content/watch").Include("~/Content/css/watch.css"));
             bundles.Add(new StyleBundle("~/Content/upload").Include("~/Content/css/upload.css"));
             bundles.Add(new StyleBundle("~/Content/subscriptions").Include("~/Content/css/subscriptions.css"));
@@ -30,7 +32,6 @@ namespace SwipeVibe.Web
             bundles.Add(new StyleBundle("~/Content/error").Include("~/Content/css/error.css"));
             bundles.Add(new StyleBundle("~/Content/stream").Include("~/Content/css/stream.css"));
 
-            // Скрипты для разных страниц
             bundles.Add(new ScriptBundle("~/bundles/watch").Include("~/Scripts/watch.js"));
             bundles.Add(new ScriptBundle("~/bundles/upload").Include("~/Scripts/upload.js"));
             bundles.Add(new ScriptBundle("~/bundles/subscriptions").Include("~/Scripts/subscriptions.js"));
@@ -42,4 +43,4 @@ namespace SwipeVibe.Web
             bundles.Add(new ScriptBundle("~/bundles/stream").Include("~/Scripts/stream.js"));
         }
     }
-} 
+}

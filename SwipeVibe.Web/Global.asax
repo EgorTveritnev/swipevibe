@@ -1,1 +1,1 @@
-<%@ Application Codebehind="Global.asax.cs" Inherits="SwipeVibe.Web.MvcApplication" Language="C#" %> 
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="SwipeVibe.Web.Global" Language="C#" %>

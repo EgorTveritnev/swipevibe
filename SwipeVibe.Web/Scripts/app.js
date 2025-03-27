@@ -1,6 +1,3 @@
-// Глобальные функции для приложения SwipeVibe
-
-// При загрузке DOM
 document.addEventListener('DOMContentLoaded', function() {
     console.log('SwipeVibe инициализация в тёмной теме...');
     
@@ -86,7 +83,6 @@ function initializeApp() {
     };
 }
 
-// Инициализация видео
 function initVideos() {
     const videos = document.querySelectorAll('.video-card video');
     const videoCards = document.querySelectorAll('.video-card');
@@ -160,7 +156,6 @@ function setupVideoOrder() {
     });
 }
 
-// Инициализация навигации
 function initNavigation() {
     const nextBtn = document.querySelector('.next-btn');
     const prevBtn = document.querySelector('.prev-btn');

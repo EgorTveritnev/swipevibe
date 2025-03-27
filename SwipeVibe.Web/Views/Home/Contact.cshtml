@@ -1,11 +1,13 @@
+﻿
 @{
-    ViewBag.Title = "Контакты";
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="contact-container">
     <h2>@ViewBag.Title</h2>
     <p>@ViewBag.Message</p>
-    
+
     <div class="row">
         <div class="col-md-6">
             <h3>Наши контакты</h3>
@@ -14,13 +16,13 @@
                 Москва, 123456<br />
                 <abbr title="Телефон">Тел:</abbr> +7 (123) 456-7890
             </address>
-            
+
             <address>
                 <strong>Поддержка:</strong> <a href="mailto:support@swipevibe.com">support@swipevibe.com</a><br />
                 <strong>Маркетинг:</strong> <a href="mailto:marketing@swipevibe.com">marketing@swipevibe.com</a>
             </address>
         </div>
-        
+
         <div class="col-md-6">
             <h3>Напишите нам</h3>
             <form>
@@ -40,4 +42,5 @@
             </form>
         </div>
     </div>
-</div> 
+</div>
+

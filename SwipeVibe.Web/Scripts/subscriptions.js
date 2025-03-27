@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация страницы подписок
     console.log('Страница подписок загружена');
     
     if (window.showToastNotification) {
@@ -356,24 +355,17 @@ function initLoadMore() {
                 showToastNotification('Загрузка дополнительного контента...', 'info');
             }
             
-            // Изменяем текст кнопки и добавляем класс загрузки
             const originalText = this.innerHTML;
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Загрузка...';
             this.disabled = true;
-            
-            // Добавляем эффект свечения для загрузки
             this.style.boxShadow = '0 0 15px rgba(106, 103, 206, 0.4)';
             this.style.background = 'rgba(106, 103, 206, 0.3)';
             
-            // Имитируем загрузку новых видео
             setTimeout(() => {
-                // Восстанавливаем оригинальный текст кнопки
                 this.innerHTML = originalText;
                 this.disabled = false;
                 this.style.boxShadow = '';
                 this.style.background = '';
-                
-                // В реальном приложении здесь был бы API запрос
                 loadMoreContent();
                 
                 if (window.showToastNotification) {
@@ -386,13 +378,8 @@ function initLoadMore() {
 
 
 function simulateVideoPlayback(videoCard) {
-    // В реальном приложении здесь был бы код для воспроизведения видео
-    
-    // Эффект подсветки карточки
     videoCard.style.boxShadow = '-8px -8px 16px rgba(20, 20, 20, 0.6), 8px 8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(106, 103, 206, 0.5)';
     videoCard.style.borderColor = 'rgba(106, 103, 206, 0.3)';
-    
-    // Эффект для кнопки воспроизведения
     const playBtn = videoCard.querySelector('.play-btn');
     if (playBtn) {
         playBtn.style.background = 'var(--accent-color-1, #6a67ce)';
@@ -412,14 +399,12 @@ function simulateVideoPlayback(videoCard) {
 
 
 function simulateMoreOptions(btn) {
-    // Проверяем, есть ли уже меню
     let optionsMenu = document.querySelector('.feed-options-menu');
     if (optionsMenu) {
         optionsMenu.remove();
         return;
     }
     
-    // Создаем меню опций
     optionsMenu = document.createElement('div');
     optionsMenu.className = 'feed-options-menu';
     optionsMenu.style.position = 'absolute';
@@ -433,7 +418,6 @@ function simulateMoreOptions(btn) {
     optionsMenu.style.zIndex = '100';
     optionsMenu.style.border = '1px solid rgba(255, 255, 255, 0.05)';
     
-    // Опции
     const options = [
         { icon: 'fas fa-ban', text: 'Скрыть публикацию' },
         { icon: 'fas fa-flag', text: 'Пожаловаться' },
@@ -441,7 +425,6 @@ function simulateMoreOptions(btn) {
         { icon: 'fas fa-bell-slash', text: 'Отключить уведомления' }
     ];
     
-    // Добавляем опции в меню
     options.forEach(option => {
         const optionItem = document.createElement('div');
         optionItem.className = 'menu-option';
@@ -479,11 +462,9 @@ function simulateMoreOptions(btn) {
         optionsMenu.appendChild(optionItem);
     });
     
-    // Добавляем меню в DOM
     btn.closest('.feed-item').style.position = 'relative';
     btn.closest('.feed-item').appendChild(optionsMenu);
     
-    // Добавляем обработчик для закрытия меню при клике вне его
     document.addEventListener('click', function closeMenu(e) {
         if (!optionsMenu.contains(e.target) && e.target !== btn) {
             optionsMenu.remove();
@@ -579,7 +560,6 @@ function loadMoreContent() {
             
             feedContainer.appendChild(newFeedItem);
             
-            // Обновляем обработчики событий
             initFeedActions();
         }
     }

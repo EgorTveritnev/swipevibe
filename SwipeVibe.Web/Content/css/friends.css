@@ -1,5 +1,4 @@
 
-/* Задаем темную тему */
 :root {
     --bg-color: #121212;
     --card-bg: #1e1e1e;
@@ -287,7 +286,6 @@ body {
                 -2px -2px 6px var(--shadow-light);
 }
 
-/* Анимация появления */
 @keyframes fadeIn {
     from {
         opacity: 0;

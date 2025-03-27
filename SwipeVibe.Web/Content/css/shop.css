@@ -1,12 +1,9 @@
-/* Стили для страницы магазина */
-
 .shop-content {
     padding: 30px;
     color: #fff;
     width: 100%;
 }
 
-/* Заголовок страницы */
 .shop-header {
     margin-bottom: 30px;
     text-align: center;

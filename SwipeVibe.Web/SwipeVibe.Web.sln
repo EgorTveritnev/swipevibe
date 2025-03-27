@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwipeVibe.Web", "SwipeVibe.Web.csproj", "{7240A44D-DFA2-4813-998B-AC1B31B52D40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwipeVibe.Web", "SwipeVibe.Web.csproj", "{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7240A44D-DFA2-4813-998B-AC1B31B52D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7240A44D-DFA2-4813-998B-AC1B31B52D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7240A44D-DFA2-4813-998B-AC1B31B52D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7240A44D-DFA2-4813-998B-AC1B31B52D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2FD1C5BB-DED2-4DD1-B1D6-4BF30D567063}
+		SolutionGuid = {67D0CF78-1E8F-49FE-8E46-6E97BCE8EDEC}
 	EndGlobalSection
 EndGlobal

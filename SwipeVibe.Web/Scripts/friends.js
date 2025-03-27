@@ -1,6 +1,4 @@
 
-
-// Дождемся полной загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
     initFriendsPage();
 });
@@ -289,23 +287,15 @@ function showToast(message) {
 function simulateTabChange(tabType) {
     const friendsCategories = document.querySelectorAll('.friends-category');
     const recommendationsSection = document.querySelector('.friends-recommendations');
-    
-    // В реальном приложении здесь бы загружались данные через API
-    // Для демо просто меняем стили отображения
-    
     switch (tabType) {
         case 'requests':
             friendsCategories.forEach(cat => cat.style.display = 'none');
             recommendationsSection.style.display = 'none';
-            
-            // Здесь можно динамически создать и показать элементы UI запросов в друзья
             break;
             
         case 'find':
             friendsCategories.forEach(cat => cat.style.display = 'none');
             recommendationsSection.style.display = 'block';
-            
-            // Дополнительно можно было бы показать поисковую форму и результаты
             break;
             
         default:

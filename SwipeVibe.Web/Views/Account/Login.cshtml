@@ -1,7 +1,8 @@
+﻿
 @{
-    ViewBag.Title = "Вход";
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @section Styles {
     @Styles.Render("~/Content/auth")
 }
@@ -9,23 +10,23 @@
 <div class="auth-container">
     <div class="auth-box">
         <h2>Вход в аккаунт</h2>
-        
+
         @using (Html.BeginForm("Login", "Account", FormMethod.Post))
         {
             <div class="form-group">
                 <label for="username">Имя пользователя</label>
                 <input type="text" id="username" name="username" required />
             </div>
-            
+
             <div class="form-group">
                 <label for="password">Пароль</label>
                 <input type="password" id="password" name="password" required />
             </div>
-            
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Войти</button>
             </div>
-            
+
             <div class="form-link">
                 <p>Нет аккаунта? <a href="@Url.Action("Register", "Account")">Зарегистрироваться</a></p>
             </div>
@@ -35,4 +36,6 @@
 
 @section scripts {
     @Scripts.Render("~/bundles/auth")
-} 
+}
+<h2>Login</h2>
+
