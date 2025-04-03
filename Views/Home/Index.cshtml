@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="jumbotron">
+    <h1>SwipeVibe</h1>
+    <p class="lead">SwipeVibe - платформа для обмена видео и стримов, где каждый может найти контент по своим интересам.</p>
+    <p><a href="@Url.Action("Index", "Watch")" class="btn btn-primary btn-lg">Смотреть видео &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Смотрите</h2>
+        <p>
+            Смотрите лучшие видео от популярных авторов и находите новый интересный контент.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Watch")">Смотреть &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Стримьте</h2>
+        <p>
+            Запускайте свои стримы и делитесь ими с друзьями и зрителями со всего мира.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Stream")">Стримить &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Делитесь</h2>
+        <p>
+            Загружайте свои видео и делитесь ими с сообществом SwipeVibe.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Upload")">Загрузить &raquo;</a></p>
+    </div>
+</div>
+

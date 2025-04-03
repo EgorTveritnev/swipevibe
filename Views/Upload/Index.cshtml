@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    @Styles.Render("~/Content/upload")
+}
+
+<div class="upload-container">
+    <h2>Загрузка видео</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="upload-box">
+                    <div class="upload-drop-zone" id="drop-zone">
+                        <i class="fa fa-cloud-upload"></i>
+                        <h3>Перетащите файл сюда</h3>
+                        <p>или</p>
+                        <label class="btn btn-primary">
+                            Выберите файл
+                            <input type="file" name="file" id="file" style="display: none;">
+                        </label>
+                    </div>
+
+                    <div class="upload-preview" style="display: none;">
+                        <h3>Выбранный файл:</h3>
+                        <div class="file-info">
+                            <p><strong>Имя:</strong> <span id="file-name"></span></p>
+                            <p><strong>Тип:</strong> <span id="file-type"></span></p>
+                            <p><strong>Размер:</strong> <span id="file-size"></span></p>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Название</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Теги (через запятую)</label>
+                    <input type="text" class="form-control" id="tags" name="tags">
+                </div>
+
+                <div class="form-group">
+                    <label>Категория</label>
+                    <select class="form-control" name="category">
+                        <option value="entertainment">Развлечения</option>
+                        <option value="education">Образование</option>
+                        <option value="games">Игры</option>
+                        <option value="music">Музыка</option>
+                        <option value="sports">Спорт</option>
+                        <option value="technology">Технологии</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Загрузить видео</button>
+                </div>
+            }
+        </div>
+
+        <div class="col-md-4">
+            <div class="upload-tips">
+                <h3>Советы по загрузке</h3>
+                <ul>
+                    <li>Максимальный размер файла: 2 ГБ</li>
+                    <li>Поддерживаемые форматы: MP4, AVI, MOV</li>
+                    <li>Рекомендуемое разрешение: HD (1280x720) или Full HD (1920x1080)</li>
+                    <li>Используйте информативные названия и описания</li>
+                    <li>Добавляйте теги для лучшего поиска</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/upload")
+}
+
