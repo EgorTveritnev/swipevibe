@@ -1,41 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\",
+  "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|c:\\users\\user\\desktop\\swipevibe.web\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\Desktop\\SwipeVibe.Web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|c:\\users\\user\\source\\repos\\swipevibe\\swipevibe.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\Desktop\\SwipeVibe.Web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\Desktop\\SwipeVibe.Web\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\Desktop\\SwipeVibe.Web\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\Desktop\\SwipeVibe.Web\\controllers\\searchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\controllers\\searchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:controllers\\searchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\Desktop\\SwipeVibe.Web\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\Desktop\\SwipeVibe.Web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\Desktop\\SwipeVibe.Web\\app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -46,52 +42,40 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "web.config",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\web.config",
-              "RelativeDocumentMoniker": "Views\\web.config",
-              "ToolTip": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\web.config",
-              "RelativeToolTip": "Views\\web.config",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAABIAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-03-26T12:15:25.145Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-26T12:09:41.988Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\Shared\\_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\Shared\\_Layout.cshtml*",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml*",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-26T12:09:00.923Z"
+              "WhenOpened": "2025-03-26T12:09:00.923Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\Account\\Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Register.cshtml",
-              "ToolTip": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Account\\Register.cshtml",
               "RelativeToolTip": "Views\\Account\\Register.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -99,11 +83,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\Account\\Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Account\\Login.cshtml",
               "RelativeToolTip": "Views\\Account\\Login.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -111,11 +95,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "SearchController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Controllers\\SearchController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Controllers\\SearchController.cs",
               "RelativeDocumentMoniker": "Controllers\\SearchController.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Controllers\\SearchController.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Controllers\\SearchController.cs",
               "RelativeToolTip": "Controllers\\SearchController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -123,11 +107,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "CommentsController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Controllers\\CommentsController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Controllers\\CommentsController.cs",
               "RelativeDocumentMoniker": "Controllers\\CommentsController.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Controllers\\CommentsController.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Controllers\\CommentsController.cs",
               "RelativeToolTip": "Controllers\\CommentsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -135,11 +119,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Controllers\\AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Controllers\\AccountController.cs",
               "ViewState": "AgIAAFIAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -147,11 +131,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "BundleConfig.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\App_Start\\BundleConfig.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\App_Start\\BundleConfig.cs",
               "RelativeDocumentMoniker": "App_Start\\BundleConfig.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\SwipeVibe.Web\\App_Start\\BundleConfig.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\App_Start\\BundleConfig.cs",
               "RelativeToolTip": "App_Start\\BundleConfig.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAQwCkAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
