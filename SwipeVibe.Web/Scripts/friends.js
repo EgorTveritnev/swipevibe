@@ -1,9 +1,4 @@
 
-<<<<<<< HEAD:js/friends.js
-
-// Дождемся полной загрузки DOM
-=======
->>>>>>> vadim:SwipeVibe.Web/Scripts/friends.js
 document.addEventListener('DOMContentLoaded', function() {
     initFriendsPage();
 });
@@ -292,32 +287,15 @@ function showToast(message) {
 function simulateTabChange(tabType) {
     const friendsCategories = document.querySelectorAll('.friends-category');
     const recommendationsSection = document.querySelector('.friends-recommendations');
-<<<<<<< HEAD:js/friends.js
-    
-    // В реальном приложении здесь бы загружались данные через API
-    // Для демо просто меняем стили отображения
-    
-=======
->>>>>>> vadim:SwipeVibe.Web/Scripts/friends.js
     switch (tabType) {
         case 'requests':
             friendsCategories.forEach(cat => cat.style.display = 'none');
             recommendationsSection.style.display = 'none';
-<<<<<<< HEAD:js/friends.js
-            
-            // Здесь можно динамически создать и показать элементы UI запросов в друзья
-=======
->>>>>>> vadim:SwipeVibe.Web/Scripts/friends.js
             break;
             
         case 'find':
             friendsCategories.forEach(cat => cat.style.display = 'none');
             recommendationsSection.style.display = 'block';
-<<<<<<< HEAD:js/friends.js
-            
-            // Дополнительно можно было бы показать поисковую форму и результаты
-=======
->>>>>>> vadim:SwipeVibe.Web/Scripts/friends.js
             break;
             
         default:

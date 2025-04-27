@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD:css/friends.css
-/* Задаем темную тему */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/friends.css
 :root {
     --bg-color: #121212;
     --card-bg: #1e1e1e;
@@ -290,10 +286,6 @@ body {
                 -2px -2px 6px var(--shadow-light);
 }
 
-<<<<<<< HEAD:css/friends.css
-/* Анимация появления */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/friends.css
 @keyframes fadeIn {
     from {
         opacity: 0;

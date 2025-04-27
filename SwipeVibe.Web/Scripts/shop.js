@@ -88,11 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             this.style.transform = 'scale(1)';
         }, 200);
-<<<<<<< HEAD:js/shop.js
-        
-        // Можно добавить перенаправление на страницу оплаты
-=======
->>>>>>> vadim:SwipeVibe.Web/Scripts/shop.js
     }
     
     function handlePromoClick(e) {

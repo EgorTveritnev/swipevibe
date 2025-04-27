@@ -1,21 +1,10 @@
-<<<<<<< HEAD:css/sidebar.css
-/* Стили для боковой навигации SwipeVibe */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
 
 html, body {
     height: 100%;
     margin: 0;
-<<<<<<< HEAD:css/sidebar.css
-    overflow: auto; /* Разрешаем прокрутку на уровне документа */
-}
-
-/* Стили для контейнера-обертки всего сайта */
-=======
     overflow: auto; 
 }
 
->>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
 .desktop-container {
     display: flex;
     height: 100vh;
@@ -92,10 +81,6 @@ html, body {
     background: rgba(255, 255, 255, 0.2);
 }
 
-<<<<<<< HEAD:css/sidebar.css
-/* Логотип */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
 .side-nav-logo {
     padding: 0 25px 20px;
     margin-bottom: 20px;
@@ -119,10 +104,6 @@ html, body {
     text-shadow: 0 0 10px rgba(255, 84, 84, 0.5);
 }
 
-<<<<<<< HEAD:css/sidebar.css
-/* Поиск */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
 .search-box {
     margin: 0 15px 25px;
     position: relative;
@@ -227,10 +208,6 @@ html, body {
     font-weight: 600;
 }
 
-<<<<<<< HEAD:css/sidebar.css
-/* Нотификация */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
 .notification-badge {
     background: var(--accent-color-1);
     color: white;
@@ -241,10 +218,6 @@ html, body {
     box-shadow: 0 0 10px var(--accent-color-1);
 }
 
-<<<<<<< HEAD:css/sidebar.css
-/* Кнопка загрузки */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
 .upload-button {
     display: block;
     margin: 20px 25px;

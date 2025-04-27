@@ -1,7 +1,3 @@
-<<<<<<< HEAD:css/admin.css
-/* Основные стили админ-панели */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .admin-page {
     min-height: 100vh;
     background-color: var(--bg-primary);
@@ -13,10 +9,6 @@
     min-height: 100vh;
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Боковая панель */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .admin-sidebar {
     width: 280px;
     padding: 20px;
@@ -53,10 +45,6 @@
     color: white;
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Навигация */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .admin-nav {
     display: flex;
     flex-direction: column;
@@ -94,10 +82,6 @@
     font-size: 12px;
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Статистика в сайдбаре */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .admin-stats {
     margin-top: auto;
     display: flex;
@@ -135,10 +119,6 @@
     color: var(--text-primary);
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Основной контент */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .admin-content {
     flex: 1;
     padding: 20px;
@@ -147,10 +127,6 @@
     gap: 20px;
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Верхняя панель */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .admin-header {
     display: flex;
     justify-content: space-between;
@@ -228,20 +204,12 @@
     font-size: 14px;
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Дашборд */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .dashboard {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Сетка статистики */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -294,10 +262,6 @@
     color: #2ecc71;
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Сетка графиков */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .charts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -333,10 +297,6 @@
     font-size: 48px;
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Последние действия */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 .recent-actions {
     padding: 20px;
 }
@@ -388,10 +348,6 @@
     color: var(--text-secondary);
 }
 
-<<<<<<< HEAD:css/admin.css
-/* Адаптивность */
-=======
->>>>>>> vadim:SwipeVibe.Web/Content/css/admin.css
 @media (max-width: 768px) {
     .admin-container {
         flex-direction: column;

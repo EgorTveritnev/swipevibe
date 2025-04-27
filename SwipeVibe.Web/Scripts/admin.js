@@ -1,7 +1,3 @@
-<<<<<<< HEAD:js/admin.js
-// Инициализация графиков
-=======
->>>>>>> vadim:SwipeVibe.Web/Scripts/admin.js
 document.addEventListener('DOMContentLoaded', function() {
     const activityCtx = document.createElement('canvas');
     activityCtx.id = 'activityChart';
@@ -83,32 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-<<<<<<< HEAD:js/admin.js
-
-// Обработка поиска
-const searchInput = document.querySelector('.header-search input');
-searchInput.addEventListener('input', function(e) {
-    const searchTerm = e.target.value.toLowerCase();
-    // Здесь будет логика поиска
-    console.log('Поиск:', searchTerm);
-});
-
-// Обработка уведомлений
-const notificationBtn = document.querySelector('.notification-btn');
-notificationBtn.addEventListener('click', function() {
-    // Здесь будет логика отображения уведомлений
-    console.log('Открыть уведомления');
-});
-
-// Обработка профиля администратора
-const adminProfile = document.querySelector('.admin-profile');
-adminProfile.addEventListener('click', function() {
-    // Здесь будет логика отображения меню профиля
-    console.log('Открыть меню профиля');
-});
-
-// Анимация при наведении на карточки статистики
-=======
 const searchInput = document.querySelector('.header-search input');
 searchInput.addEventListener('input', function(e) {
     const searchTerm = e.target.value.toLowerCase();
@@ -125,7 +95,6 @@ adminProfile.addEventListener('click', function() {
     console.log('Открыть меню профиля');
 });
 
->>>>>>> vadim:SwipeVibe.Web/Scripts/admin.js
 const statCards = document.querySelectorAll('.stat-card');
 statCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
@@ -137,10 +106,6 @@ statCards.forEach(card => {
     });
 });
 
-<<<<<<< HEAD:js/admin.js
-// Анимация при наведении на элементы навигации
-=======
->>>>>>> vadim:SwipeVibe.Web/Scripts/admin.js
 const navItems = document.querySelectorAll('.admin-nav-item');
 navItems.forEach(item => {
     item.addEventListener('mouseenter', function() {
