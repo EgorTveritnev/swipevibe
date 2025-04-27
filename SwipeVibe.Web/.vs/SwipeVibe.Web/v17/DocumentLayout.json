@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|c:\\users\\user\\source\\repos\\swipevibe\\swipevibe.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|c:\\users\\user\\source\\repos\\swipevibe\\swipevibe.web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{012EB617-CD5A-44D1-BD77-2D1DF8F691FF}|SwipeVibe.Web.csproj|C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -42,23 +42,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAD0AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-26T12:09:41.988Z"
+              "WhenOpened": "2025-03-26T12:09:41.988Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\swipevibe\\SwipeVibe.Web\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
@@ -66,8 +67,7 @@
               "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-26T12:09:00.923Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-26T12:09:00.923Z"
             },
             {
               "$type": "Document",
