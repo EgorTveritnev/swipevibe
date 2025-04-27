@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/SwipeVibe.Web/.vs/SwipeVibe.Web
+/SwipeVibe.Web/bin
+/SwipeVibe.Web/obj
+/SwipeVibe.Web/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0/tasks
