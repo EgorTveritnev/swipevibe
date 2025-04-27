@@ -1,0 +1,548 @@
+<<<<<<< HEAD:css/sidebar.css
+/* Стили для боковой навигации SwipeVibe */
+=======
+>>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
+
+html, body {
+    height: 100%;
+    margin: 0;
+<<<<<<< HEAD:css/sidebar.css
+    overflow: auto; /* Разрешаем прокрутку на уровне документа */
+}
+
+/* Стили для контейнера-обертки всего сайта */
+=======
+    overflow: auto; 
+}
+
+>>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
+.desktop-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    position: relative; 
+}
+
+.side-nav {
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--bg-primary) 0%, #0a0a0a 100%);
+    padding: 20px 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-y: auto; 
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    flex-shrink: 0; 
+}
+
+.main-content {
+    flex: 1; 
+    height: 100vh;
+    padding: 0 10px 10px 0; 
+    box-sizing: border-box;
+    overflow-y: auto; 
+}
+
+.activity-content, .shop-content, .friends-content, .subscriptions-content, .upload-content {
+    padding: 20px; 
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .desktop-container {
+        flex-direction: column; 
+        height: auto; 
+        overflow: auto; 
+    }
+
+    .side-nav {
+        display: none; 
+    }
+    
+    .main-content {
+        height: auto; 
+        width: 100%;
+        padding-bottom: 70px; 
+        overflow: visible; 
+    }
+    
+    .activity-content, .shop-content, .friends-content, .subscriptions-content, .upload-content {
+        padding: 15px;
+    }
+    
+    body {
+        overflow: auto;
+    }
+}
+
+.side-nav::-webkit-scrollbar {
+    width: 6px;
+}
+
+.side-nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.side-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.side-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+<<<<<<< HEAD:css/sidebar.css
+/* Логотип */
+=======
+>>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
+.side-nav-logo {
+    padding: 0 25px 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.side-nav-logo i {
+    font-size: 28px;
+    color: var(--notification-color);
+    filter: drop-shadow(0 0 10px rgba(255, 84, 84, 0.5));
+}
+
+.side-nav-logo span {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--notification-color);
+    text-shadow: 0 0 10px rgba(255, 84, 84, 0.5);
+}
+
+<<<<<<< HEAD:css/sidebar.css
+/* Поиск */
+=======
+>>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
+.search-box {
+    margin: 0 15px 25px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.search-box:hover, .search-box:focus-within {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.search-icon {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.search-input {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.side-nav-group {
+    margin-bottom: 20px;
+}
+
+.side-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 25px;
+    margin: 12px 15px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.side-nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: all 0.5s ease;
+}
+
+.side-nav-item:hover::before {
+    left: 100%;
+}
+
+.side-nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+}
+
+.side-nav-item.active {
+    background: linear-gradient(90deg, rgba(106, 103, 206, 0.15), transparent);
+    border-left: 3px solid var(--accent-color-1);
+    padding-left: 22px;
+}
+
+.side-nav-item i {
+    width: 24px;
+    font-size: 18px;
+    margin-right: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.side-nav-item.active i {
+    color: var(--accent-color-1);
+    text-shadow: 0 0 10px var(--accent-color-1);
+}
+
+.side-nav-item span {
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.side-nav-item.active span {
+    color: var(--accent-color-1);
+    font-weight: 600;
+}
+
+<<<<<<< HEAD:css/sidebar.css
+/* Нотификация */
+=======
+>>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
+.notification-badge {
+    background: var(--accent-color-1);
+    color: white;
+    font-size: 11px;
+    border-radius: 10px;
+    padding: 2px 6px;
+    margin-left: auto;
+    box-shadow: 0 0 10px var(--accent-color-1);
+}
+
+<<<<<<< HEAD:css/sidebar.css
+/* Кнопка загрузки */
+=======
+>>>>>>> vadim:SwipeVibe.Web/Content/css/sidebar.css
+.upload-button {
+    display: block;
+    margin: 20px 25px;
+    padding: 14px 0;
+    text-align: center;
+    background: var(--accent-color-1);
+    color: white;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(106, 103, 206, 0.3);
+    text-decoration: none;
+}
+
+.upload-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(106, 103, 206, 0.5);
+    background: linear-gradient(90deg, var(--accent-color-1), #8a7dff);
+    color: white;
+    text-decoration: none;
+}
+
+.upload-button i {
+    margin-right: 8px;
+}
+
+.side-nav-section {
+    padding: 25px 25px 15px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.subscription-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    margin: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+.subscription-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.subscription-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    border: 2px solid transparent;
+    background: padding-box linear-gradient(#333, #333),
+                border-box linear-gradient(135deg, #e6683c, #dc2743);
+    transition: all 0.3s ease;
+}
+
+.subscription-item:hover .subscription-avatar {
+    transform: scale(1.1);
+}
+
+.subscription-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.subscription-item span {
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.subscription-item:hover span {
+    color: #dc2743;
+}
+
+.show-more {
+    padding: 12px 25px;
+    margin: 15px 15px 25px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    text-align: center;
+    background: none;
+    border: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+.show-more:hover {
+    color: #dc2743;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.show-more i {
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.show-more:hover i {
+    transform: translateY(2px);
+}
+
+.side-nav-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 10px 15px;
+}
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 15px;
+    gap: 10px;
+}
+
+.category-tag {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.category-tag:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.category-tag i {
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.side-nav-footer {
+    padding: 20px 15px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.side-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.side-nav-links a {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    transition: color 0.3s ease;
+}
+
+.side-nav-links a:hover {
+    color: var(--accent-color-1);
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 12px;
+}
+
+@media (max-width: 1200px) {
+    .side-nav {
+        width: 260px;
+    }
+}
+
+@media (max-width: 992px) {
+    .side-nav {
+        width: 240px;
+    }
+    
+    .side-nav-item {
+        padding: 10px 20px;
+    }
+    
+    .side-nav-item.active {
+        padding-left: 17px;
+    }
+    
+    .upload-button {
+        margin: 12px 20px;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .desktop-container {
+        flex-direction: column; 
+    }
+    
+    .side-nav {
+        width: 100%;
+        height: 60px;
+        padding: 0;
+        position: fixed; 
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        overflow: hidden;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .side-nav-logo, 
+    .search-box, 
+    .side-nav-divider, 
+    .subscriptions,
+    .side-nav-categories,
+    .side-nav-footer,
+    .side-nav-section {
+        display: none;
+    }
+    
+    .side-nav-group {
+        display: flex;
+        margin: 0;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .side-nav-item {
+        margin: 0;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 0;
+    }
+    
+    .side-nav-item i {
+        margin: 0 0 5px;
+        font-size: 22px;
+        width: auto;
+    }
+    
+    .side-nav-item span {
+        font-size: 10px;
+    }
+    
+    .side-nav-item.active {
+        border-left: none;
+        border-top: 2px solid var(--accent-color-1);
+        padding-left: 8px;
+        padding-top: 6px;
+        background: none;
+    }
+    
+    .upload-button {
+        margin: 0;
+        padding: 5px 15px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+    }
+    
+    .notification-badge {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        margin: 0;
+    }
+}
+
+.subscriptions {
+    margin-bottom: 20px;
+}
+
+.mobile-nav {
+    display: none; 
+}
+
+@media (max-width: 992px) {
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-around;
+        background: var(--bg-primary);
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+} 

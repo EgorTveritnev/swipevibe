@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+
+
+<div class="upload-container neomorph-card">
+    <div class="upload-header">
+        <h1>Загрузить видео</h1>
+        <p>Поделитесь своими лучшими моментами на SwipeVibe</p>
+    </div>
+
+    <div class="upload-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Загрузка видео (Перетаскивание) -->
+                <div class="upload-preview-container neomorph-card">
+                    <div id="dropzone" class="upload-dropzone">
+                        <i class="fas fa-cloud-upload-alt animate-glow-text"></i>
+                        <h3>Перетащите видео сюда</h3>
+                        <p>или</p>
+                        <label for="video-upload" class="upload-btn neomorph-btn">
+                            <i class="fas fa-file-video"></i>
+                            Выбрать файл
+                        </label>
+                        <input type="file" id="video-upload" accept="video/*" style="display: none;">
+                        <div class="upload-info">MP4 или WebM • Макс. размер: 50 МБ • До 3 минут</div>
+                    </div>
+
+                    <!-- Превью видео (скрыто изначально) -->
+                    <div class="video-preview-container" style="display: none;">
+                        <video id="video-preview" controls></video>
+                        <div class="preview-controls">
+                            <button class="preview-control-btn neomorph-btn" id="trim-video">
+                                <i class="fas fa-cut"></i> Обрезать
+                            </button>
+                            <button class="preview-control-btn neomorph-btn" id="remove-video">
+                                <i class="fas fa-trash"></i> Удалить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Прогресс загрузки (скрыт изначально) -->
+                <div class="upload-progress neomorph-card" style="display: none;">
+                    <div class="progress-header">
+                        <span class="progress-title">Загрузка видео...</span>
+                        <span class="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <!-- Форма с информацией о видео -->
+                <div class="upload-form">
+                    <div class="form-group">
+                        <label for="video-title">Название</label>
+                        <input type="text" id="video-title" class="neomorph-input" placeholder="Добавьте название для вашего видео...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="video-description">Описание</label>
+                        <textarea id="video-description" class="neomorph-input" rows="4" placeholder="Расскажите о вашем видео подробнее..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="video-tags">Теги</label>
+                        <input type="text" id="video-tags" class="neomorph-input" placeholder="Добавьте теги через запятую #музыка, #тренды...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Категория</label>
+                        <div class="category-selection">
+                            <button class="category-btn neomorph-btn active">
+                                <i class="fas fa-music"></i> Музыка
+                            </button>
+                            <button class="category-btn neomorph-btn">
+                                <i class="fas fa-laugh-beam"></i> Комедия
+                            </button>
+                            <button class="category-btn neomorph-btn">
+                                <i class="fas fa-gamepad"></i> Игры
+                            </button>
+                            <button class="category-btn neomorph-btn">
+                                <i class="fas fa-utensils"></i> Еда
+                            </button>
+                            <button class="category-btn neomorph-btn">
+                                <i class="fas fa-film"></i> Развлечения
+                            </button>
+                            <button class="category-btn neomorph-btn">
+                                <i class="fas fa-shopping-bag"></i> Мода
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Доступ</label>
+                        <div class="access-options">
+                            <label class="access-option neomorph-btn">
+                                <input type="radio" name="access" value="public" checked style="display: none;">
+                                <i class="fas fa-globe"></i> Публичное
+                            </label>
+                            <label class="access-option neomorph-btn">
+                                <input type="radio" name="access" value="friends" style="display: none;">
+                                <i class="fas fa-user-friends"></i> Друзья
+                            </label>
+                            <label class="access-option neomorph-btn">
+                                <input type="radio" name="access" value="private" style="display: none;">
+                                <i class="fas fa-lock"></i> Личное
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="cancel-btn neomorph-btn">Отмена</button>
+                        <button class="submit-btn neomorph-btn" disabled>
+                            <i class="fas fa-cloud-upload-alt"></i> Опубликовать
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/upload.js"></script>
+}
+
+
