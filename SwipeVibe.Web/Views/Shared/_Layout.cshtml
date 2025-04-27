@@ -1,54 +1,89 @@
-﻿@using System.Web.Optimization
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SwipeVibe</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    @Styles.Render("~/Content/custom-css")
+    <link href="~/Content/css/sidebar.css" rel="stylesheet" type="text/css" />
     @if (IsSectionDefined("Styles"))
     {
         @RenderSection("Styles", required: false)
     }
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("SwipeVibe", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="desktop-container">
+        <aside class="side-nav">
+            <div class="side-nav-logo">
+                <i class="fas fa-video"></i> <span>SwipeVibe</span>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Поиск...">
+            </div>
+            <div class="side-nav-group">
+                <a href="@Url.Action("Index", "Home")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Home" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <i class="fas fa-home"></i> <span>Главная</span>
+                </a>
+                <a href="@Url.Action("Index", "Watch")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Watch" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <i class="fas fa-play"></i> <span>Смотреть</span>
+                </a>
+                <a href="@Url.Action("Index", "Stream")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Stream" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <i class="fas fa-broadcast-tower"></i> <span>Стрим</span>
+                </a>
+                <a href="@Url.Action("Index", "Upload")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Upload" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <i class="fas fa-upload"></i> <span>Загрузить</span>
+                </a>
+                <a href="@Url.Action("Index", "Shop")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Shop" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <i class="fas fa-shopping-bag"></i> <span>Магазин</span>
+                </a>
+                <a href="@Url.Action("Index", "Friends")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Friends" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <i class="fas fa-user-friends"></i> <span>Друзья</span>
+                </a>
+                <a href="@Url.Action("Index", "Activity")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Activity" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <i class="fas fa-heartbeat"></i> <span>Активность</span>
+                </a>
+            </div>
+            <div class="side-nav-footer">
+                <div class="side-nav-links">
+                    <a href="#">О нас</a>
+                    <a href="#">Поддержка</a>
+                    <a href="#">Условия</a>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Главная", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Смотреть", "Index", "Watch")</li>
-                        <li>@Html.ActionLink("Стрим", "Index", "Stream")</li>
-                        <li>@Html.ActionLink("Загрузить", "Index", "Upload")</li>
-                        <li>@Html.ActionLink("Магазин", "Index", "Shop")</li>
-                        <li>@Html.ActionLink("Друзья", "Index", "Friends")</li>
-                        <li>@Html.ActionLink("Активность", "Index", "Activity")</li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Регистрация", "Register", "Account")</li>
-                        <li>@Html.ActionLink("Вход", "Login", "Account")</li>
-                    </ul>
+                <div class="copyright">
+                    &copy; @DateTime.Now.Year SwipeVibe
                 </div>
             </div>
-        </nav>
-    </header>
+        </aside>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <header>
+            <nav class="mobile-nav">
+                <a href="#" class="side-nav-item">
+                    <i class="fas fa-home"></i> <span>Главная</span>
+                </a>
+                <a href="#" class="side-nav-item">
+                    <i class="fas fa-play"></i> <span>Смотреть</span>
+                </a>
+                <a href="#" class="side-nav-item">
+                    <i class="fas fa-upload"></i> <span>Загрузить</span>
+                </a>
+                <a href="#" class="side-nav-item">
+                    <i class="fas fa-user"></i> <span>Профиль</span>
+                </a>
+            </nav>
+        </header>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
