@@ -16,3 +16,5 @@
 *.cache
 /SwipeVibe.Web/.vs/SwipeVibe.Web/v17/DocumentLayout.json
 /SwipeVibe.Web/.vs/SwipeVibe.Web/v17/fileList.bin
+/SwipeVibe.Web/.vs
+/SwipeVibe.Web/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
