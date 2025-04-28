@@ -14,6 +14,7 @@ namespace SwipeVibe.Web.App_Start
 
             // Отдельный бандл для кастомных стилей
             bundles.Add(new StyleBundle("~/Content/custom-css").Include(
+                            "~/Content/bootstrap/css/bootstrap.css",
                             "~/Content/css/style.css",
                             "~/Content/css/animations.css",
                             "~/Content/css/theme.css",

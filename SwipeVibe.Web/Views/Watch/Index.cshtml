@@ -1,52 +1,275 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!-- Заголовок страницы -->
+<div class="watch-header">
+    <h1 class="animate-glow-text">Исследуй <span>новые видео</span></h1>
+    <p>Открывай для себя популярные видео из разных категорий</p>
+</div>
 
-@section Styles {
-    @Styles.Render("~/Content/watch")
-}
+<!-- Категории и фильтры -->
+<div class="category-filter neomorph-card">
+    <div class="filter-list">
+        <button class="filter-btn active neomorph-btn">
+            <i class="fas fa-fire"></i> Популярное
+        </button>
+        <button class="filter-btn neomorph-btn">
+            <i class="fas fa-chart-line"></i> Тренды
+        </button>
+        <button class="filter-btn neomorph-btn">
+            <i class="fas fa-star"></i> Новое
+        </button>
+        <button class="filter-btn neomorph-btn">
+            <i class="fas fa-music"></i> Музыка
+        </button>
+        <button class="filter-btn neomorph-btn">
+            <i class="fas fa-gamepad"></i> Игры
+        </button>
+        <button class="filter-btn neomorph-btn">
+            <i class="fas fa-film"></i> Фильмы
+        </button>
+        <button class="filter-btn neomorph-btn">
+            <i class="fas fa-laugh-beam"></i> Юмор
+        </button>
+    </div>
 
-<div class="watch-container">
-    <h2>Популярные видео</h2>
+    <div class="filter-controls">
+        <button class="filter-control-btn neomorph-btn">
+            <i class="fas fa-sort-amount-down"></i>
+        </button>
+        <button class="filter-control-btn neomorph-btn">
+            <i class="fas fa-filter"></i>
+        </button>
+    </div>
+</div>
 
-    <div class="video-grid">
-        <div class="video-card">
-            <a href="@Url.Action("Video", "Watch", new { id = 1 })">
-                <img src="~/Content/assets/images/video1.jpg" alt="Видео 1" />
-                <div class="video-info">
-                    <h3>Название видео 1</h3>
-                    <p>Автор: Пользователь 1</p>
-                    <p>Просмотры: 1,234</p>
-                </div>
-            </a>
+<!-- Сетка видео -->
+<div class="video-grid">
+    <!-- Видео карточка 1 -->
+    <div class="video-item neomorph-card">
+        <div class="video-thumbnail">
+            <img src="~/assets/images/video-thumb-1.jpg" alt="Видео превью">
+            <span class="video-duration">3:45</span>
+            <div class="video-overlay">
+                <button class="play-btn neomorph-icon">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
         </div>
-        <div class="video-card">
-            <a href="@Url.Action("Video", "Watch", new { id = 2 })">
-                <img src="~/Content/assets/images/video2.jpg" alt="Видео 2" />
-                <div class="video-info">
-                    <h3>Название видео 2</h3>
-                    <p>Автор: Пользователь 2</p>
-                    <p>Просмотры: 5,678</p>
+        <div class="video-info">
+            <div class="video-author">
+                <div class="author-avatar neomorph-icon">
+                    <img src="~/Content/assets/images/avatar1.jpg" alt="Автор">
                 </div>
-            </a>
+                <h3 class="video-title">10 лучших игр десятилетия, которые стоит попробовать</h3>
+            </div>
+            <div class="video-stats">
+                <div class="author-name">GameReviewer</div>
+                <div class="video-views">254K просмотров</div>
+                <div class="video-date">2 дня назад</div>
+            </div>
         </div>
-        <div class="video-card">
-            <a href="@Url.Action("Video", "Watch", new { id = 3 })">
-                <img src="~/Content/assets/images/video3.jpg" alt="Видео 3" />
-                <div class="video-info">
-                    <h3>Название видео 3</h3>
-                    <p>Автор: Пользователь 3</p>
-                    <p>Просмотры: 9,012</p>
+    </div>
+
+    <!-- Видео карточка 2 -->
+    <div class="video-item neomorph-card">
+        <div class="video-thumbnail">
+            <img src="~/assets/images/video-thumb-2.jpg" alt="Видео превью">
+            <span class="video-duration">5:30</span>
+            <div class="video-overlay">
+                <button class="play-btn neomorph-icon">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+        <div class="video-info">
+            <div class="video-author">
+                <div class="author-avatar neomorph-icon">
+                    <img src="~/Content/assets/images/avatar2.jpg" alt="Автор">
                 </div>
-            </a>
+                <h3 class="video-title">Как улучшить свои навыки в музыкальной продукции</h3>
+            </div>
+            <div class="video-stats">
+                <div class="author-name">MusicProducer</div>
+                <div class="video-views">127K просмотров</div>
+                <div class="video-date">5 дней назад</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Видео карточка 3 -->
+    <div class="video-item neomorph-card">
+        <div class="video-thumbnail trending">
+            <img src="~/assets/images/video-thumb-3.jpg" alt="Видео превью">
+            <span class="video-duration">8:12</span>
+            <div class="trending-badge">
+                <i class="fas fa-fire"></i> В тренде
+            </div>
+            <div class="video-overlay">
+                <button class="play-btn neomorph-icon">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+        <div class="video-info">
+            <div class="video-author">
+                <div class="author-avatar neomorph-icon">
+                    <img src="~/Content/assets/images/avatar3.jpg" alt="Автор">
+                </div>
+                <h3 class="video-title">Что нового в мире технологий: главные новости недели</h3>
+            </div>
+            <div class="video-stats">
+                <div class="author-name">TechInsider</div>
+                <div class="video-views">432K просмотров</div>
+                <div class="video-date">1 день назад</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Видео карточка 4 -->
+    <div class="video-item neomorph-card">
+        <div class="video-thumbnail">
+            <img src="~/assets/images/video-thumb-4.jpg" alt="Видео превью">
+            <span class="video-duration">4:20</span>
+            <div class="video-overlay">
+                <button class="play-btn neomorph-icon">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+        <div class="video-info">
+            <div class="video-author">
+                <div class="author-avatar neomorph-icon">
+                    <img src="~/Content/assets/images/avatar1.jpg" alt="Автор">
+                </div>
+                <h3 class="video-title">Топ 5 самых смешных моментов из популярных фильмов</h3>
+            </div>
+            <div class="video-stats">
+                <div class="author-name">MovieBuff</div>
+                <div class="video-views">198K просмотров</div>
+                <div class="video-date">3 дня назад</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Видео карточка 5 -->
+    <div class="video-item neomorph-card">
+        <div class="video-thumbnail">
+            <img src="~/assets/images/video-thumb-5.jpg" alt="Видео превью">
+            <span class="video-duration">6:45</span>
+            <div class="video-overlay">
+                <button class="play-btn neomorph-icon">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+        <div class="video-info">
+            <div class="video-author">
+                <div class="author-avatar neomorph-icon">
+                    <img src="~/Content/assets/images/avatar2.jpg" alt="Автор">
+                </div>
+                <h3 class="video-title">Как приготовить идеальный завтрак за 10 минут</h3>
+            </div>
+            <div class="video-stats">
+                <div class="author-name">ChefCooking</div>
+                <div class="video-views">87K просмотров</div>
+                <div class="video-date">6 дней назад</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Видео карточка 6 -->
+    <div class="video-item neomorph-card">
+        <div class="video-thumbnail new">
+            <img src="~/assets/images/video-thumb-6.jpg" alt="Видео превью">
+            <span class="video-duration">10:28</span>
+            <div class="new-badge">
+                <i class="fas fa-certificate"></i> Новое
+            </div>
+            <div class="video-overlay">
+                <button class="play-btn neomorph-icon">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+        <div class="video-info">
+            <div class="video-author">
+                <div class="author-avatar neomorph-icon">
+                    <img src="~/Content/assets/images/avatar3.jpg" alt="Автор">
+                </div>
+                <h3 class="video-title">5 практических советов для улучшения фотографий</h3>
+            </div>
+            <div class="video-stats">
+                <div class="author-name">PhotoMaster</div>
+                <div class="video-views">42K просмотров</div>
+                <div class="video-date">12 часов назад</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Видео карточка 7 -->
+    <div class="video-item neomorph-card">
+        <div class="video-thumbnail">
+            <img src="~/assets/images/video-thumb-7.jpg" alt="Видео превью">
+            <span class="video-duration">7:18</span>
+            <div class="video-overlay">
+                <button class="play-btn neomorph-icon">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+        <div class="video-info">
+            <div class="video-author">
+                <div class="author-avatar neomorph-icon">
+                    <img src="~/Content/assets/images/avatar1.jpg" alt="Автор">
+                </div>
+                <h3 class="video-title">Тренировка дома: полный комплекс упражнений</h3>
+            </div>
+            <div class="video-stats">
+                <div class="author-name">FitnessCoach</div>
+                <div class="video-views">165K просмотров</div>
+                <div class="video-date">4 дня назад</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Видео карточка 8 -->
+    <div class="video-item neomorph-card">
+        <div class="video-thumbnail">
+            <img src="~/assets/images/video-thumb-8.jpg" alt="Видео превью">
+            <span class="video-duration">9:35</span>
+            <div class="video-overlay">
+                <button class="play-btn neomorph-icon">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+        <div class="video-info">
+            <div class="video-author">
+                <div class="author-avatar neomorph-icon">
+                    <img src="~/Content/assets/images/avatar2.jpg" alt="Автор">
+                </div>
+                <h3 class="video-title">Обзор новых гаджетов 2023 года: что стоит покупать</h3>
+            </div>
+            <div class="video-stats">
+                <div class="author-name">GadgetReview</div>
+                <div class="video-views">218K просмотров</div>
+                <div class="video-date">2 дня назад</div>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- Загрузка больше видео -->
+<div class="load-more">
+    <button class="load-more-btn neomorph-btn">
+        <i class="fas fa-sync-alt"></i> Загрузить еще
+    </button>
+</div>
+
 @section scripts {
-    @Scripts.Render("~/bundles/watch")
+    <script src="~/Scripts/watch.js"></script>
 }
 
