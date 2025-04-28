@@ -2,7 +2,9 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@section Styles {
+    @Styles.Render("~/Content/watch-css")
+}
 <!-- Заголовок страницы -->
 <div class="watch-header">
     <h1 class="animate-glow-text">Исследуй <span>новые видео</span></h1>
