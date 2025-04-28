@@ -144,18 +144,6 @@
     <Content Include="Content\css\toast.css" />
     <Content Include="Content\css\upload.css" />
     <Content Include="Content\css\watch.css" />
-    <Content Include="Content\js\activity.js" />
-    <Content Include="Content\js\admin.js" />
-    <Content Include="Content\js\animations.js" />
-    <Content Include="Content\js\app.js" />
-    <Content Include="Content\js\auth.js" />
-    <Content Include="Content\js\error.js" />
-    <Content Include="Content\js\friends.js" />
-    <Content Include="Content\js\shop.js" />
-    <Content Include="Content\js\subscriptions.js" />
-    <Content Include="Content\js\swiper.js" />
-    <Content Include="Content\js\upload.js" />
-    <Content Include="Content\js\watch.js" />
     <Content Include="Content\modernizr\modernizr.js" />
     <Content Include="Content\modernizr\modernizr.min.js" />
     <Content Include="Scripts\activity.js" />
@@ -204,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -466,6 +455,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\About\" />
     <Folder Include="Views\Category\" />
     <Folder Include="Views\Comments\" />
     <Folder Include="Views\Notifications\" />

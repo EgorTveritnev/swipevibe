@@ -1,13 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @section Styles {
-    @Styles.Render("~/Content/error")
+    @Styles.Render("~/Content/error-css")
 }
-
 <div class="error-container">
     <div class="error-content">
         <h1>404</h1>
@@ -17,3 +14,6 @@
     </div>
 </div>
 
+@section scripts {
+    <script src="~/Scripts/error.js"></script>
+}

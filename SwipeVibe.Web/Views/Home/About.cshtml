@@ -1,9 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "About";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section Styles {
+    @Styles.Render("~/Content/about-css")
+}
 <div class="about-container">
     <h2>О SwipeVibe</h2>
 
