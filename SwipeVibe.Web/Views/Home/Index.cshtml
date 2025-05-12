@@ -1,0 +1,775 @@
+﻿@model IEnumerable<SwipeVibe.Domain.Entities.Video.Video>
+@{
+    ViewBag.Title = "SwipeVibe";
+}
+
+<div id="swipeContainer" class="swipe-container" tabindex="0">
+    @foreach (var v in Model)
+    {
+        <div class="video-container" data-videoid="@v.Id">
+            <div class="video-placeholder" style="background:@v.GradientCss">
+                <i class="fas fa-play-circle"></i>
+            </div>
+
+            <div class="video-info">
+                <div class="user-info">
+                    <div class="user-avatar glow-effect">
+                        <img src="@v.AvatarUrl" alt="User avatar" />
+                    </div>
+                    <div class="username">@("@" + v.Username)</div>
+                </div>
+
+                <div class="video-description">
+                    @Html.Raw(v.Description)
+                </div>
+            </div>
+
+            <div class="video-actions">
+                <div class="action-item">
+                    <div class="action-icon-wrapper heart-icon"><i class="fas fa-heart"></i></div>
+                    <span>@(v.LikesCount / 1000M)K</span>
+                </div>
+
+                <div class="action-item">
+                    <button type="button" class="action-icon-wrapper comment-icon comment-button">
+                        <i class="fas fa-comment"></i>
+                    </button>
+                    <span>@(v.CommentsCount / 1000M)K</span>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-icon-wrapper share-icon"><i class="fas fa-share"></i></div>
+                    <span>@(v.SharesCount / 1000M)K</span>
+                </div>
+
+                <div class="action-item">
+                    <div class="action-icon-wrapper bookmark-icon"><i class="fas fa-bookmark"></i></div>
+                </div>
+
+                <div class="music-disc"><i class="fas fa-music"></i></div>
+            </div>
+        </div>
+    }
+</div>
+<!-- комменты в модальном окне -->
+<div class="modal fade" id="commentsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <!-- ===== ХЭНДЛ / КНОПКА ЗАКРЫТИЯ ===== -->
+            <div class="modal-header p-2">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- ===== СПИСОК КОММЕНТАРИЕВ ===== -->
+            <div id="commentsZone" class="modal-body p-3">
+                <span class="text-muted">Загрузка…</span>
+            </div>
+
+            <!-- ===== ФОРМА ОТПРАВКИ ===== -->
+            <form id="commentForm" class="modal-footer p-2">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="videoId" id="videoIdField" />
+
+                <textarea id="newCommentText" name="text" class="form-control flex-grow-1"
+                          rows="2" maxlength="280" placeholder="Ваш комментарий" required></textarea>
+
+                <button type="submit" class="btn btn-primary d-flex align-items-center justify-content-center"
+                        style="width:46px;height:46px;border-radius:50%;">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    html, body {
+        height: 100%;
+        overflow: hidden; /* блокируем скролл документа */
+    }
+
+        /* чтобы не мелькал «невидимый» скролл в Edge/Firefox */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+    body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .swipe-container {
+        width: 100%;
+        height: calc(100vh - 60px);
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+    }
+    .bottom-menu, /* ваш селектор */
+    nav.bottom-bar { /* пример */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px; /* то же число, что и в calc() выше */
+        z-index: 100; /* остаётся поверх видео */
+    }
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 60px); /* Высота минус нижнее меню */
+        scroll-snap-align: start;
+        overflow: hidden;
+    }
+
+    .video-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+        .video-placeholder:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(2px);
+            z-index: -1;
+        }
+
+        .video-placeholder i {
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.8);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+            transition: transform 0.3s ease;
+        }
+
+        .video-placeholder:hover i {
+            transform: scale(1.1);
+        }
+
+    .video-info {
+        position: absolute;
+        bottom: 100px;
+        left: 15px;
+        z-index: 2;
+        max-width: 70%;
+        animation: slideUp 0.5s ease;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .user-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+        border: 3px solid #FF0080;
+        position: relative;
+    }
+
+    .glow-effect {
+        box-shadow: 0 0 15px rgba(255, 0, 128, 0.7);
+        animation: pulse 2s infinite;
+    }
+
+    .user-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .user-avatar:hover img {
+        transform: scale(1.1);
+    }
+
+    .username {
+        font-weight: bold;
+        font-size: 18px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+    }
+
+    .verified-badge {
+        font-size: 14px;
+        color: #00D9F5;
+        margin-left: 5px;
+        animation: pulse 2s infinite;
+    }
+
+    .video-description {
+        font-size: 16px;
+        margin-bottom: 5px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        line-height: 1.4;
+    }
+
+    .hashtag {
+        color: #00D9F5;
+        font-weight: 500;
+    }
+
+    .video-actions {
+        position: absolute;
+        right: 15px;
+        bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        z-index: 2;
+        animation: slideIn 0.5s ease;
+    }
+
+    .action-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .action-icon-wrapper {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+        .action-icon-wrapper:hover {
+            transform: scale(1.1);
+        }
+
+    .heart-icon:hover {
+        background: rgba(255, 0, 128, 0.3);
+    }
+
+    .comment-icon:hover {
+        background: rgba(0, 217, 245, 0.3);
+    }
+
+    .share-icon:hover {
+        background: rgba(255, 138, 0, 0.3);
+    }
+
+    .bookmark-icon:hover {
+        background: rgba(0, 245, 160, 0.3);
+    }
+
+    .action-item i {
+        font-size: 22px;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        transition: all 0.3s ease;
+    }
+
+    .action-item span {
+        font-size: 13px;
+        color: #fff;
+        font-weight: 500;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    .music-disc {
+        position: absolute;
+        bottom: -80px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #FF0080, #7928CA);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: floatUpDown 3s ease infinite;
+        box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+    }
+
+    .rotating {
+        animation: rotate 4s linear infinite, floatUpDown 3s ease infinite;
+    }
+
+    .music-disc i {
+        font-size: 18px;
+        color: white;
+    }
+
+    .progress-bar {
+        position: absolute;
+        bottom: 80px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .progress {
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(90deg, #FF0080, #7928CA);
+    }
+
+    /* Скрыть полосу прокрутки для лучшего UI */
+    .swipe-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .swipe-container {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Анимации */
+    @@keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(255, 0, 128, 0.7);
+        }
+
+        70% {
+            box-shadow: 0 0 0 10px rgba(255, 0, 128, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(255, 0, 128, 0);
+        }
+    }
+
+    @@keyframes slideIn {
+        0% {
+            transform: translateX(20px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @@keyframes slideUp {
+        0% {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @@keyframes floatUpDown {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @@keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .comment-button {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+        .comment-button:focus {
+            outline: none;
+        }
+
+    #commentsModal.fade .modal-dialog {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 50% !important;
+        transform: translate(-50%, 100%) !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 600px !important;
+        transition: transform 0.3s ease-out !important;
+        pointer-events: none !important;
+        top: auto !important; /* убираем стандартное смещение сверху */
+    }
+
+    /* Показываем: выезжаем вверх */
+    #commentsModal.fade.show .modal-dialog {
+        transform: translate(-50%, 0) !important;
+        pointer-events: auto !important;
+    }
+
+    /* === Оформление контейнера === */
+    #commentsModal .modal-content {
+        border-radius: 12px 12px 0 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* === Шапка модалки === */
+    #commentsModal .modal-header {
+        background: var(--primary-gradient) !important;
+        color: #fff !important;
+        border-bottom: none !important;
+        padding: 1rem 1rem 0.5rem !important;
+        position: relative !important;
+    }
+        /* Хэндл-бар */
+        #commentsModal .modal-header::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 2px;
+        }
+
+    /* === Тело модалки === */
+    #commentsModal .modal-body {
+        background: var(--card-bg) !important;
+        color: var(--text-light) !important;
+        padding: 0.5rem 1rem 1rem !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
+    }
+
+    /* === Футер модалки === */
+    #commentsModal .modal-footer {
+        background: var(--card-bg) !important;
+        border-top: none !important;
+        padding: 0.5rem 1rem 1rem !important;
+    }
+
+    /* === Сброс Bootstrap-классов внутри модалки === */
+    #commentsModal .text-muted {
+        color: var(--text-light) !important;
+    }
+
+    #commentsModal .text-center {
+        text-align: left !important;
+    }
+
+    /* === Стили списка комментариев === */
+    #commentsModal .list-group {
+        margin: 0 -1rem !important;
+        padding: 0 !important;
+    }
+
+    #commentsModal .list-group-item {
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+        padding: 0.75rem 0 !important;
+        color: var(--text-light) !important;
+    }
+
+        #commentsModal .list-group-item:last-child {
+            border-bottom: none !important;
+        }
+
+    #commentsModal .modal-header .close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 2rem;
+        height: 2rem;
+        padding: 0;
+        font-size: 1.5rem;
+        color: #fff !important;
+        opacity: 0.8;
+        background: transparent;
+        border: none;
+    }
+
+        #commentsModal .modal-header .close:hover {
+            opacity: 1;
+            color: #fff;
+        }
+
+    #commentsModal .modal-footer {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between !important;
+        gap: .5rem; /* промежуток между input и кнопкой */
+    }
+
+    #newCommentText {
+        flex: 1 1 auto; /* flex-grow + flex-shrink + flex-basis */
+        width: auto;
+        min-height: 2.8rem;
+        max-height: 7rem;
+        resize: none;
+        padding: .6rem .9rem;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 10px;
+        background: rgba(255,255,255,.05);
+        color: var(--text-light);
+        box-shadow: inset 0 0 4px rgba(0,0,0,.4);
+        transition: border .2s, box-shadow .2s;
+    }
+
+        #newCommentText:focus {
+            outline: none;
+            border-color: #00D9F5;
+            box-shadow: 0 0 8px rgba(0,217,245,.7);
+        }
+    /* модалка тянется на 85 vh и делится флекс‑колонкой */
+    #commentsModal .modal-content {
+        display: flex;
+        flex-direction: column;
+        height: 85vh; /* сколько нужно: 100%‑нижнего выреза, но не «выскакивает» за экран */
+    }
+
+    /* список занимает всё место между шапкой и футером */
+    #commentsModal .modal-body {
+        flex: 1 1 auto; /* растягиваемся */
+        overflow-y: auto; /* вертикальный скролл только внутри списка */
+        padding: 1rem; /* можно 0, если хотите «от края до края» */
+    }
+
+    /* убираем лишний отступ у шапки, чтобы она была тонкой */
+    #commentsModal .modal-header {
+        background: transparent; /* остаётся только хэндл‑бар */
+        border-bottom: none;
+        padding: .5rem 1rem .25rem;
+    }
+
+        /* если заголовка больше нет – делаем хэндл‑бар чуть ниже */
+        #commentsModal .modal-header::before {
+            top: 6px; /* было 8px – опускаем */
+        }
+
+    /* при желании: убираем margin у UL из partial */
+    #commentsZone ul,
+    #commentsZone .comments-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+
+    /* Кнопка‑«самолётик» */
+    #btnSubmitComment {
+        width: 46px;
+        height: 46px;
+        border: none;
+        padding: 0;
+        border-radius: 50%;
+        background: linear-gradient(135deg,#00D9F5,#00F5A0);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0,217,245,.3);
+        transition: transform .2s, box-shadow .2s;
+    }
+
+        #btnSubmitComment i {
+            font-size: 18px;
+        }
+
+        #btnSubmitComment:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,217,245,.5);
+        }
+
+        #btnSubmitComment:active {
+            transform: scale(.95);
+        }
+</style>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.close').click(function () {
+                $('#commentsModal').modal('hide');
+            });
+            // Обработчик для плавного скролла между видео
+            $('#swipeContainer').on('wheel', function (e) {
+                e.preventDefault();
+
+                const videoHeight = $('.video-container').height();
+                const currentScroll = $(this).scrollTop();
+                let scrollToPosition;
+
+                if (e.originalEvent.deltaY > 0) {
+                    // Скролл вниз
+                    scrollToPosition = Math.ceil(currentScroll / videoHeight) * videoHeight;
+                } else {
+                    // Скролл вверх
+                    scrollToPosition = Math.floor(currentScroll / videoHeight - 0.5) * videoHeight;
+                }
+
+                $(this).animate({
+                    scrollTop: scrollToPosition
+                }, 300);
+
+            });
+
+            // Имитация нажатия на лайки
+            $('.heart-icon').on('click', function () {
+                const icon = $(this).find('i');
+                const count = $(this).parent().find('span');
+
+                if (icon.hasClass('liked')) {
+                    icon.removeClass('liked');
+                    icon.css('color', '#fff');
+                    count.text((parseInt(count.text().replace(/\D/g, '')) - 1) + 'K');
+                    $(this).css('background', 'rgba(255, 255, 255, 0.1)');
+                } else {
+                    icon.addClass('liked');
+                    icon.css('color', '#FF0080');
+                    count.text((parseInt(count.text().replace(/\D/g, '')) + 1) + 'K');
+                    $(this).css('background', 'rgba(255, 0, 128, 0.3)');
+
+                    // Эффект сердечек при лайке
+                    createHeartEffect($(this));
+                }
+            });
+
+            // Эффект для закладок
+            $('.bookmark-icon').on('click', function () {
+                const icon = $(this).find('i');
+
+                if (icon.hasClass('bookmarked')) {
+                    icon.removeClass('bookmarked');
+                    icon.css('color', '#fff');
+                    $(this).css('background', 'rgba(255, 255, 255, 0.1)');
+                } else {
+                    icon.addClass('bookmarked');
+                    icon.css('color', '#00F5A0');
+                    $(this).css('background', 'rgba(0, 245, 160, 0.3)');
+                }
+            });
+
+            // Функция для создания эффекта сердечек
+            function createHeartEffect(element) {
+                for (let i = 0; i < 5; i++) {
+                    const heart = $('<i class="fas fa-heart temp-heart"></i>');
+                    const size = Math.random() * 15 + 10;
+                    const posX = Math.random() * 40 - 20;
+                    const delay = Math.random() * 0.5;
+
+                    heart.css({
+                        'position': 'absolute',
+                        'color': '#FF0080',
+                        'font-size': size + 'px',
+                        'left': '50%',
+                        'top': '50%',
+                        'transform': 'translate(-50%, -50%)',
+                        'opacity': 0.9,
+                        'transition': 'all 1s ease',
+                        'z-index': 1000
+                    });
+
+                    element.append(heart);
+
+                    setTimeout(function () {
+                        heart.css({
+                            'transform': 'translate(' + posX + 'px, -50px)',
+                            'opacity': 0
+                        });
+
+                        setTimeout(function () {
+                            heart.remove();
+                        }, 1000);
+                    }, delay * 1000);
+                }
+            }
+
+            // Определение текущего видео при скролле
+            $('#swipeContainer').on('scroll', function () {
+                const scrollTop = $(this).scrollTop();
+                const videoHeight = $('.video-container').height();
+                const currentIndex = Math.round(scrollTop / videoHeight);
+
+                $('.video-container').each(function (index) {
+                    if (index === currentIndex) {
+                        $(this).find('.video-info, .video-actions').css('opacity', 1);
+                    } else {
+                        $(this).find('.video-info, .video-actions').css('opacity', 0.3);
+                    }
+                });
+            });
+
+            // Инициализация для первого видео
+            $('.video-container').first().find('.video-info, .video-actions').css('opacity', 1);
+             var currentVideoId;
+
+          function loadComments(videoId){
+    $('#commentsZone').load(
+        '@Url.Action("List","Comment")' + '?videoId=' + encodeURIComponent(videoId),
+        function (response, status){
+            if (status === 'error'){
+                $('#commentsZone').html(
+                  '<span class="text-danger">Не удалось загрузить комментарии.</span>');
+            }
+        });
+}
+            $('.comment-button').click(function () {
+                const videoId = $(this).closest('.video-container').data('videoid');
+                $('#videoIdField').val(videoId);                  // NEW: кладём id в hidden
+                loadComments(videoId);                            // NEW
+                $('#commentsModal').appendTo('body').modal('show');
+            });
+
+            // Отправка комментария
+            $('#commentForm').on('submit', function (e) {         // NEW
+                e.preventDefault();
+                 $.post(
+                        '@Url.Action("Add", "Comment")',              // POST
+        $(this).serialize(),
+                     function (html) {
+                         $('#commentsZone').html(html);            // меняем список
+                         $('#newCommentText').val('');             // чистим textarea
+                     }
+                 ).fail(function (xhr) {
+                     alert(xhr.responseText || 'Не удалось отправить комментарий.');
+                 });
+            });
+
+            // Свайп вниз для закрытия модалки
+            let startY = 0;
+            $('#commentsModal .modal-dialog').on('touchstart', function (e) {
+                startY = e.originalEvent.touches[0].clientY;
+            });
+            $('#commentsModal .modal-dialog').on('touchend', function (e) {
+                const endY = e.originalEvent.changedTouches[0].clientY;
+                if (endY - startY > 50) {
+                    $('#commentsModal').modal('hide');
+                }
+            });
+        });
+    </script>
+
+}

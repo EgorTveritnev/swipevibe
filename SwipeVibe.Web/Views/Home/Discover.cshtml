@@ -1,0 +1,608 @@
+﻿@{
+    ViewBag.Title = "Открытия";
+}
+
+<div class="discover-page">
+    <div class="page-header">
+        <h1 class="animated-gradient-text">Открывать</h1>
+    </div>
+
+    <div class="search-bar glass-card">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" placeholder="Поиск видео, пользователей и хэштегов" class="search-input" />
+    </div>
+    
+    <div class="categories">
+        <div class="category active">Для вас</div>
+        <div class="category">Трендовые</div>
+        <div class="category">Музыка</div>
+        <div class="category">Спорт</div>
+        <div class="category">Игры</div>
+        <div class="category">Комедия</div>
+    </div>
+    
+    <div class="featured-section">
+        <h3>Популярное сейчас</h3>
+        <div class="featured-card" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/600x400/?dance) center/cover;">
+            <div class="featured-overlay">
+                <div class="featured-info">
+                    <div class="featured-avatar">
+                        <img src="https://i.pravatar.cc/150?img=10" alt="Featured creator">
+                    </div>
+                    <div class="featured-stats">
+                        <div class="views"><i class="fas fa-eye"></i> 4.7M</div>
+                        <div class="likes"><i class="fas fa-heart"></i> 892K</div>
+                    </div>
+                </div>
+                <div class="featured-caption">
+                    <h4>Самый популярный танцевальный челлендж 2025 #dancechallenge</h4>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section-header">
+        <h3>Рекомендованные видео</h3>
+    </div>
+    <div class="discover-grid">
+        <div class="discover-item">
+            <div class="discover-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x400/?trend) center/cover;">
+                <div class="thumbnail-overlay">
+                    <i class="fas fa-play"></i>
+                    <div class="views-badge"><i class="fas fa-eye"></i> 1.2M</div>
+                </div>
+            </div>
+            <div class="discover-details">
+                <div class="user-mini">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="User avatar">
+                </div>
+                <div class="discover-caption">Трендовый челлендж #swipechallenge</div>
+            </div>
+        </div>
+        <div class="discover-item">
+            <div class="discover-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x400/?jump) center/cover;">
+                <div class="thumbnail-overlay">
+                    <i class="fas fa-play"></i>
+                    <div class="views-badge"><i class="fas fa-eye"></i> 895K</div>
+                </div>
+            </div>
+            <div class="discover-details">
+                <div class="user-mini">
+                    <img src="https://i.pravatar.cc/150?img=2" alt="User avatar">
+                </div>
+                <div class="discover-caption">Эпичные трюки в парке #parkour</div>
+            </div>
+        </div>
+        <div class="discover-item">
+            <div class="discover-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x400/?food) center/cover;">
+                <div class="thumbnail-overlay">
+                    <i class="fas fa-play"></i>
+                    <div class="views-badge"><i class="fas fa-eye"></i> 2.5M</div>
+                </div>
+            </div>
+            <div class="discover-details">
+                <div class="user-mini">
+                    <img src="https://i.pravatar.cc/150?img=3" alt="User avatar">
+                </div>
+                <div class="discover-caption">Рецепт быстрого ужина #foodie</div>
+            </div>
+        </div>
+        <div class="discover-item">
+            <div class="discover-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x400/?fashion) center/cover;">
+                <div class="thumbnail-overlay">
+                    <i class="fas fa-play"></i>
+                    <div class="views-badge"><i class="fas fa-eye"></i> 1.7M</div>
+                </div>
+            </div>
+            <div class="discover-details">
+                <div class="user-mini">
+                    <img src="https://i.pravatar.cc/150?img=4" alt="User avatar">
+                </div>
+                <div class="discover-caption">Модный обзор #style</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section-header">
+        <h3>Популярные хэштеги</h3>
+        <span class="section-link">Все <i class="fas fa-chevron-right"></i></span>
+    </div>
+    <div class="hashtags-container">
+        <div class="hashtag-card" style="background: linear-gradient(135deg, #FF0080, #7928CA);">
+            <h4>#swipevibe</h4>
+            <span>2.3B просмотров</span>
+        </div>
+        <div class="hashtag-card" style="background: linear-gradient(135deg, #00D9F5, #00F5A0);">
+            <h4>#dance2025</h4>
+            <span>1.8B просмотров</span>
+        </div>
+        <div class="hashtag-card" style="background: linear-gradient(135deg, #FF8A00, #FF0080);">
+            <h4>#challenge</h4>
+            <span>4.6B просмотров</span>
+        </div>
+    </div>
+    
+    <div class="section-header">
+        <h3>Креаторы, которые вам понравятся</h3>
+        <span class="section-link">Все <i class="fas fa-chevron-right"></i></span>
+    </div>
+    <div class="creators-row">
+        <div class="creator-card">
+            <div class="creator-avatar">
+                <img src="https://i.pravatar.cc/150?img=5" alt="Creator">
+                <div class="follow-badge"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="creator-name">@@dancequeen</div>
+            <div class="creator-stats">4.2M подписчиков</div>
+        </div>
+        <div class="creator-card">
+            <div class="creator-avatar">
+                <img src="https://i.pravatar.cc/150?img=6" alt="Creator">
+                <div class="follow-badge"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="creator-name">@@travelguy</div>
+            <div class="creator-stats">2.8M подписчиков</div>
+        </div>
+        <div class="creator-card">
+            <div class="creator-avatar">
+                <img src="https://i.pravatar.cc/150?img=7" alt="Creator">
+                <div class="follow-badge"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="creator-name">@@comedyking</div>
+            <div class="creator-stats">5.7M подписчиков</div>
+        </div>
+        <div class="creator-card">
+            <div class="creator-avatar">
+                <img src="https://i.pravatar.cc/150?img=8" alt="Creator">
+                <div class="follow-badge"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="creator-name">@@fitnessguru</div>
+            <div class="creator-stats">3.1M подписчиков</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .discover-page {
+        padding: 15px 15px 70px;
+        background-color: var(--background-dark);
+        min-height: 100vh;
+    }
+    
+    .page-header {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .page-header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .search-bar {
+        position: relative;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-dim);
+        font-size: 18px;
+    }
+    
+    .search-input {
+        width: 100%;
+        padding: 12px 15px 12px 45px;
+        border: none;
+        background-color: transparent;
+        color: var(--text-light);
+        font-size: 16px;
+        outline: none;
+    }
+    
+    .search-input::placeholder {
+        color: var(--text-dim);
+    }
+    
+    .categories {
+        display: flex;
+        overflow-x: auto;
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+    }
+    
+    .categories::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .category {
+        padding: 10px 20px;
+        margin-right: 12px;
+        border-radius: 20px;
+        background-color: var(--background-card);
+        color: var(--text-dim);
+        font-size: 14px;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .category.active {
+        background: var(--primary-gradient);
+        color: var(--text-light);
+        box-shadow: 0 5px 15px rgba(255, 0, 128, 0.3);
+    }
+    
+    .category:not(.active):hover {
+        transform: translateY(-2px);
+        color: var(--text-light);
+    }
+    
+    .featured-section {
+        margin-bottom: 25px;
+    }
+    
+    .featured-section h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    .featured-card {
+        height: 200px;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .featured-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    
+    .featured-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    
+    .featured-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--accent-color);
+    }
+    
+    .featured-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .featured-stats {
+        display: flex;
+    }
+    
+    .featured-stats .views, .featured-stats .likes {
+        margin-left: 15px;
+        font-size: 14px;
+    }
+    
+    .featured-stats i {
+        margin-right: 5px;
+    }
+    
+    .featured-caption h4 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.4;
+    }
+    
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+    }
+    
+    .play-button i {
+        font-size: 24px;
+        color: white;
+    }
+    
+    .featured-card:hover .play-button {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 1;
+        background: rgba(255, 0, 128, 0.8);
+    }
+    
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-top: 8px;
+    }
+    
+    .section-header h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    .section-link {
+        color: var(--accent-color);
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .section-link i {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+    
+    .discover-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+    
+    .discover-item {
+        position: relative;
+        margin-bottom: 5px;
+        transition: transform 0.3s ease;
+    }
+    
+    .discover-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .discover-thumbnail {
+        position: relative;
+        height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .thumbnail-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .thumbnail-overlay i {
+        font-size: 30px;
+        color: rgba(255, 255, 255, 0.8);
+        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+        transition: transform 0.3s ease;
+    }
+    
+    .discover-item:hover .thumbnail-overlay i {
+        transform: scale(1.2);
+        color: white;
+    }
+    
+    .views-badge {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 4px 8px;
+        border-radius: 20px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .views-badge i {
+        font-size: 12px !important;
+        margin-right: 4px;
+    }
+    
+    .discover-details {
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+    }
+    
+    .user-mini {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 8px;
+    }
+    
+    .user-mini img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .discover-caption {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .hashtags-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+    }
+    
+    .hashtags-container::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .hashtag-card {
+        min-width: 150px;
+        padding: 15px;
+        border-radius: 12px;
+        color: white;
+        transition: transform 0.3s ease;
+    }
+    
+    .hashtag-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .hashtag-card h4 {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    
+    .hashtag-card span {
+        font-size: 12px;
+        opacity: 0.8;
+    }
+    
+    .creators-row {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding-bottom: 10px;
+    }
+    
+    .creators-row::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .creator-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 100px;
+        transition: transform 0.3s ease;
+    }
+    
+    .creator-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .creator-avatar {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 8px;
+        border: 2px solid var(--accent-color);
+    }
+    
+    .creator-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .follow-badge {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: var(--accent-color);
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: white;
+        box-shadow: 0 0 0 2px var(--background-dark);
+    }
+    
+    .creator-name {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 3px;
+        white-space: nowrap;
+    }
+    
+    .creator-stats {
+        font-size: 12px;
+        color: var(--text-dim);
+    }
+</style>
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            // Переключение категорий с анимацией
+            $('.category').click(function() {
+                $('.category').removeClass('active');
+                $(this).addClass('active');
+            });
+            
+            // Анимация для карточек при скролле
+            function checkVisible() {
+                $('.discover-item, .creator-card, .hashtag-card').each(function() {
+                    const elementTop = $(this).offset().top;
+                    const elementBottom = elementTop + $(this).outerHeight();
+                    const viewportTop = $(window).scrollTop();
+                    const viewportBottom = viewportTop + $(window).height();
+                    
+                    if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                        $(this).addClass('in-view');
+                    }
+                });
+            }
+            
+            // Первоначальная проверка видимости
+            checkVisible();
+            
+            // Проверка при скролле
+            $(window).on('scroll', function() {
+                checkVisible();
+            });
+            
+            // Анимация для поиска
+            $('.search-input').focus(function() {
+                $('.search-bar').css('box-shadow', '0 0 0 2px var(--accent-color)');
+            }).blur(function() {
+                $('.search-bar').css('box-shadow', 'none');
+            });
+        });
+    </script>
+}
