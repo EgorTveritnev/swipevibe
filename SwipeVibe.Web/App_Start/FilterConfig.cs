@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 
-namespace SwipeVibe.Web.App_Start
+namespace SwipeVibe.Web
 {
-	public class FilterConfig
-	{
+    public class FilterConfig
+    {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
