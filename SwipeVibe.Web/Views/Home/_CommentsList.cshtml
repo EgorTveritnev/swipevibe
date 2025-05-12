@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SwipeVibe.Domain.Entities.Comment.Comment>
+
+@functions{
+    string AvatarUrl(string username)
+        => "https://i.pravatar.cc/40?u=" + Uri.EscapeDataString(username ?? "guest");
+}
+
+<ul class="comments-list list-unstyled m-0">
+    @foreach (var c in Model)
+    {
+        <li class="d-flex align-items-start mb-2">
+            <img src="@AvatarUrl(c.Username)"
+                 class="rounded-circle flex-shrink-0 me-2"
+                 width="40" height="40" alt="avatar" />
+
+            <div>
+                <div>
+                    <strong>@c.Username</strong>
+                    <small class="text-muted">
+                        @c.CreatedAt.ToLocalTime().ToString("HH:mm dd.MM")
+                    </small>
+                </div>
+                <div>@c.Text</div>
+            </div>
+        </li>
+    }
+</ul>

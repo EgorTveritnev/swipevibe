@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Domain\bin\Debug\SwipeVibe.Domain.dll
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Domain\bin\Debug\SwipeVibe.Domain.pdb
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Domain\bin\Debug\SwipeVibe.Helpers.dll
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Domain\bin\Debug\SwipeVibe.Helpers.pdb
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Domain\obj\Debug\SwipeVibe.Domain.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Domain\obj\Debug\SwipeVibe.Domain.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Domain\obj\Debug\SwipeVib.FCF746DD.Up2Date
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Domain\obj\Debug\SwipeVibe.Domain.dll
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Domain\obj\Debug\SwipeVibe.Domain.pdb

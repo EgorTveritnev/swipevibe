@@ -5,14 +5,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SwipeVibe.Web.Models;
+using SwipeVibe.BusinessLogic.Interfaces;
+using SwipeVibe.BusinessLogic.BL;
 
 namespace SwipeVibe.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IVideo _videoService = new VideoBL();
         public ActionResult Index()
         {
-            return View();
+            var videos = _videoService.GetAll(); // теперь динамически
+            return View(videos);                 // <<<<<<<<<<
         }
 
         public ActionResult About()
