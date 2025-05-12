@@ -1,93 +1,402 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>@ViewBag.Title - SwipeVibe</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    @Styles.Render("~/Content/common-css")
-    <link href="~/Content/css/sidebar.css" rel="stylesheet" type="text/css" />
-    @if (IsSectionDefined("Styles"))
-    {
-        @RenderSection("Styles", required: false)
-    }
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF0080;
+            --secondary-color: #7928CA;
+            --accent-color: #00D9F5;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-light: #ffffff;
+            --text-dim: #bbbbbb;
+            --primary-gradient: linear-gradient(135deg, #FF0080, #7928CA);
+            --secondary-gradient: linear-gradient(135deg, #00D9F5, #00F5A0);
+            --tertiary-gradient: linear-gradient(135deg, #FF8A00, #FF0080);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        .app-container {
+            max-width: 100vw;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Декоративные элементы фона */
+        .bg-decoration {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .deco-1 {
+            background: var(--primary-color);
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+        
+        .deco-2 {
+            background: var(--secondary-color);
+            width: 250px;
+            height: 250px;
+            bottom: 10%;
+            right: -50px;
+            animation: float 12s ease-in-out infinite alternate-reverse;
+        }
+        
+        .deco-3 {
+            background: var(--accent-color);
+            width: 200px;
+            height: 200px;
+            bottom: 30%;
+            left: 10%;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+        
+        @@keyframes float {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+            100% {
+                transform: translate(20px, -20px) scale(1.1);
+            }
+        }
+
+        .content-container {
+            padding-bottom: 70px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Нижняя навигационная панель */
+        .bottom-navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 100;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.7rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active {
+            color: var(--text-light);
+        }
+        
+        .nav-item.active .nav-icon {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: translateY(-5px);
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .nav-item:hover .nav-icon {
+            transform: translateY(-5px);
+        }
+
+        /* Кнопка для добавления нового контента */
+        .add-btn {
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: -25px;
+            box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .add-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 0, 128, 0.6);
+        }
+
+        .add-btn::before {
+            content: "+";
+            font-size: 28px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Стеклянный эффект для карточек и панелей */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Пульсирующий эффект */
+        .pulse-effect {
+            animation: pulse 2s infinite;
+        }
+        
+        @@keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 128, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 0, 128, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 128, 0);
+            }
+        }
+        
+        /* Градиентный текст */
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Анимированный градиентный текст */
+        .animated-gradient-text {
+            background-size: 300% 300%;
+            background-image: linear-gradient(45deg, #FF0080, #7928CA, #00D9F5, #FF8A00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 5s ease infinite;
+        }
+        
+        @@keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Выпадающее меню профиля */
+        .profile-menu {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 10px;
+            width: 270px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            z-index: 110;
+            animation: slide-up 0.3s ease;
+        }
+        
+        @@keyframes slide-up {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .profile-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .profile-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .profile-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+        
+        .profile-email {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+        
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .menu-item:hover {
+            color: var(--primary-color);
+        }
+        
+        .menu-item i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Скрыть стандартный footer */
+        footer {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="desktop-container">
-        <aside class="side-nav">
-            <div class="side-nav-logo">
-                <i class="fas fa-video"></i> <span>SwipeVibe</span>
-            </div>
-            <div class="search-box">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="Поиск...">
-            </div>
-            <div class="side-nav-group">
-                <a href="@Url.Action("Index", "Home")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Home" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
-                    <i class="fas fa-home"></i> <span>Главная</span>
-                </a>
-                <a href="@Url.Action("Index", "Watch")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Watch" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
-                    <i class="fas fa-play"></i> <span>Смотреть</span>
-                </a>
-                <a href="@Url.Action("Index", "Stream")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Stream" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
-                    <i class="fas fa-broadcast-tower"></i> <span>Стрим</span>
-                </a>
-                <a href="@Url.Action("Index", "Upload")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Upload" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
-                    <i class="fas fa-upload"></i> <span>Загрузить</span>
-                </a>
-                <a href="@Url.Action("Index", "Shop")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Shop" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
-                    <i class="fas fa-shopping-bag"></i> <span>Магазин</span>
-                </a>
-                <a href="@Url.Action("Index", "Friends")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Friends" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
-                    <i class="fas fa-user-friends"></i> <span>Друзья</span>
-                </a>
-                <a href="@Url.Action("Index", "Activity")" class="side-nav-item @(ViewContext?.RouteData?.Values?["Controller"]?.ToString() == "Activity" && ViewContext?.RouteData?.Values?["Action"]?.ToString() == "Index" ? "active" : "")">
-                    <i class="fas fa-heartbeat"></i> <span>Активность</span>
-                </a>
-            </div>
-            <div class="side-nav-footer">
-                <div class="side-nav-links">
-                    <a href="@Url.Action("About", "Home")">О нас</a>
-                    <a href="@Url.Action("Contact", "Home")">Поддержка</a>
-                    <a href="@Url.Action("Terms", "Info")">Условия</a>
-                </div>
-                <div class="copyright">
-                    &copy; @DateTime.Now.Year SwipeVibe
-                </div>
-            </div>
-        </aside>
-
-        <header>
-            <nav class="mobile-nav">
-                <a href="#" class="side-nav-item">
-                    <i class="fas fa-home"></i> <span>Главная</span>
-                </a>
-                <a href="#" class="side-nav-item">
-                    <i class="fas fa-play"></i> <span>Смотреть</span>
-                </a>
-                <a href="#" class="side-nav-item">
-                    <i class="fas fa-upload"></i> <span>Загрузить</span>
-                </a>
-                <a href="#" class="side-nav-item">
-                    <i class="fas fa-user"></i> <span>Профиль</span>
-                </a>
-            </nav>
-        </header>
-
-        <div class="container body-content">
+    <div class="app-container">
+        <!-- Декоративные фоновые элементы -->
+        <div class="bg-decoration deco-1"></div>
+        <div class="bg-decoration deco-2"></div>
+        <div class="bg-decoration deco-3"></div>
+        
+        <div class="content-container">
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
         </div>
+
+        <nav class="bottom-navbar">
+            <a href="@Url.Action("Index", "Home")" class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
+                <i class="nav-icon fas fa-home"></i>
+                <span>Главная</span>
+            </a>
+            <a href="@Url.Action("Discover", "Home")" class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Discover" ? "active" : "")">
+                <i class="nav-icon fas fa-compass"></i>
+                <span>Открытия</span>
+            </a>
+            <a href="@Url.Action("Upload", "Home")" class="add-btn pulse-effect" title="Загрузить новое видео"></a>
+            <a href="@Url.Action("Notifications", "Home")" class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Notifications" ? "active" : "")">
+                <i class="nav-icon fas fa-bell"></i>
+                <span>Уведомления</span>
+            </a>
+            @if (Request.IsAuthenticated)
+            {
+                <a href="@Url.Action("Profile", "Home")" class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "active" : "")" id="profileBtn">
+                    <i class="nav-icon fas fa-user"></i>
+                    <span>Профиль</span>
+                </a>
+                <div class="profile-menu" id="profileMenu">
+                    <div class="profile-info">
+                        <img src="@Session["UserAvatar"]" alt="Аватар" class="profile-avatar">
+                        <div>
+                            <div class="profile-name">@Session["Username"]</div>
+                            <div class="profile-email">@Session["UserEmail"]</div>
+                        </div>
+                    </div>
+                    <div class="menu-items">
+                        <a href="@Url.Action("Profile", "Home")" class="menu-item">
+                            <i class="fas fa-user-circle"></i>Мой профиль
+                        </a>
+                        <a href="@Url.Action("Logout", "Account")" class="menu-item">
+                            <i class="fas fa-sign-out-alt"></i>Выйти
+                        </a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <a href="@Url.Action("Login", "Account")" class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Login" && ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "active" : "")">
+                    <i class="nav-icon fas fa-sign-in-alt"></i>
+                    <span>Войти</span>
+                </a>
+            }
+        </nav>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    
+    <script>
+        $(document).ready(function() {
+            // Плавное появление контента
+            $('.content-container').css('opacity', 0).animate({
+                opacity: 1
+            }, 500);
+            
+            // Скрыть нижнюю навигацию при скролле вниз и показать при скролле вверх
+            let lastScrollTop = 0;
+            $(window).scroll(function() {
+                const st = $(this).scrollTop();
+                if (st > lastScrollTop && st > 100) {
+                    // Скролл вниз
+                    $('.bottom-navbar').css('transform', 'translateY(100%)');
+                } else {
+                    // Скролл вверх
+                    $('.bottom-navbar').css('transform', 'translateY(0)');
+                }
+                lastScrollTop = st;
+            });
+            
+            // Выпадающее меню профиля
+            $('#profileBtn').click(function(e) {
+                if ($('#profileMenu').is(':visible')) {
+                    e.preventDefault();
+                    $('#profileMenu').fadeToggle(200);
+                }
+            });
+            
+            // Закрытие выпадающего меню при клике вне его области
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#profileBtn, #profileMenu').length) {
+                    $('#profileMenu').fadeOut(200);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

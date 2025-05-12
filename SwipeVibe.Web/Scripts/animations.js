@@ -1,3 +1,6 @@
+
+
+// Ждем, когда DOM полностью загрузится
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Animations initialized');
     initAnimations();
@@ -47,6 +50,8 @@ function initButtonAnimations() {
         button.addEventListener('mouseleave', function() {
             this.classList.remove('pressed');
         });
+        
+        // Добавляем эффект ряби при нажатии
         button.addEventListener('click', function(e) {
             createRippleEffect(e, this);
         });

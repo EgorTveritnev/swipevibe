@@ -1,310 +1,549 @@
 ﻿@{
-    ViewData["Title"] = "SwipeVibe - Делись моментами";
+    ViewBag.Title = "SwipeVibe";
 }
 
-
-
-
-<div class="desktop-video-container neomorph-card">
-    <div class="desktop-video-feed">
-        <!-- Видео карточка 1 -->
-        <div class="video-card active neomorph-card animate-fade-in">
-            <div class="video-wrapper">
-                <video src="~/Content/assets/videos/demo1.mp4" loop></video>
-
-                <!-- Большой текст поверх видео -->
-                <div class="video-overlay-text">
-                    <h1>ВОТ КАКИМИ ДОЛЖНЫ<br>БЫТЬ ХОРРОРЫ</h1>
+<div class="swipe-container" id="swipeContainer">
+    <!-- Видео 1 -->
+    <div class="video-container">
+        <div class="video-placeholder" style="background: linear-gradient(135deg, #FF6CAB, #7366FF);">
+            <i class="fas fa-play-circle"></i>
+        </div>
+        <div class="video-info">
+            <div class="user-info">
+                <div class="user-avatar glow-effect">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="User avatar">
                 </div>
-
-                <!-- Информация о видео в стиле TikTok -->
-                <div class="video-info-tiktok">
-                    <div class="tiktok-user-info">
-                        <h3>TheMart1ano | Стример</h3>
-                        <p>Часть 1 | Наконец-то нормальный Silent Hill? Жестокий психологи... <span>ещё</span></p>
-                    </div>
-
-                    <div class="tiktok-bottom-info">
-                        <div class="tiktok-playlist">
-                            <i class="fas fa-list-ul"></i> Плейлист • <span>GAMES NEWS</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-
-                        <div class="tiktok-category">
-                            <span>Scary</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Контроли справа в стиле TikTok -->
-                <div class="tiktok-controls">
-                    <div class="tiktok-control-item tiktok-author">
-                        <div class="tiktok-author-avatar neomorph-icon animate-glow">
-                            <img src="~/Content/assets/images/avatar1.jpg" alt="Автор">
-                        </div>
-                        <div class="subscribe-btn neomorph-btn">
-                            <i class="fas fa-plus"></i> Подписаться
-                        </div>
-                    </div>
-
-                    <div class="tiktok-control-item">
-                        <div class="tiktok-control-icon like-btn neomorph-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <span class="tiktok-control-count">423.2K</span>
-                    </div>
-
-                    <div class="tiktok-control-item">
-                        <div class="tiktok-control-icon comment-btn neomorph-icon">
-                            <i class="fas fa-comment"></i>
-                        </div>
-                        <span class="tiktok-control-count">1.4K</span>
-                    </div>
-
-                    <div class="tiktok-control-item">
-                        <div class="tiktok-control-icon share-btn neomorph-icon">
-                            <i class="fas fa-share"></i>
-                        </div>
-                        <span class="tiktok-control-count">320</span>
-                    </div>
-
-                    <div class="tiktok-control-item">
-                        <div class="tiktok-control-icon bookmark-btn neomorph-icon">
-                            <i class="fas fa-bookmark"></i>
-                        </div>
-                        <span class="tiktok-control-count">82</span>
-                    </div>
-                </div>
-
-                <!-- Контроли воспроизведения -->
-                <div class="video-controls">
-                    <div class="play-control">
-                        <i class="fas fa-pause"></i>
-                    </div>
-                    <div class="volume-control">
-                        <i class="fas fa-volume-up"></i>
-                    </div>
-                </div>
-
-                <!-- Прогресс бар видео -->
-                <div class="video-progress">
-                    <div class="progress-bar"></div>
-                </div>
+                <div class="username">@@user123 <i class="fas fa-check-circle verified-badge"></i></div>
+            </div>
+            <div class="video-description">
+                Это мое первое видео в SwipeVibe! <span class="hashtag">#swipevibe</span> <span class="hashtag">#trending</span> <span class="hashtag">#viral</span>
             </div>
         </div>
-
-        <!-- Видео карточка 2 -->
-        <div class="video-card next neomorph-card">
-            <div class="video-wrapper">
-                <video src="~/Content/assets/videos/demo2.mp4" loop></video>
-
-                <!-- Большой текст поверх видео -->
-                <div class="video-overlay-text">
-                    <h1>CYBERPUNK 2077: PHANTOM LIBERTY</h1>
+        <div class="video-actions">
+            <div class="action-item">
+                <div class="action-icon-wrapper heart-icon">
+                    <i class="fas fa-heart"></i>
                 </div>
-
-                <!-- Информация о видео в стиле TikTok -->
-                <div class="video-info-tiktok">
-                    <div class="tiktok-user-info">
-                        <h3>CyberGamer | Блогер</h3>
-                        <p>Первый взгляд на новое дополнение. Стоит ли оно своих денег? <span>ещё</span></p>
-                    </div>
-
-                    <div class="tiktok-bottom-info">
-                        <div class="tiktok-playlist">
-                            <i class="fas fa-list-ul"></i> Плейлист • <span>ПЕРВЫЙ ВЗГЛЯД</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-
-                        <div class="tiktok-category">
-                            <span>Gaming</span>
-                        </div>
-                    </div>
+                <span>12.5K</span>
+            </div>
+            <div class="action-item">
+                <div class="action-icon-wrapper comment-icon">
+                    <i class="fas fa-comment"></i>
                 </div>
-
-                <!-- Контроли справа в стиле TikTok -->
-                <div class="tiktok-controls">
-                    <div class="tiktok-control-item tiktok-author">
-                        <div class="tiktok-author-avatar neomorph-icon animate-glow">
-                            <img src="~/Content/assets/images/avatar2.jpg" alt="Автор">
-                        </div>
-                        <div class="subscribe-btn neomorph-btn">
-                            <i class="fas fa-plus"></i> Подписаться
-                        </div>
-                    </div>
-
-                    <div class="tiktok-control-item">
-                        <div class="tiktok-control-icon like-btn neomorph-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <span class="tiktok-control-count">189.5K</span>
-                    </div>
-
-                    <div class="tiktok-control-item">
-                        <div class="tiktok-control-icon comment-btn neomorph-icon">
-                            <i class="fas fa-comment"></i>
-                        </div>
-                        <span class="tiktok-control-count">856</span>
-                    </div>
-
-                    <div class="tiktok-control-item">
-                        <div class="tiktok-control-icon share-btn neomorph-icon">
-                            <i class="fas fa-share"></i>
-                        </div>
-                        <span class="tiktok-control-count">215</span>
-                    </div>
-
-                    <div class="tiktok-control-item">
-                        <div class="tiktok-control-icon bookmark-btn neomorph-icon">
-                            <i class="fas fa-bookmark"></i>
-                        </div>
-                        <span class="tiktok-control-count">45</span>
-                    </div>
+                <span>1.2K</span>
+            </div>
+            <div class="action-item">
+                <div class="action-icon-wrapper share-icon">
+                    <i class="fas fa-share"></i>
                 </div>
-
-                <!-- Контроли воспроизведения -->
-                <div class="video-controls">
-                    <div class="play-control">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="volume-control">
-                        <i class="fas fa-volume-up"></i>
-                    </div>
-                </div>
-
-                <!-- Прогресс бар видео -->
-                <div class="video-progress">
-                    <div class="progress-bar"></div>
+                <span>3.4K</span>
+            </div>
+            <div class="action-item">
+                <div class="action-icon-wrapper bookmark-icon">
+                    <i class="fas fa-bookmark"></i>
                 </div>
             </div>
-        </div>
-
-        <!-- Видео карточка 3 -->
-        <div class="video-card neomorph-card">
-            <div class="video-wrapper">
-                <div class="video-placeholder">
-                    <i class="fas fa-film" style="font-size: 48px; margin-bottom: 20px;"></i>
-                    <h3>Демо видео #3</h3>
-                    <p>Это заглушка для демонстрации интерфейса. Добавьте свои видео в проект.</p>
-                </div>
+            <div class="music-disc">
+                <i class="fas fa-music"></i>
             </div>
         </div>
+    </div>
 
-        <!-- Кнопки навигации -->
-        <div class="video-navigation">
-            <button class="nav-btn prev-btn neomorph-icon">
-                <i class="fas fa-chevron-up"></i>
-            </button>
-            <button class="nav-btn next-btn neomorph-icon">
-                <i class="fas fa-chevron-down"></i>
-            </button>
+    <!-- Видео 2 -->
+    <div class="video-container">
+        <div class="video-placeholder" style="background: linear-gradient(135deg, #00F5A0, #00D9F5);">
+            <i class="fas fa-play-circle"></i>
         </div>
+        <div class="video-info">
+            <div class="user-info">
+                <div class="user-avatar glow-effect" style="border-color: #00D9F5;">
+                    <img src="https://i.pravatar.cc/150?img=2" alt="User avatar">
+                </div>
+                <div class="username">@@coolcontent</div>
+            </div>
+            <div class="video-description">
+                Смотрите это невероятное видео! <span class="hashtag">#amazing</span> <span class="hashtag">#swipevibe</span> <span class="hashtag">#content</span>
+            </div>
+        </div>
+        <div class="video-actions">
+            <div class="action-item">
+                <div class="action-icon-wrapper heart-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <span>45.1K</span>
+            </div>
+            <div class="action-item">
+                <div class="action-icon-wrapper comment-icon">
+                    <i class="fas fa-comment"></i>
+                </div>
+                <span>3.7K</span>
+            </div>
+            <div class="action-item">
+                <div class="action-icon-wrapper share-icon">
+                    <i class="fas fa-share"></i>
+                </div>
+                <span>8.2K</span>
+            </div>
+            <div class="action-item">
+                <div class="action-icon-wrapper bookmark-icon">
+                    <i class="fas fa-bookmark"></i>
+                </div>
+            </div>
+            <div class="music-disc">
+                <i class="fas fa-music"></i>
+            </div>
+        </div>
+    </div>
 
-        <!-- Индикатор свайпа -->
-        <div class="swipe-indicator">
-            <i class="fas fa-arrows-alt-v"></i> Свайпните для прокрутки
+    <!-- Видео 3 -->
+    <div class="video-container">
+        <div class="video-placeholder" style="background: linear-gradient(135deg, #FF8A00, #FF0080);">
+            <i class="fas fa-play-circle"></i>
+        </div>
+        <div class="video-info">
+            <div class="user-info">
+                <div class="user-avatar glow-effect" style="border-color: #FF8A00;">
+                    <img src="https://i.pravatar.cc/150?img=3" alt="User avatar">
+                </div>
+                <div class="username">@@creativeminds <i class="fas fa-check-circle verified-badge"></i></div>
+            </div>
+            <div class="video-description">
+                Новый челлендж! Попробуйте сами! <span class="hashtag">#challenge</span> <span class="hashtag">#swipevibe</span> <span class="hashtag">#new</span>
+            </div>
+        </div>
+        <div class="video-actions">
+            <div class="action-item">
+                <div class="action-icon-wrapper heart-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <span>78.3K</span>
+            </div>
+            <div class="action-item">
+                <div class="action-icon-wrapper comment-icon">
+                    <i class="fas fa-comment"></i>
+                </div>
+                <span>5.6K</span>
+            </div>
+            <div class="action-item">
+                <div class="action-icon-wrapper share-icon">
+                    <i class="fas fa-share"></i>
+                </div>
+                <span>12.9K</span>
+            </div>
+            <div class="action-item">
+                <div class="action-icon-wrapper bookmark-icon">
+                    <i class="fas fa-bookmark"></i>
+                </div>
+            </div>
+            <div class="music-disc rotating">
+                <i class="fas fa-music"></i>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
         </div>
     </div>
 </div>
 
-<!-- Контейнер для комментариев в стиле TikTok (по умолчанию скрыт) -->
-<div class="comments-container">
-    <div class="comments-header">
-        <div class="comments-title">Комментарии (1.4K)</div>
-        <div class="comments-close"><i class="fas fa-times"></i></div>
-    </div>
+<style>
+    .swipe-container {
+        width: 100%;
+        height: 100vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+    }
 
-    <div class="comments-list">
-        <!-- Комментарий 1 -->
-        <div class="comment-item">
-            <div class="comment-avatar">
-                <img src="~/Content/assets/images/avatar3.jpg" alt="Аватар">
-            </div>
-            <div class="comment-content">
-                <div class="comment-username">@ViewBag.game_lover</div>
-                <div class="comment-text">Не могу дождаться, когда смогу сыграть в эту игру. Выглядит потрясающе!</div>
-                <div class="comment-actions">
-                    <div class="comment-time">2 часа назад</div>
-                    <div class="comment-like"><i class="fas fa-heart"></i> 128</div>
-                    <div class="comment-reply">Ответить</div>
-                </div>
-            </div>
-        </div>
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 60px); /* Высота минус нижнее меню */
+        scroll-snap-align: start;
+        overflow: hidden;
+    }
 
-        <!-- Комментарий 2 -->
-        <div class="comment-item">
-            <div class="comment-avatar">
-                <img src="~/Content/assets/images/avatar1.jpg" alt="Аватар">
-            </div>
-            <div class="comment-content">
-                <div class="comment-username">@ViewBag.horror_fan</div>
-                <div class="comment-text">Наконец-то достойный хоррор, после всего того мусора, что выходил в последнее время. Обзор очень полезный!</div>
-                <div class="comment-actions">
-                    <div class="comment-time">4 часа назад</div>
-                    <div class="comment-like"><i class="fas fa-heart"></i> 97</div>
-                    <div class="comment-reply">Ответить</div>
-                </div>
-            </div>
-        </div>
+    .video-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    
+    .video-placeholder:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(2px);
+        z-index: -1;
+    }
 
-        <!-- Комментарий 3 -->
-        <div class="comment-item">
-            <div class="comment-avatar">
-                <img src="~/Content/assets/images/avatar2.jpg" alt="Аватар">
-            </div>
-            <div class="comment-content">
-                <div class="comment-username">@ViewBag.gaming_geek</div>
-                <div class="comment-text">Графика конечно на уровне. Интересно, какие требования к железу?</div>
-                <div class="comment-actions">
-                    <div class="comment-time">5 часов назад</div>
-                    <div class="comment-like"><i class="fas fa-heart"></i> 54</div>
-                    <div class="comment-reply">Ответить</div>
-                </div>
-            </div>
-        </div>
+    .video-placeholder i {
+        font-size: 80px;
+        color: rgba(255, 255, 255, 0.8);
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+        transition: transform 0.3s ease;
+    }
+    
+    .video-placeholder:hover i {
+        transform: scale(1.1);
+    }
 
-        <!-- Еще комментарии -->
-        <div class="comment-item">
-            <div class="comment-avatar">
-                <img src="~/Content/assets/images/avatar3.jpg" alt="Аватар">
-            </div>
-            <div class="comment-content">
-                <div class="comment-username">@ViewBag.silent_watcher</div>
-                <div class="comment-text">Всегда любил серию Silent Hill, надеюсь эта игра вернет нам то чувство ужаса, которое было в оригинальных играх</div>
-                <div class="comment-actions">
-                    <div class="comment-time">6 часов назад</div>
-                    <div class="comment-like"><i class="fas fa-heart"></i> 42</div>
-                    <div class="comment-reply">Ответить</div>
-                </div>
-            </div>
-        </div>
+    .video-info {
+        position: absolute;
+        bottom: 100px;
+        left: 15px;
+        z-index: 2;
+        max-width: 70%;
+        animation: slideUp 0.5s ease;
+    }
 
-        <div class="comment-item">
-            <div class="comment-avatar">
-                <img src="~/Content/assets/images/avatar1.jpg" alt="Аватар">
-            </div>
-            <div class="comment-content">
-                <div class="comment-username">@ViewBag.game_dev</div>
-                <div class="comment-text">С точки зрения разработчика, игра выглядит очень впечатляюще! Особенно радует акцент на сюжете и атмосфере.</div>
-                <div class="comment-actions">
-                    <div class="comment-time">7 часов назад</div>
-                    <div class="comment-like"><i class="fas fa-heart"></i> 38</div>
-                    <div class="comment-reply">Ответить</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-    <div class="comment-form">
-        <input type="text" class="comment-input" placeholder="Добавить комментарий...">
-        <div class="comment-submit">Отправить</div>
-    </div>
-</div>
+    .user-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+        border: 3px solid #FF0080;
+        position: relative;
+    }
+    
+    .glow-effect {
+        box-shadow: 0 0 15px rgba(255, 0, 128, 0.7);
+        animation: pulse 2s infinite;
+    }
 
-<!-- Тосты для уведомлений -->
-<div class="toast-container"></div>
+    .user-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .user-avatar:hover img {
+        transform: scale(1.1);
+    }
 
-@section Scripts {
-    <script src="~/Scripts/app.js"></script>
+    .username {
+        font-weight: bold;
+        font-size: 18px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+    }
+    
+    .verified-badge {
+        font-size: 14px;
+        color: #00D9F5;
+        margin-left: 5px;
+        animation: pulse 2s infinite;
+    }
+
+    .video-description {
+        font-size: 16px;
+        margin-bottom: 5px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        line-height: 1.4;
+    }
+    
+    .hashtag {
+        color: #00D9F5;
+        font-weight: 500;
+    }
+
+    .video-actions {
+        position: absolute;
+        right: 15px;
+        bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        z-index: 2;
+        animation: slideIn 0.5s ease;
+    }
+
+    .action-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .action-icon-wrapper {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .action-icon-wrapper:hover {
+        transform: scale(1.1);
+    }
+    
+    .heart-icon:hover {
+        background: rgba(255, 0, 128, 0.3);
+    }
+    
+    .comment-icon:hover {
+        background: rgba(0, 217, 245, 0.3);
+    }
+    
+    .share-icon:hover {
+        background: rgba(255, 138, 0, 0.3);
+    }
+    
+    .bookmark-icon:hover {
+        background: rgba(0, 245, 160, 0.3);
+    }
+
+    .action-item i {
+        font-size: 22px;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        transition: all 0.3s ease;
+    }
+
+    .action-item span {
+        font-size: 13px;
+        color: #fff;
+        font-weight: 500;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    
+    .music-disc {
+        position: absolute;
+        bottom: -80px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #FF0080, #7928CA);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: floatUpDown 3s ease infinite;
+        box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+    }
+    
+    .rotating {
+        animation: rotate 4s linear infinite, floatUpDown 3s ease infinite;
+    }
+    
+    .music-disc i {
+        font-size: 18px;
+        color: white;
+    }
+    
+    .progress-bar {
+        position: absolute;
+        bottom: 80px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .progress {
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(90deg, #FF0080, #7928CA);
+    }
+
+    /* Скрыть полосу прокрутки для лучшего UI */
+    .swipe-container::-webkit-scrollbar {
+        display: none;
+    }
+    .swipe-container {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    /* Анимации */
+    @@keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(255, 0, 128, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(255, 0, 128, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(255, 0, 128, 0);
+        }
+    }
+    
+    @@keyframes slideIn {
+        0% {
+            transform: translateX(20px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @@keyframes slideUp {
+        0% {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @@keyframes floatUpDown {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    
+    @@keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+@section scripts {
+<script>
+    $(document).ready(function() {
+        // Обработчик для плавного скролла между видео
+        $('#swipeContainer').on('wheel', function(e) {
+            e.preventDefault();
+            
+            const videoHeight = $('.video-container').height();
+            const currentScroll = $(this).scrollTop();
+            let scrollToPosition;
+            
+            if (e.originalEvent.deltaY > 0) {
+                // Скролл вниз
+                scrollToPosition = Math.ceil(currentScroll / videoHeight) * videoHeight;
+            } else {
+                // Скролл вверх
+                scrollToPosition = Math.floor(currentScroll / videoHeight - 0.5) * videoHeight;
+            }
+            
+            $(this).animate({
+                scrollTop: scrollToPosition
+            }, 300);
+        });
+        
+        // Имитация нажатия на лайки
+        $('.heart-icon').on('click', function() {
+            const icon = $(this).find('i');
+            const count = $(this).parent().find('span');
+            
+            if (icon.hasClass('liked')) {
+                icon.removeClass('liked');
+                icon.css('color', '#fff');
+                count.text((parseInt(count.text().replace(/\D/g,'')) - 1) + 'K');
+                $(this).css('background', 'rgba(255, 255, 255, 0.1)');
+            } else {
+                icon.addClass('liked');
+                icon.css('color', '#FF0080');
+                count.text((parseInt(count.text().replace(/\D/g,'')) + 1) + 'K');
+                $(this).css('background', 'rgba(255, 0, 128, 0.3)');
+                
+                // Эффект сердечек при лайке
+                createHeartEffect($(this));
+            }
+        });
+        
+        // Эффект для закладок
+        $('.bookmark-icon').on('click', function() {
+            const icon = $(this).find('i');
+            
+            if (icon.hasClass('bookmarked')) {
+                icon.removeClass('bookmarked');
+                icon.css('color', '#fff');
+                $(this).css('background', 'rgba(255, 255, 255, 0.1)');
+            } else {
+                icon.addClass('bookmarked');
+                icon.css('color', '#00F5A0');
+                $(this).css('background', 'rgba(0, 245, 160, 0.3)');
+            }
+        });
+        
+        // Функция для создания эффекта сердечек
+        function createHeartEffect(element) {
+            for (let i = 0; i < 5; i++) {
+                const heart = $('<i class="fas fa-heart temp-heart"></i>');
+                const size = Math.random() * 15 + 10;
+                const posX = Math.random() * 40 - 20;
+                const delay = Math.random() * 0.5;
+                
+                heart.css({
+                    'position': 'absolute',
+                    'color': '#FF0080',
+                    'font-size': size + 'px',
+                    'left': '50%',
+                    'top': '50%',
+                    'transform': 'translate(-50%, -50%)',
+                    'opacity': 0.9,
+                    'transition': 'all 1s ease',
+                    'z-index': 1000
+                });
+                
+                element.append(heart);
+                
+                setTimeout(function() {
+                    heart.css({
+                        'transform': 'translate(' + posX + 'px, -50px)',
+                        'opacity': 0
+                    });
+                    
+                    setTimeout(function() {
+                        heart.remove();
+                    }, 1000);
+                }, delay * 1000);
+            }
+        }
+        
+        // Определение текущего видео при скролле
+        $('#swipeContainer').on('scroll', function() {
+            const scrollTop = $(this).scrollTop();
+            const videoHeight = $('.video-container').height();
+            const currentIndex = Math.round(scrollTop / videoHeight);
+            
+            $('.video-container').each(function(index) {
+                if (index === currentIndex) {
+                    $(this).find('.video-info, .video-actions').css('opacity', 1);
+                } else {
+                    $(this).find('.video-info, .video-actions').css('opacity', 0.3);
+                }
+            });
+        });
+        
+        // Инициализация для первого видео
+        $('.video-container').first().find('.video-info, .video-actions').css('opacity', 1);
+    });
+</script>
 }
-
