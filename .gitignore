@@ -18,3 +18,14 @@
 /SwipeVibe.Web/.vs/SwipeVibe.Web/v17/fileList.bin
 /SwipeVibe.Web/.vs
 /SwipeVibe.Web/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/SwipeVibe.Web/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+/SwipeVibe.Web/bin/roslyn/Microsoft.CodeAnalysis.dll
+/SwipeVibe.Web/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+/SwipeVibe.Web/bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll
+/SwipeVibe.Web/bin/roslyn/System.Collections.Immutable.dll
+/SwipeVibe.Web/bin/roslyn/System.IO.FileSystem.dll
+/SwipeVibe.Web/bin/roslyn/System.IO.FileSystem.Primitives.dll
+/SwipeVibe.Web/bin/roslyn/System.Reflection.Metadata.dll
+/SwipeVibe.Web/bin/roslyn/System.Security.Cryptography.Primitives.dll
+/SwipeVibe.Web/bin/roslyn/System.ValueTuple.dll
+/SwipeVibe.Web/bin/roslyn/VBCSCompiler.exe
