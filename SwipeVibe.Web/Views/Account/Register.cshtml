@@ -1,0 +1,413 @@
+﻿@model SwipeVibe.Web.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Регистрация";
+}
+
+<div class="auth-page">
+    <div class="auth-container glass-card">
+        <div class="auth-header">
+            <h1 class="animated-gradient-text">Создайте аккаунт</h1>
+            <p>Присоединяйтесь к сообществу SwipeVibe</p>
+        </div>
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "auth-form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Username)
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Выберите имя пользователя" })
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "validation-error" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "your@email.com" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation-error" })
+            </div>
+
+            <div class="form-group password-group">
+                @Html.LabelFor(m => m.Password)
+                <div class="password-input-wrap">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Минимум 8 символов" })
+                    <button type="button" class="toggle-password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "validation-error" })
+            </div>
+
+            <div class="form-group password-group">
+                @Html.LabelFor(m => m.ConfirmPassword)
+                <div class="password-input-wrap">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Повторите пароль" })
+                    <button type="button" class="toggle-password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "validation-error" })
+            </div>
+
+            <div class="form-check terms-check">
+                @Html.CheckBoxFor(m => m.AcceptTerms, new { @class = "form-check-input" })
+                <label for="AcceptTerms" class="form-check-label">
+                    Я принимаю <a href="#">Условия использования</a> и <a href="#">Политику конфиденциальности</a>
+                </label>
+                @Html.ValidationMessageFor(m => m.AcceptTerms, "", new { @class = "validation-error" })
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "validation-summary" })
+
+            <button type="submit" class="btn-submit">
+                <span>Зарегистрироваться</span>
+                <i class="fas fa-user-plus"></i>
+            </button>
+            
+            <div class="auth-links">
+                <a href="@Url.Action("Login", "Account")">Уже есть аккаунт? Войти</a>
+            </div>
+        }
+        
+        <div class="auth-social">
+            <div class="social-divider">
+                <span>или</span>
+            </div>
+            
+            <button class="social-btn google-btn">
+                <i class="fab fa-google"></i>
+                <span>Регистрация через Google</span>
+            </button>
+            
+            <button class="social-btn facebook-btn">
+                <i class="fab fa-facebook-f"></i>
+                <span>Регистрация через Facebook</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Основные стили для страниц авторизации */
+    .auth-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--background-dark);
+        padding: 20px;
+    }
+    
+    .auth-container {
+        width: 100%;
+        max-width: 420px;
+        padding: 30px;
+        border-radius: 20px;
+    }
+    
+    .auth-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    
+    .auth-header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    
+    .auth-header p {
+        color: var(--text-dim);
+        font-size: 16px;
+    }
+    
+    .auth-form {
+        margin-bottom: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: var(--text-light);
+        font-size: 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 2px rgba(255, 0, 128, 0.25);
+    }
+    
+    /* Стили для поля с паролем */
+    .password-input-wrap {
+        position: relative;
+    }
+    
+    .toggle-password {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--text-dim);
+        cursor: pointer;
+        padding: 0;
+    }
+    
+    .toggle-password:hover {
+        color: var(--text-light);
+    }
+    
+    /* Стили для чекбокса условий */
+    .terms-check {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: flex-start;
+    }
+    
+    .terms-check .form-check-input {
+        margin-right: 10px;
+        margin-top: 4px;
+        flex-shrink: 0;
+    }
+    
+    .terms-check .form-check-label {
+        font-size: 14px;
+        color: var(--text-dim);
+        line-height: 1.5;
+    }
+    
+    .terms-check a {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    
+    .terms-check a:hover {
+        color: var(--accent-color-hover);
+        text-decoration: underline;
+    }
+    
+    .validation-error {
+        color: #ff4d4d;
+        font-size: 13px;
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .validation-summary {
+        color: #ff4d4d;
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: rgba(255, 77, 77, 0.1);
+        border-radius: 8px;
+        font-size: 14px;
+    }
+    
+    .btn-submit {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        background: var(--primary-gradient);
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .btn-submit i {
+        margin-left: 8px;
+        transition: transform 0.2s ease;
+    }
+    
+    .btn-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 15px rgba(255, 0, 128, 0.3);
+    }
+    
+    .btn-submit:hover i {
+        transform: translateX(4px);
+    }
+    
+    .auth-links {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 14px;
+    }
+    
+    .auth-links a {
+        color: var(--text-dim);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    
+    .auth-links a:hover {
+        color: var(--text-light);
+    }
+    
+    .auth-social {
+        margin-top: 25px;
+    }
+    
+    .social-divider {
+        position: relative;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .social-divider::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .social-divider span {
+        position: relative;
+        display: inline-block;
+        padding: 0 15px;
+        background: var(--background-dark);
+        color: var(--text-dim);
+        font-size: 14px;
+    }
+    
+    .social-btn {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 12px;
+        border: none;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .social-btn i {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    
+    .google-btn {
+        background-color: #ffffff;
+        color: #444;
+    }
+    
+    .google-btn:hover {
+        background-color: #f2f2f2;
+    }
+    
+    .facebook-btn {
+        background-color: #1877f2;
+        color: white;
+    }
+    
+    .facebook-btn:hover {
+        background-color: #166fe5;
+    }
+    
+    /* Анимации */
+    .auth-container {
+        animation: fadeSlideUp 0.6s ease forwards;
+    }
+    
+    @@keyframes fadeSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Поддержка адаптивности для мобильных устройств */
+    @media (max-width: 480px) {
+        .auth-container {
+            padding: 25px 20px;
+        }
+        
+        .auth-header h1 {
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .btn-submit {
+            padding: 12px;
+            font-size: 15px;
+        }
+    }
+</style>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script>
+        $(document).ready(function() {
+            // Показать/скрыть пароль
+            $('.toggle-password').click(function() {
+                var passwordInput = $(this).parent().find('input');
+                var icon = $(this).find('i');
+                
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+            
+            // Анимация для полей формы при фокусе
+            $('.form-control').focus(function() {
+                $(this).parent().addClass('focused');
+            }).blur(function() {
+                if (!$(this).val()) {
+                    $(this).parent().removeClass('focused');
+                }
+            });
+            
+            // Проверка, если в полях есть значения при загрузке
+            $('.form-control').each(function() {
+                if ($(this).val()) {
+                    $(this).parent().addClass('focused');
+                }
+            });
+            
+            // Демо-функционал для соц. кнопок
+            $('.social-btn').click(function() {
+                alert('Функция регистрации через соцсети будет доступна в следующей версии');
+            });
+        });
+    </script>
+}
