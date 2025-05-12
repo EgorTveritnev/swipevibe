@@ -29,3 +29,10 @@
 /SwipeVibe.Web/bin/roslyn/System.Security.Cryptography.Primitives.dll
 /SwipeVibe.Web/bin/roslyn/System.ValueTuple.dll
 /SwipeVibe.Web/bin/roslyn/VBCSCompiler.exe
+/.vscode
+/.vscode/launch.json
+/.vscode/settings.json
+/packages/Antlr.3.5.0.2/lib/Antlr3.Runtime.dll
+/packages/Antlr.3.5.0.2/lib/Antlr3.Runtime.pdb
+/packages/Antlr.3.5.0.2
+/SwipeVibe.Web/bin
