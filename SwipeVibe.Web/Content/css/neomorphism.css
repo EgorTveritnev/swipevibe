@@ -1,0 +1,122 @@
+/* Неоморфизм CSS для темной темы */
+:root {
+    --primary-color: #121212;
+    --secondary-color: #1a1a1a;
+    --text-color: #ffffff;
+    --accent-color-1: #6a67ce;
+    --accent-color-2: #ea80fc;
+    --shadow-color-dark: rgba(0, 0, 0, 0.7);
+    --shadow-color-light: rgba(255, 255, 255, 0.1);
+    --glow-color: rgba(255, 255, 255, 0.15);
+    --gradient-start: #6a67ce;
+    --gradient-mid: #c869ff;
+    --gradient-end: #ea80fc;
+}
+
+/* Базовые неоморфные тени для темной темы */
+.neomorph-card {
+    border-radius: 25px;
+    background: var(--primary-color);
+    box-shadow: 
+        5px 5px 15px var(--shadow-color-dark),
+        inset 0 0 15px var(--glow-color);
+    transition: all 0.3s ease;
+    border: 1px solid var(--shadow-color-light);
+}
+
+.neomorph-card:hover {
+    box-shadow: 
+        5px 5px 20px var(--shadow-color-dark),
+        inset 0 0 20px var(--glow-color);
+}
+
+.neomorph-btn {
+    border-radius: 15px;
+    background: var(--secondary-color);
+    box-shadow: 
+        3px 3px 10px var(--shadow-color-dark),
+        0 0 10px var(--glow-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--shadow-color-light);
+}
+
+.neomorph-btn:hover {
+    box-shadow: 
+        3px 3px 15px var(--shadow-color-dark),
+        0 0 15px var(--glow-color);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.neomorph-btn:active {
+    box-shadow: 
+        inset 2px 2px 5px var(--shadow-color-dark),
+        0 0 5px var(--glow-color);
+    transform: scale(0.98);
+}
+
+.neomorph-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        3px 3px 10px var(--shadow-color-dark),
+        0 0 10px var(--glow-color);
+    transition: all 0.2s ease;
+    border: 1px solid var(--shadow-color-light);
+}
+
+.neomorph-icon:hover {
+    box-shadow: 
+        2px 2px 15px var(--shadow-color-dark),
+        0 0 15px var(--glow-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.neomorph-icon:active {
+    box-shadow: 
+        inset 2px 2px 5px var(--shadow-color-dark),
+        0 0 5px var(--glow-color);
+    transform: scale(0.97);
+}
+
+.neomorph-small {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 
+        2px 2px 8px var(--shadow-color-dark),
+        0 0 8px var(--glow-color);
+    border: 1px solid var(--shadow-color-light);
+}
+
+.neomorph-header {
+    padding: 15px 0;
+    background: var(--secondary-color);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.5),
+        0 0 10px var(--glow-color);
+    border-bottom: 1px solid var(--shadow-color-light);
+}
+
+/* Градиентные элементы с неоморфизмом */
+.gradient-icon {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    box-shadow: 
+        3px 3px 10px var(--shadow-color-dark),
+        0 0 15px var(--accent-color-1);
+    border: none;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(106, 103, 206, 0.5);
+} 

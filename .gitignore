@@ -1,0 +1,20 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/SwipeVibe.Web/.vs/SwipeVibe.Web/FileContentIndex
+/SwipeVibe.Web/.vs/SwipeVibe.Web/v17/.suo
+/SwipeVibe.Web/.vs/SwipeVibe.Web/v17/DocumentLayout.backup.json
+/SwipeVibe.Web/bin/SwipeVibe.Web.dll
+/SwipeVibe.Web/bin/SwipeVibe.Web.dll
+/SwipeVibe.Web/bin/SwipeVibe.Web.pdb
+/SwipeVibe.Web/obj/Debug/SwipeVibe.Web.csproj.AssemblyReference.cache
+/SwipeVibe.Web/obj/Debug/SwipeVibe.Web.dll
+/SwipeVibe.Web/obj/Debug/SwipeVibe.Web.pdb
+*.cs
+*.cache
+/SwipeVibe.Web/.vs/SwipeVibe.Web/v17/DocumentLayout.json
+/SwipeVibe.Web/.vs/SwipeVibe.Web/v17/fileList.bin
+/SwipeVibe.Web/.vs
+/SwipeVibe.Web/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
