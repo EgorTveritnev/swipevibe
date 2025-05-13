@@ -1,0 +1,6 @@
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Helpers\bin\Debug\SwipeVibe.Helpers.dll
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Helpers\bin\Debug\SwipeVibe.Helpers.pdb
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Helpers\obj\Debug\SwipeVibe.Helpers.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Helpers\obj\Debug\SwipeVibe.Helpers.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Helpers\obj\Debug\SwipeVibe.Helpers.dll
+C:\Users\user\Desktop\swipeVibe\SwipeVibe.Helpers\obj\Debug\SwipeVibe.Helpers.pdb
