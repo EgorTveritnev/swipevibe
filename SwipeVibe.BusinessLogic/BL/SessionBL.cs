@@ -9,6 +9,7 @@ namespace SwipeVibe.BusinessLogic
 {
     public class SessionBL : ISession
     {
+        // временно просто хранит int UserId в памяти
         private readonly Dictionary<string, int> _sessions = new Dictionary<string, int>();
         public string Create(int userId)
         {

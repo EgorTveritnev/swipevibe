@@ -9,6 +9,11 @@ using SwipeVibe.Domain.Entities.User;
 
 namespace SwipeVibe.BusinessLogic.Core
 {
+    /// <summary>
+    /// Реализация IUser поверх абстрактного репозитория.
+    /// Не зависит от того, где реально лежат данные
+    /// (in‑memory, EF, Dapper — всё равно).
+    /// </summary>
     public sealed class UserApi : IUser
     {
         private readonly IUserRepository _repo;
@@ -22,6 +27,7 @@ namespace SwipeVibe.BusinessLogic.Core
             _m = mapper;
         }
 
+        /* ---------- REGISTRATION ---------- */
 
         public int Register(UserRegister dto)
         {

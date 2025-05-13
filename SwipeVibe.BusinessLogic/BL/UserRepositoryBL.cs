@@ -19,9 +19,11 @@ namespace SwipeVibe.BusinessLogic
 
         public void Add(User user) => _users.Add(user);
 
+        // ★ Реализуем недостающий метод
         public void Update(User user)
         {
-
+            // так как User — reference‑type, можно оставить пустым,
+            // но чтобы было корректно, перезапишем элемент в списке
             var idx = _users.FindIndex(u => u.Id == user.Id);
             if (idx >= 0) _users[idx] = user;
         }
