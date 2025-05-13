@@ -14,6 +14,9 @@ namespace SwipeVibe.Domain.Entities.User
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string AvatarUrl { get; set; }
+        public DateTime? ResetPasswordCodeExpiration { get; set; }
+        public string ResetPasswordCode { get; set; }
         public Role Role { get; set; } = Role.User;
         public bool IsBlocked { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

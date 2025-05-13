@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using SwipeVibe.Web.Models;
+using SwipeVibe.Domain.Entities.User;
+using SwipeVibe.BusinessLogic.Interfaces;
+using System.Web.Helpers;
 
 namespace SwipeVibe.Web.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserService _userService = new UserService();
+        private readonly IUserService _userService = new UserService();
 
         [HttpGet]
         public ActionResult Login(string returnUrl)
@@ -35,15 +38,20 @@ namespace SwipeVibe.Web.Controllers
                 ModelState.AddModelError("", "Неверный email или пароль");
                 return View(model);
             }
-
-            // Создаем аутентификационный тикет
-            FormsAuthentication.SetAuthCookie(user.Email, model.RememberMe);
+            var ticket = new FormsAuthenticationTicket(
+                1, user.Email, DateTime.Now,
+                DateTime.Now.AddHours(8),
+                model.RememberMe,
+                user.Role.ToString());
+            var enc = FormsAuthentication.Encrypt(ticket);
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, enc);
+            if (model.RememberMe) cookie.Expires = ticket.Expiration;
+            Response.Cookies.Add(cookie);
 
             // Сохраняем данные пользователя в сессии
             Session["UserId"] = user.Id;
             Session["Username"] = user.Username;
             Session["UserEmail"] = user.Email;
-            Session["UserAvatar"] = user.AvatarUrl;
 
             // Перенаправляем пользователя на страницу, с которой он пришел, или на главную
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
@@ -71,8 +79,14 @@ namespace SwipeVibe.Web.Controllers
                 return View(model);
             }
 
-            var user = _userService.Register(model);
-
+            var dto = new UserRegister
+            {
+                Username = model.Username,
+             Email = model.Email,
+                Password = model.Password
+            }
+            ;
+            var user = _userService.Register(dto);
             if (user == null)
             {
                 ModelState.AddModelError("", "Пользователь с таким email или именем уже существует");
