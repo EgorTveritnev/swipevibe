@@ -12,3 +12,8 @@
 /SwipeVibe.Helpers/obj/Debug
 /SwipeVibe.Web/.vs
 /SwipeVibe.Web/bin
+/SwipeVibe.BusinessLogic/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/SwipeVibe.BusinessLogic/obj/Debug/SwipeVibe.BusinessLogic.csproj.AssemblyReference.cache
+/SwipeVibe.Domain/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/SwipeVibe.Web/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/SwipeVibe.Web/obj/Debug/SwipeVibe.Web.csproj.AssemblyReference.cache
