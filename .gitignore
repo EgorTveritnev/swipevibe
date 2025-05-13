@@ -13,3 +13,5 @@
 /SwipeVibe.Web/.vs
 /SwipeVibe.Web/bin
 /SwipeVibe.Web/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+
+.fake
