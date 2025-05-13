@@ -336,11 +336,16 @@
                             <div class="profile-name">@Session["Username"]</div>
                             <div class="profile-email">@Session["UserEmail"]</div>
                         </div>
-                    </div>
-                    <div class="menu-items">
+                    </div>                <div class="menu-items">
                         <a href="@Url.Action("Profile", "Home")" class="menu-item">
                             <i class="fas fa-user-circle"></i>Мой профиль
                         </a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="@Url.Action("Index", "Admin")" class="menu-item">
+                                <i class="fas fa-shield-alt"></i>Админ-панель
+                            </a>
+                        }
                         <a href="@Url.Action("Logout", "Account")" class="menu-item">
                             <i class="fas fa-sign-out-alt"></i>Выйти
                         </a>
