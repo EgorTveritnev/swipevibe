@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,10 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapper.cs" />
     <Compile Include="BL\CommentBL.cs" />
+    <Compile Include="BL\SessionBL.cs" />
+    <Compile Include="BL\UserRepositoryBL.cs" />
     <Compile Include="BL\VideoBL.cs" />
     <Compile Include="BusinessLogic.cs" />
+    <Compile Include="Core\AdminApi.cs" />
+    <Compile Include="Core\UserApi.cs" />
+    <Compile Include="Interfaces\IAdmin.cs" />
     <Compile Include="Interfaces\IComment.cs" />
+    <Compile Include="Interfaces\ISession.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IVideo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,8 +71,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
     <Folder Include="DBModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
