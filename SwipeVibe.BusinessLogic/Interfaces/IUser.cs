@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using SwipeVibe.Domain.Entities.User;
 
-namespace SwipeVibe.BusinessLogic.Interfaces
-{
-    public interface IUser
+    namespace SwipeVibe.BusinessLogic.Interfaces
     {
-        int Register(UserRegister dto);
-        UserReturn Login(UserLogin dto);
-        void Logout(int userId);
+        public interface IUser
+        {
+            int Register(UserRegister dto);
 
-        UserReturn GetById(int id);
-        IEnumerable<UserReturn> GetAll();
+            UserReturn Authenticate(string email, string password); // используется при логине
+            void Logout(int userId); // просто очищает сессию
 
-        void UpdateProfile(int id, UserUpdate dto);
+            UserReturn GetById(int id);
+            IEnumerable<UserReturn> GetAllUsers();
+
+            void UpdateProfile(int id, UserUpdate dto);
+        }
     }
-}

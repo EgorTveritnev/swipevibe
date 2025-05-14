@@ -364,3 +364,5 @@ C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\ru\System.Web.WebPag
 C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\ru\System.Web.WebPages.Deployment.resources.dll
 C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\ru\System.Web.WebPages.Razor.resources.dll
 C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\obj\Debug\SwipeVib.036BEDF9.Up2Date
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\System.ValueTuple.dll
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\System.ValueTuple.xml

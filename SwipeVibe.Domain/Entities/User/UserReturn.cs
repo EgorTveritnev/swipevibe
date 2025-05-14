@@ -7,20 +7,24 @@ namespace SwipeVibe.Domain.Entities.User
 {
     public class UserReturn
     {
-        public int Id { get; }
-        public string Username { get; }
-        public string Email { get; }
-        public string AvatarUrl { get; }
-        public DateTime RegisteredDate { get; }
-        public Role Role { get; }
-        public bool IsBlocked { get; }
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string AvatarUrl { get; set; }
+        public DateTime RegisteredDate { get; set; }
+        public Role Role { get; set; }
+        public bool IsBlocked { get; set; }
         public bool IsActive => !IsBlocked;
+
+        public UserReturn() { }
+
         public UserReturn(int id, string username, string email, string avatarUrl, DateTime registeredDate, Role role, bool isBlocked)
         {
             Id = id;
             Username = username;
             Email = email;
             AvatarUrl = avatarUrl;
+            RegisteredDate = registeredDate;
             Role = role;
             IsBlocked = isBlocked;
         }

@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Comment\Comment.cs" />
-    <Compile Include="Entities\User\ULoginData.cs" />
     <Compile Include="Entities\User\User.cs" />
     <Compile Include="Entities\User\UserLogin.cs" />
     <Compile Include="Entities\User\UserRegister.cs" />

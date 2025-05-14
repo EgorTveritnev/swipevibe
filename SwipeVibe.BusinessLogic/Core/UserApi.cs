@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using SwipeVibe.BusinessLogic.Interfaces;
 using SwipeVibe.Domain.Entities.User;
 
 namespace SwipeVibe.BusinessLogic.Core
 {
-    /// <summary>
-    /// Реализация IUser поверх абстрактного репозитория.
-    /// Не зависит от того, где реально лежат данные
-    /// (in‑memory, EF, Dapper — всё равно).
-    /// </summary>
-    public sealed class UserApi : IUser
+    public class UserApi : IUser
     {
         private readonly IUserRepository _repo;
         private readonly ISession _session;
@@ -27,66 +20,64 @@ namespace SwipeVibe.BusinessLogic.Core
             _m = mapper;
         }
 
-        /* ---------- REGISTRATION ---------- */
+        public UserReturn Authenticate(string email, string password)
+        {
+            var user = _repo.ByEmail(email);
+            if (user == null || user.Password != password || user.IsBlocked)
+                return null;
+
+            _session.SetUserId(user.Id);
+
+            // 🔥 РУЧНОЙ маппинг вместо AutoMapper
+            return new UserReturn
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                AvatarUrl = user.AvatarUrl,
+                RegisteredDate = user.CreatedAt,
+                Role = user.Role,
+                IsBlocked = user.IsBlocked
+            };
+        }
+
+        public void Logout(int userId)
+        {
+            _session.Clear();
+        }
 
         public int Register(UserRegister dto)
         {
             if (_repo.ByEmail(dto.Email) != null)
-                throw new ArgumentException("E‑mail уже используется");
+                throw new ArgumentException("Email уже используется");
 
             var user = new User
             {
                 Id = _repo.NextId(),
                 Username = dto.Username,
                 Email = dto.Email,
-                Password = dto.Password   // ⬅️ сохраняем строку как есть
+                Password = dto.Password,
+                Role = Role.User,
+                CreatedAt = DateTime.UtcNow,
+                IsBlocked = false
             };
 
             _repo.Add(user);
             return user.Id;
         }
 
-        /* ---------- LOGIN ---------- */
-
-        public UserReturn Login(UserLogin dto)
-        {
-            var user = _repo.ByEmail(dto.Email)
-                       ?? throw new UnauthorizedAccessException("Нет такого пользователя");
-
-            if (user.IsBlocked)
-                throw new UnauthorizedAccessException("Аккаунт заблокирован");
-
-            // ⬇️ раньше Verify через BCrypt; теперь простое сравнение
-            if (user.Password != dto.Password)
-                throw new UnauthorizedAccessException("Неверный пароль");
-
-            user.LastLogin = DateTime.UtcNow;
-
-            var token = _session.Create(user.Id);    // можно вернуть в контроллер
-            _repo.Update(user);
-
-            return _m.Map<UserReturn>(user);
-        }
-
-        public void Logout(int userId) { /* noop */ }
-
-        /* ---------- READ ---------- */
         public UserReturn GetById(int id) => _m.Map<UserReturn>(_repo.ById(id));
-        public IEnumerable<UserReturn> GetAll() => _repo.All().Select(_m.Map<UserReturn>);
-
-        /* ---------- UPDATE PROFILE ---------- */
+        public IEnumerable<UserReturn> GetAllUsers() => _repo.All().Select(_m.Map<UserReturn>);
 
         public void UpdateProfile(int id, UserUpdate dto)
         {
-            var u = _repo.ById(id) ?? throw new KeyNotFoundException();
+            var user = _repo.ById(id) ?? throw new KeyNotFoundException();
 
-            if (!string.IsNullOrWhiteSpace(dto.Username)) u.Username = dto.Username;
-            if (!string.IsNullOrWhiteSpace(dto.Email)) u.Email = dto.Email;
+            if (!string.IsNullOrWhiteSpace(dto.Username)) user.Username = dto.Username;
+            if (!string.IsNullOrWhiteSpace(dto.Email)) user.Email = dto.Email;
+            if (!string.IsNullOrWhiteSpace(dto.NewPassword)) user.Password = dto.NewPassword;
 
-            if (!string.IsNullOrWhiteSpace(dto.NewPassword))
-                u.Password = dto.NewPassword;             // ⬅️ простая замена
-
-            _repo.Update(u);
+            _repo.Update(user);
         }
     }
 }

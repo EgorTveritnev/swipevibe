@@ -12,6 +12,7 @@ namespace SwipeVibe.BusinessLogic.Interfaces
         IEnumerable<User> All();
         User ById(int id);
         User ByEmail(string email);
+        User ByUsername(string username);
         void Add(User user);
         void Update(User user);
         int NextId();

@@ -5,28 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SwipeVibe.BusinessLogic
+namespace SwipeVibe.BusinessLogic.BL
 {
     public class SessionBL : ISession
     {
-        // временно просто хранит int UserId в памяти
-        private readonly Dictionary<string, int> _sessions = new Dictionary<string, int>();
-        public string Create(int userId)
+        private int? _currentUserId;
+
+        public void SetUserId(int userId)
         {
-            var token = Guid.NewGuid().ToString();
-            _sessions[token] = userId;
-            return token;
-        }
-        public void Delete(string token)
-        {
-            _sessions.Remove(token);
+            _currentUserId = userId;
         }
 
-        public int? GetUserId(string token)
+        public int? GetUserId()
         {
-            int id;
-            return _sessions.TryGetValue(token, out id) ? (int?)id : null;
+            return _currentUserId;
+        }
 
+        public void Clear()
+        {
+            _currentUserId = null;
         }
     }
 }

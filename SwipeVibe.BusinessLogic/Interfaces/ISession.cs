@@ -7,8 +7,9 @@ namespace SwipeVibe.BusinessLogic.Interfaces
 {
     public interface ISession
     {
-        string Create(int userId);          
-        void Delete(string token);
-        int? GetUserId(string token);
+        void SetUserId(int userId);
+        int? GetUserId();
+        void Clear();
+
     }
 }

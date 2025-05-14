@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using SwipeVibe.BusinessLogic.Interfaces;
 using SwipeVibe.Domain.Entities.User;
-
 namespace SwipeVibe.BusinessLogic.Core
 {
     /// <summary>
@@ -16,33 +15,29 @@ namespace SwipeVibe.BusinessLogic.Core
     public sealed class AdminApi : IAdmin
     {
         private readonly IUserRepository _repo;
-        private readonly IMapper _m;
+        private readonly IMapper _mapper;
 
         public AdminApi(IUserRepository repo, IMapper mapper)
         {
             _repo = repo;
-            _m = mapper;
+            _mapper = mapper;
         }
 
-        public IEnumerable<UserReturn> GetAllUsers() =>
-            _repo.All().Select(u => _m.Map<UserReturn   >(u));
+        public IEnumerable<UserReturn> GetAllUsers()
+            => _repo.All().Select(u => _mapper.Map<UserReturn>(u));
 
         public void Block(int id)
         {
-            var u = _repo.ById(id);
-            if (u != null) { u.IsBlocked = true; _repo.Update(u); }
+            var user = _repo.ById(id);
+            if (user != null)
+                user.IsBlocked = true;
         }
 
         public void Unblock(int id)
         {
-            var u = _repo.ById(id);
-            if (u != null) { u.IsBlocked = false; _repo.Update(u); }
-        }
-
-        public void ChangeRole(int id, Role newRole)
-        {
-            var u = _repo.ById(id);
-            if (u != null) { u.Role = newRole; _repo.Update(u); }
+            var user = _repo.ById(id);
+            if (user != null)
+                user.IsBlocked = false;
         }
     }
 }

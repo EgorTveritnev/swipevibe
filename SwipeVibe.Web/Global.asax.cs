@@ -25,20 +25,19 @@ namespace SwipeVibe.Web
             Response.Charset = "UTF-8";
             Response.ContentEncoding = Encoding.UTF8;
         }
-        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
-            var cookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (cookie == null) return;
+            var authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                var roles = ticket.UserData.Split(',');
 
-            FormsAuthenticationTicket ticket;
-            try { ticket = FormsAuthentication.Decrypt(cookie.Value); }
-            catch { return; }
+                var identity = new FormsIdentity(ticket);
+                var principal = new System.Security.Principal.GenericPrincipal(identity, roles);
 
-            // userData Ч строка ЂAdminї или ЂUserї
-            var roles = new[] { ticket.UserData };
-            var identity = new FormsIdentity(ticket);
-            var principal = new System.Security.Principal.GenericPrincipal(identity, roles);
-            Context.User = principal;     // ? теперь User.IsInRole(...) работает
+                Context.User = principal;
+            }
         }
     }
 }

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SwipeVibe.BusinessLogic.Core;   
+using SwipeVibe.BusinessLogic.BL;
 
 namespace SwipeVibe.BusinessLogic
 {
@@ -16,7 +18,7 @@ namespace SwipeVibe.BusinessLogic
         public BussinesLogic()
         {
             var mapper = MapperBootstrap.Mapper;
-            var repo = new UserRepositoryBL();
+            var repo = new UserRepository();
             var session = new SessionBL();
             User = new Core.UserApi(repo, session, mapper);
             Admin = new Core.AdminApi(repo, mapper);
