@@ -16,7 +16,6 @@
             </div>
             <div class="profile-username animated-gradient-text">@Model.Username</div>
             <div class="profile-bio-button glass-card">
-                @Model.Email
                 Создаю контент о путешествиях и еде 🌍🍕<br>
                 Подписывайтесь на мои приключения!
             </div>
@@ -35,12 +34,12 @@
                 </div>
             </div>
             <div class="profile-actions">
-                <button class="profile-edit-btn glass-card">
+                <a href="@Url.Action("EditProfile", "Account")" class="profile-edit-btn glass-card">
                     <i class="fas fa-edit"></i> Редактировать
-                </button>
-                <button class="profile-settings-btn glass-card">
+                </a>
+                <a href="@Url.Action("EditProfile", "Account")" class="profile-settings-btn glass-card">
                     <i class="fas fa-cog"></i>
-                </button>
+                </a>
                 <button class="profile-share-btn glass-card">
                     <i class="fas fa-share-alt"></i>
                 </button>
@@ -633,9 +632,6 @@
             }, 500);
 
             // Обработчики кнопок
-            $('.profile-edit-btn').click(function() {
-                alert('Редактирование профиля будет доступно в следующей версии');
-            });
 
             $('.video-item').click(function() {
                 window.location.href = '@Url.Action("Index", "Home")';

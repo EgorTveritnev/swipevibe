@@ -9,6 +9,7 @@ using SwipeVibe.BusinessLogic.Interfaces;
 using SwipeVibe.Domain.Entities.User;
 using System.Web;
 using System.Linq;
+using System.IO;
 
 namespace SwipeVibe.Web.Controllers
 {
@@ -161,6 +162,56 @@ namespace SwipeVibe.Web.Controllers
                 return RedirectToAction("Login");
 
             return View(user); // 👉 передаем модель
+        }
+        [Authorize]
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            var email = User.Identity.Name;
+            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Email == email);
+
+            if (user == null) return RedirectToAction("Login");
+
+            return View(new EditProfileViewModel
+            {
+                Username = user.Username,
+                Email = user.Email,
+                CurrentAvatarUrl = user.AvatarUrl
+            });
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfile(EditProfileViewModel model)
+        {
+            var email = User.Identity.Name;
+            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Email == email);
+
+            if (user == null) return RedirectToAction("Login");
+
+            if (model.Avatar != null && model.Avatar.ContentLength > 0)
+            {
+                var fileName = Guid.NewGuid() + System.IO.Path.GetExtension(model.Avatar.FileName);
+                var path = Server.MapPath("~/Content/Avatars/");
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+
+                var fullPath = Path.Combine(path, fileName);
+                model.Avatar.SaveAs(fullPath);
+
+                user.AvatarUrl = "/Content/Avatars/" + fileName;
+            }
+
+            user.Username = model.Username;
+            user.Email = model.Email;
+
+            _userService.UpdateProfile(user.Id, new UserUpdate
+            {
+                Username = model.Username,
+                Email = model.Email
+            });
+
+            return RedirectToAction("Profile");
         }
     }
 }
