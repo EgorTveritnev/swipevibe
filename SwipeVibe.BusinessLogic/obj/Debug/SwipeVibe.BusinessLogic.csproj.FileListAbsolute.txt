@@ -41,3 +41,11 @@ C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\bin\Debug\Swip
 C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\bin\Debug\AutoMapper.pdb
 C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\bin\Debug\AutoMapper.xml
 C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\obj\Debug\SwipeVib.84C84DEC.Up2Date
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\bin\Debug\SwipeVibe.BusinessLogic.dll.config
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.Migrations.InitialCreate.resources
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.csproj.GenerateResource.cache
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.Migrations.Initial.resources

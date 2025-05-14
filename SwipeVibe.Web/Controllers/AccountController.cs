@@ -23,7 +23,7 @@ namespace SwipeVibe.Web.Controllers
                 cfg.CreateMap<UserRegister, SwipeVibe.Domain.Entities.User.User>();
             }).CreateMapper();
 
-            var repo = new UserRepository();      // твоя in-memory реализация
+            var repo = new UserRepositoryBL();      // твоя in-memory реализация
             var session = new SessionBL();        // новая реализация без WebSession
             _userService = new UserApi(repo, session, mapper);
         }
@@ -87,7 +87,37 @@ namespace SwipeVibe.Web.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            try
+            {
+                var userRegister = new UserRegister
+                {
+                    Username = model.Username,
+                    Email = model.Email,
+                    Password = model.Password
+                };
+
+                _userService.Register(userRegister);
+                return RedirectToAction("Login");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View(model);
+            }
+        }
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

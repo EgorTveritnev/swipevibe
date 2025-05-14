@@ -24,7 +24,7 @@ namespace SwipeVibe.Web.Controllers
                 cfg.CreateMap<UserRegister, SwipeVibe.Domain.Entities.User.User>();
             }).CreateMapper();
 
-            var repo = new UserRepository();
+            var repo = new UserRepositoryBL();
             var session = new SessionBL(); // ← используется, чтобы UserApi не вылетал
             _adminService = new AdminApi(repo, mapper);
             _userService = new UserApi(repo, session, mapper);

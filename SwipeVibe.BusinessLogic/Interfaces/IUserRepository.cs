@@ -15,6 +15,6 @@ namespace SwipeVibe.BusinessLogic.Interfaces
         User ByUsername(string username);
         void Add(User user);
         void Update(User user);
-        int NextId();
+        void Delete(int id); 
     }
 }

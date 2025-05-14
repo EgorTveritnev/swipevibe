@@ -29,6 +29,6 @@ namespace SwipeVibe.Web.Models
 
         [Display(Name = "Я согласен с условиями использования")]
         [Range(typeof(bool), "true", "true", ErrorMessage = "Вы должны согласиться с условиями использования")]
-        public bool AgreeToTerms { get; set; }
+        public bool AcceptTerms { get; set; }
     }
 }

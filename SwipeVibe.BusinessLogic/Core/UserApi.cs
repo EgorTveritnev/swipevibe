@@ -53,7 +53,6 @@ namespace SwipeVibe.BusinessLogic.Core
 
             var user = new User
             {
-                Id = _repo.NextId(),
                 Username = dto.Username,
                 Email = dto.Email,
                 Password = dto.Password,
