@@ -27,7 +27,8 @@ namespace SwipeVibe.BusinessLogic.Core
                 return null;
 
             _session.SetUserId(user.Id);
-
+            user.LastLogin = DateTime.Now;
+            _repo.Update(user); // 💾 сохранить дату входа
             // 🔥 РУЧНОЙ маппинг вместо AutoMapper
             return new UserReturn
             {
@@ -64,7 +65,17 @@ namespace SwipeVibe.BusinessLogic.Core
             _repo.Add(user);
             return user.Id;
         }
+        public void GeneratePasswordResetCode(string email)
+        {
+            var user = _repo.ByEmail(email);
+            if (user == null)
+                throw new ArgumentException("Пользователь не найден");
 
+            user.ResetPasswordCode = Guid.NewGuid().ToString();
+            user.ResetPasswordCodeExpiration = DateTime.UtcNow.AddHours(1);
+
+            _repo.Update(user);
+        }
         public UserReturn GetById(int id) => _m.Map<UserReturn>(_repo.ById(id));
         public IEnumerable<UserReturn> GetAllUsers() => _repo.All().Select(_m.Map<UserReturn>);
 

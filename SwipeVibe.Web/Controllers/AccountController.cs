@@ -8,6 +8,7 @@ using SwipeVibe.BusinessLogic.BL;
 using SwipeVibe.BusinessLogic.Interfaces;
 using SwipeVibe.Domain.Entities.User;
 using System.Web;
+using System.Linq;
 
 namespace SwipeVibe.Web.Controllers
 {
@@ -124,6 +125,42 @@ namespace SwipeVibe.Web.Controllers
                 return Redirect(returnUrl);
 
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View(new ForgotPasswordViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            try
+            {
+                _userService.GeneratePasswordResetCode(model.Email);
+                TempData["Message"] = "Ссылка на сброс пароля отправлена (эмуляция)";
+                return RedirectToAction("Login");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View(model);
+            }
+        }
+        [Authorize]
+        public new ActionResult Profile()
+        {
+            var email = User.Identity.Name;
+            var user = _userService.GetAllUsers().FirstOrDefault(u => u.Email == email);
+
+            if (user == null)
+                return RedirectToAction("Login");
+
+            return View(user); // 👉 передаем модель
         }
     }
 }
