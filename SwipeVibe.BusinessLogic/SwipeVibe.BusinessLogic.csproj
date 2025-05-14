@@ -77,6 +77,10 @@
     <Compile Include="Migrations\202505141158513_Initial.Designer.cs">
       <DependentUpon>202505141158513_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505141806166_UpdateUserFields.cs" />
+    <Compile Include="Migrations\202505141806166_UpdateUserFields.Designer.cs">
+      <DependentUpon>202505141806166_UpdateUserFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202505141158513_Initial.resx">
       <DependentUpon>202505141158513_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505141806166_UpdateUserFields.resx">
+      <DependentUpon>202505141806166_UpdateUserFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
