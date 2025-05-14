@@ -18,3 +18,11 @@
 /SwipeVibe.Domain/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 /SwipeVibe.Domain/obj/Debug/SwipeVibe.Domain.csproj.AssemblyReference.cache
 /SwipeVibe.Web/obj/Debug/SwipeVibe.Web.csproj.AssemblyReference.cache
+*.cache
+/SwipeVibe.BusinessLogic/obj/Debug/SwipeVibe.BusinessLogic.dll
+/SwipeVibe.BusinessLogic/obj/Debug/SwipeVibe.BusinessLogic.pdb
+/SwipeVibe.Domain/obj/Debug/SwipeVibe.Domain.dll
+/SwipeVibe.Domain/obj/Debug/SwipeVibe.Domain.pdb
+/SwipeVibe.Web/obj/Debug
+/SwipeVibe.Web/obj/Debug/SwipeVibe.Web.dll
+/SwipeVibe.Web/obj/Debug/SwipeVibe.Web.pdb
