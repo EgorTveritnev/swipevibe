@@ -10,7 +10,15 @@
             <h1 class="animated-gradient-text">Создайте аккаунт</h1>
             <p>Присоединяйтесь к сообществу SwipeVibe</p>
         </div>
-
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div style="color:red; font-weight:bold">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div>@error.ErrorMessage</div>
+                }
+            </div>
+        }
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "auth-form" }))
         {
             @Html.AntiForgeryToken()
@@ -50,7 +58,7 @@
             </div>
 
             <div class="form-check terms-check">
-                @Html.CheckBoxFor(m => m.AcceptTerms, new { @class = "form-check-input" })
+                <input type="checkbox" name="AcceptTerms" class="form-check-input" value="true" @(Model != null && Model.AcceptTerms ? "checked" : "") />
                 <label for="AcceptTerms" class="form-check-label">
                     Я принимаю <a href="#">Условия использования</a> и <a href="#">Политику конфиденциальности</a>
                 </label>
@@ -63,22 +71,22 @@
                 <span>Зарегистрироваться</span>
                 <i class="fas fa-user-plus"></i>
             </button>
-            
+
             <div class="auth-links">
                 <a href="@Url.Action("Login", "Account")">Уже есть аккаунт? Войти</a>
             </div>
         }
-        
+
         <div class="auth-social">
             <div class="social-divider">
                 <span>или</span>
             </div>
-            
+
             <button class="social-btn google-btn">
                 <i class="fab fa-google"></i>
                 <span>Регистрация через Google</span>
             </button>
-            
+
             <button class="social-btn facebook-btn">
                 <i class="fab fa-facebook-f"></i>
                 <span>Регистрация через Facebook</span>
@@ -349,7 +357,7 @@
     }
 
     /* Поддержка адаптивности для мобильных устройств */
-    @media (max-width: 480px) {
+    @@media (max-width: 480px) {
         .auth-container {
             padding: 25px 20px;
         }

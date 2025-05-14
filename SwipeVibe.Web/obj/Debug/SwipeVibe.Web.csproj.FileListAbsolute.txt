@@ -366,3 +366,8 @@ C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\ru\System.Web.WebPag
 C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\obj\Debug\SwipeVib.036BEDF9.Up2Date
 C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\System.ValueTuple.dll
 C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\System.ValueTuple.xml
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\EntityFramework.dll
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\SwipeVibe.BusinessLogic.dll.config
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\EntityFramework.xml
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.Web\bin\EntityFramework.SqlServer.xml

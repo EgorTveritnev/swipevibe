@@ -18,7 +18,7 @@ namespace SwipeVibe.BusinessLogic
         public BussinesLogic()
         {
             var mapper = MapperBootstrap.Mapper;
-            var repo = new UserRepository();
+            var repo = new UserRepositoryBL();
             var session = new SessionBL();
             User = new Core.UserApi(repo, session, mapper);
             Admin = new Core.AdminApi(repo, mapper);
