@@ -1,0 +1,33 @@
+﻿@model SwipeVibe.Web.Models.EditProfileViewModel
+
+@{
+    ViewBag.Title = "Редактировать профиль";
+}
+
+<h2>Редактирование профиля</h2>
+
+@using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.LabelFor(m => m.Username)
+        @Html.TextBoxFor(m => m.Username)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Avatar)
+        <input type="file" name="Avatar" />
+        @if (!string.IsNullOrEmpty(Model.CurrentAvatarUrl))
+        {
+            <img src="@Model.CurrentAvatarUrl" alt="avatar" style="height:100px;" />
+        }
+    </div>
+
+    <button type="submit">Сохранить</button>
+}

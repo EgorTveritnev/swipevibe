@@ -325,7 +325,7 @@
             </a>
             @if (Request.IsAuthenticated)
             {
-                <a href="@Url.Action("Profile", "Home")" class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "active" : "")" id="profileBtn">
+                <a href="@Url.Action("Profile", "Account")" class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "active" : "")" id="profileBtn">
                     <i class="nav-icon fas fa-user"></i>
                     <span>Профиль</span>
                 </a>
@@ -337,7 +337,7 @@
                             <div class="profile-email">@Session["UserEmail"]</div>
                         </div>
                     </div>                <div class="menu-items">
-                        <a href="@Url.Action("Profile", "Home")" class="menu-item">
+                        <a href="@Url.Action("Profile", "Account")" class="menu-item">
                             <i class="fas fa-user-circle"></i>Мой профиль
                         </a>
                         @if (User.IsInRole("Admin"))
