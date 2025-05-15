@@ -14,7 +14,7 @@ namespace SwipeVibe.Domain.Entities.Video
         public string Description { get; set; }
         public string GradientCss { get; set; }
         public DateTime UploadDate { get; set; }
-
+        public string VideoUrl { get; set; }
         public int LikesCount { get; set; }
         public int CommentsCount { get; set; }
         public int SharesCount { get; set; }

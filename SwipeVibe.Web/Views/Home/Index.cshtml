@@ -8,7 +8,18 @@
     {
         <div class="video-container" data-videoid="@v.Id">
             <div class="video-placeholder" style="background:@v.GradientCss">
-                <i class="fas fa-play-circle"></i>
+                @if (!string.IsNullOrEmpty(v.VideoUrl))
+                {
+                    <video autoplay muted loop playsinline
+                           style="width: 100%; height: 100%; object-fit: cover;"
+                           src="@Url.Content(v.VideoUrl)">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                }
+                else
+                {
+                    <i class="fas fa-play-circle"></i>
+                }
             </div>
 
             <div class="video-info">

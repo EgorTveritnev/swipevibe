@@ -11,36 +11,49 @@ namespace SwipeVibe.BusinessLogic.BL
     public class VideoBL : IVideo
     {
         private static readonly List<Video> _videos = new List<Video>
-        {
-            new Video
-            {
-                Id = 1,
-                Username = "user123",
-                AvatarUrl = "https://i.pravatar.cc/150?img=1",
-                Description = "Это мое первое видео в SwipeVibe! #swipevibe #trending #viral",
-                GradientCss = "linear-gradient(135deg, #FF6CAB, #7366FF)",
-                LikesCount = 12_500, CommentsCount = 1_200, SharesCount = 3_400
-            },
-            new Video
-            {
-                Id = 2,
-                Username = "coolcontent",
-                AvatarUrl = "https://i.pravatar.cc/150?img=2",
-                Description = "Смотрите это невероятное видео! #amazing #swipevibe #content",
-                GradientCss = "linear-gradient(135deg, #00F5A0, #00D9F5)",
-                LikesCount = 45_100, CommentsCount = 3_700, SharesCount = 8_200
-            },
-            new Video
-            {
-                Id = 3,
-                Username = "creativeminds",
-                AvatarUrl = "https://i.pravatar.cc/150?img=3",
-                Description = "Новый челлендж! Попробуйте сами! #challenge #swipevibe #new",
-                GradientCss = "linear-gradient(135deg, #FF8A00, #FF0080)",
-                LikesCount = 78_300, CommentsCount = 5_600, SharesCount = 12_900
-            }
-        };
+{
 
+    new Video
+    {
+        Id = 1,
+        Username = "coolcontent",
+        AvatarUrl = "https://i.pravatar.cc/150?img=2",
+        Description = "Видео из интернета #demo #cdn",
+        GradientCss = "linear-gradient(135deg, #00F5A0, #00D9F5)",
+        LikesCount = 45100,
+        CommentsCount = 3700,
+        SharesCount = 8200,
+        VideoUrl = "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+        UploadDate = DateTime.UtcNow
+    },
+
+    new Video
+    {
+        Id = 2,
+        Username = "internetstar",
+        AvatarUrl = "https://i.pravatar.cc/150?img=4",
+        Description = "Удивительное шоу! #viral #wow",
+        GradientCss = "linear-gradient(135deg, #8E2DE2, #4A00E0)",
+        LikesCount = 154000,
+        CommentsCount = 9100,
+        SharesCount = 23200,
+        VideoUrl = "	https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
+        UploadDate = DateTime.UtcNow
+    },
+    new Video
+    {
+        Id = 3,
+        Username = "externalhero",
+        AvatarUrl = "https://i.pravatar.cc/150?img=6",
+        Description = "Загружено с внешнего ресурса #cloud",
+        GradientCss = "linear-gradient(135deg, #FFDEE9, #B5FFFC)",
+        LikesCount = 62000,
+        CommentsCount = 7300,
+        SharesCount = 9400,
+        VideoUrl = "https://samplelib.com/lib/preview/mp4/sample-15s.mp4",
+        UploadDate = DateTime.UtcNow
+    }
+};
         public IEnumerable<Video> GetAll() => _videos;
         public Video GetById(int id) => _videos.FirstOrDefault(v => v.Id == id);
 
