@@ -10,6 +10,7 @@ using SwipeVibe.Domain.Entities.User;
 using System.Web;
 using System.Linq;
 using System.IO;
+using SwipeVibe.Web.Filters;
 
 namespace SwipeVibe.Web.Controllers
 {
@@ -58,9 +59,13 @@ namespace SwipeVibe.Web.Controllers
                 return View(model);
             }
 
+            // ВАЖНО: Сначала сохраняем роль
+            Session["Role"] = user.Role.ToString(); // теперь фильтры будут видеть роль
+
+            // Затем создаём cookie
             var identityName = string.IsNullOrWhiteSpace(user.Email)
-    ? (string.IsNullOrWhiteSpace(user.Username) ? Guid.NewGuid().ToString() : user.Username)
-    : user.Email;
+                ? (string.IsNullOrWhiteSpace(user.Username) ? Guid.NewGuid().ToString() : user.Username)
+                : user.Email;
 
             FormsAuthentication.SetAuthCookie(identityName, false);
             var roles = user.Role.ToString();
@@ -80,6 +85,7 @@ namespace SwipeVibe.Web.Controllers
                 HttpOnly = true
             };
             Response.Cookies.Add(cookie);
+
             return RedirectToLocal(returnUrl);
         }
 
@@ -152,7 +158,7 @@ namespace SwipeVibe.Web.Controllers
                 return View(model);
             }
         }
-        [Authorize]
+        [UserOnly]
         public new ActionResult Profile()
         {
             var email = User.Identity.Name;
@@ -163,7 +169,7 @@ namespace SwipeVibe.Web.Controllers
 
             return View(user); // 👉 передаем модель
         }
-        [Authorize]
+        [UserOnly]
         [HttpGet]
         public ActionResult EditProfile()
         {
@@ -180,7 +186,7 @@ namespace SwipeVibe.Web.Controllers
             });
         }
 
-        [Authorize]
+        [UserOnly]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditProfile(EditProfileViewModel model)

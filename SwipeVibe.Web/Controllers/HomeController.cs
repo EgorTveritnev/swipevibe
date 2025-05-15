@@ -123,5 +123,10 @@ namespace SwipeVibe.Web.Controllers
             
             return View(model);
         }
+        public ActionResult AccessDenied()
+        {
+            return View();
+        }
     }
+
 }

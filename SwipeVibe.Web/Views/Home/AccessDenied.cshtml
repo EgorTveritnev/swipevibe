@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Доступ запрещён";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .access-denied-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 80vh;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #FF6CAB, #7366FF);
+        color: #fff;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .access-denied-icon {
+        font-size: 80px;
+        color: #fff;
+        margin-bottom: 20px;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .access-denied-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .access-denied-text {
+        font-size: 18px;
+        opacity: 0.9;
+        margin-bottom: 30px;
+    }
+
+    .access-denied-button {
+        padding: 12px 24px;
+        font-size: 16px;
+        border: none;
+        border-radius: 30px;
+        background: #00F5A0;
+        color: #000;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+        .access-denied-button:hover {
+            background: #00d98d;
+            color: #000;
+        }
+</style>
+
+<div class="access-denied-wrapper">
+    <div class="access-denied-icon">
+        <i class="fas fa-user-shield"></i>
+    </div>
+    <div class="access-denied-title">⛔ Доступ запрещён</div>
+    <div class="access-denied-text">У вас нет прав на просмотр этой страницы.<br />Войдите под нужной ролью или вернитесь на главную.</div>
+    <a href="@Url.Action("Index", "Home")" class="access-denied-button">На главную</a>
+</div>

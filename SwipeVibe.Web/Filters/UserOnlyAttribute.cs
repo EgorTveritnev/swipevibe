@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 
 namespace SwipeVibe.Web.Filters
@@ -10,11 +7,8 @@ namespace SwipeVibe.Web.Filters
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var session = httpContext.Session;
-            if (session == null) return false;
-
-            var role = session["Role"]?.ToString();
-            return role == "User";
+            var role = httpContext?.Session?["Role"]?.ToString();
+            return role == "User" || role == "Admin"; // 👈 допускаем и Admin тоже
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)

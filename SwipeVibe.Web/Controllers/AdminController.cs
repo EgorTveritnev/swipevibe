@@ -6,10 +6,11 @@ using SwipeVibe.Web.Models;
 using SwipeVibe.BusinessLogic.BL;
 using SwipeVibe.BusinessLogic.Core;
 using SwipeVibe.Domain.Entities.User;
+using SwipeVibe.Web.Filters;
 
 namespace SwipeVibe.Web.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [AdminOnly]
     public class AdminController : Controller
     {
         private readonly AdminApi _adminService;

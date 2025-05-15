@@ -10,11 +10,10 @@ namespace SwipeVibe.Web.Filters
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var session = httpContext.Session;
-            if (session == null) return false;
+            if (httpContext?.Session?["Role"] is string role)
+                return role == "Admin";
 
-            var role = session["Role"]?.ToString();
-            return role == "Admin";
+            return false;
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
