@@ -39,12 +39,15 @@ namespace SwipeVibe.BusinessLogic.Core
             if (user != null)
                 user.IsBlocked = false;
         }
-        
-        public void SetRole(int id, Role role)
+
+        public void SetRole(int id, Role newRole)
         {
             var user = _repo.ById(id);
             if (user != null)
-                user.Role = role;
+            {
+                user.Role = newRole;
+                _repo.Update(user); // важно сохранить изменения в БД
+            }
         }
     }
 }
