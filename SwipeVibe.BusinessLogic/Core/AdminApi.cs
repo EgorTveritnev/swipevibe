@@ -39,5 +39,12 @@ namespace SwipeVibe.BusinessLogic.Core
             if (user != null)
                 user.IsBlocked = false;
         }
+        
+        public void SetRole(int id, Role role)
+        {
+            var user = _repo.ById(id);
+            if (user != null)
+                user.Role = role;
+        }
     }
 }

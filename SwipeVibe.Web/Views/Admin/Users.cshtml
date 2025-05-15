@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SwipeVibe.Web.Models.User>
+﻿@model IEnumerable<SwipeVibe.Domain.Entities.User.UserReturn>
 @{
     ViewBag.Title = "Управление пользователями";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -29,6 +29,44 @@
     .status-blocked {
         background: rgba(255, 82, 82, 0.15);
         color: #ff5252;
+    }
+    
+    .role-badge {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    
+    .role-user {
+        background: rgba(64, 158, 255, 0.15);
+        color: #409EFF;
+    }
+    
+    .role-admin {
+        background: rgba(255, 184, 0, 0.15);
+        color: #FFB800;
+    }
+    
+    .user-actions {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .video-action {
+        background: transparent;
+        border: none;
+        padding: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--text-light);
+    }
+    
+    .video-action:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--accent-color);
     }
 </style>
 
@@ -85,6 +123,7 @@
                     <th>Email</th>
                     <th>Дата регистрации</th>
                     <th>Статус</th>
+                    <th>Роль</th>
                     <th>Действия</th>
                 </tr>
             </thead>
@@ -103,16 +142,29 @@
                             <td>@user.Email</td>
                             <td>@user.RegisteredDate.ToString("dd.MM.yyyy")</td>
                             <td>
-                                <span class="status-badge @(user.IsActive ? "status-active" : "status-blocked")">
-                                    @(user.IsActive ? "Активен" : "Заблокирован")
+                                <span class="status-badge @(user.IsBlocked ? "status-blocked" : "status-active")">
+                                    @(user.IsBlocked ? "Заблокирован" : "Активен")
                                 </span>
                             </td>
                             <td>
-                                <form action="@Url.Action("BlockUser", "Admin")" method="post">
+                                <span class="role-badge @(user.Role == SwipeVibe.Domain.Entities.User.Role.Admin ? "role-admin" : "role-user")">
+                                    @(user.Role == SwipeVibe.Domain.Entities.User.Role.Admin ? "Администратор" : "Пользователь")
+                                </span>
+                            </td>
+                            <td class="user-actions">
+                                <form action="@Url.Action("BlockUser", "Admin")" method="post" style="display: inline;">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="id" value="@user.Id" />
-                                    <button type="submit" class="video-action" title="@(user.IsActive ? "Заблокировать" : "Разблокировать")">
-                                        <i class="fas @(user.IsActive ? "fa-ban" : "fa-unlock")"></i>
+                                    <button type="submit" class="video-action" title="@(user.IsBlocked ? "Разблокировать" : "Заблокировать")">
+                                        <i class="fas @(user.IsBlocked ? "fa-unlock" : "fa-ban")"></i>
+                                    </button>
+                                </form>
+                                
+                                <form action="@Url.Action("ChangeUserRole", "Admin")" method="post" style="display: inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@user.Id" />
+                                    <button type="submit" class="video-action" title="@(user.Role == SwipeVibe.Domain.Entities.User.Role.Admin ? "Понизить до пользователя" : "Повысить до администратора")">
+                                        <i class="fas @(user.Role == SwipeVibe.Domain.Entities.User.Role.Admin ? "fa-user" : "fa-user-shield")"></i>
                                     </button>
                                 </form>
                             </td>
@@ -122,7 +174,7 @@
                 else
                 {
                     <tr>
-                        <td colspan="7" class="text-center py-4 text-muted">
+                        <td colspan="8" class="text-center py-4 text-muted">
                             Нет зарегистрированных пользователей
                         </td>
                     </tr>

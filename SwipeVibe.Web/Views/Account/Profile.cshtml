@@ -43,6 +43,12 @@
                 <button class="profile-share-btn glass-card">
                     <i class="fas fa-share-alt"></i>
                 </button>
+                @if (Model.Role == SwipeVibe.Domain.Entities.User.Role.Admin)
+                {
+                    <a href="@Url.Action("Index", "Admin")" class="profile-admin-btn glass-card">
+                        <i class="fas fa-shield-alt"></i> Админ-панель
+                    </a>
+                }
             </div>
         </div>
     </div>
@@ -351,6 +357,33 @@
     .profile-edit-btn:hover, .profile-settings-btn:hover, .profile-share-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-admin-btn {
+        background: linear-gradient(45deg, #FF0080, #7928CA);
+        border: none;
+        padding: 10px 15px;
+        border-radius: 25px;
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        margin-left: 10px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+    
+    .profile-admin-btn i {
+        margin-right: 5px;
+    }
+    
+    .profile-admin-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
+        text-decoration: none;
+        color: white;
     }
 
     .profile-tabs {

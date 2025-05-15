@@ -108,5 +108,32 @@ namespace SwipeVibe.Web.Controllers
 
             return RedirectToAction("Users");
         }
+        
+        // Смена роли пользователя
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeUserRole(int id)
+        {
+            try
+            {
+                var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
+                if (user == null)
+                    throw new Exception("Пользователь не найден");
+
+                // Меняем роль пользователя
+                if (user.Role == Role.User)
+                    _adminService.SetRole(id, Role.Admin);
+                else
+                    _adminService.SetRole(id, Role.User);
+
+                TempData["SuccessMessage"] = "Роль пользователя успешно изменена";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Ошибка при изменении роли пользователя: {ex.Message}";
+            }
+
+            return RedirectToAction("Users");
+        }
     }
 }
