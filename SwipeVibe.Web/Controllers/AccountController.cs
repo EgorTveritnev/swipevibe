@@ -75,7 +75,7 @@ namespace SwipeVibe.Web.Controllers
                 user.Email,
                 DateTime.Now,
                 DateTime.Now.AddMinutes(30),
-                true,
+                false,
                 roles,
                 FormsAuthentication.FormsCookiePath);
 
@@ -158,7 +158,6 @@ namespace SwipeVibe.Web.Controllers
                 return View(model);
             }
         }
-        [UserOnly]
         public new ActionResult Profile()
         {
             var email = User.Identity.Name;

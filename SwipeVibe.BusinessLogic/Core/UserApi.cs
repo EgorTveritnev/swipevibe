@@ -28,8 +28,7 @@ namespace SwipeVibe.BusinessLogic.Core
 
             _session.SetUserId(user.Id);
             user.LastLogin = DateTime.Now;
-            _repo.Update(user); // 💾 сохранить дату входа
-            // 🔥 РУЧНОЙ маппинг вместо AutoMapper
+            _repo.Update(user); 
             return new UserReturn
             {
                 Id = user.Id,

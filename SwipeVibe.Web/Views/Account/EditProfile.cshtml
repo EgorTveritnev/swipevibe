@@ -2,32 +2,135 @@
 
 @{
     ViewBag.Title = "Редактировать профиль";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Редактирование профиля</h2>
+<div class="edit-profile-container glass-card">
+    <h2 class="section-title">Редактировать профиль</h2>
 
-@using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "edit-profile-form" }))
+    {
+        @Html.AntiForgeryToken()
 
-    <div>
-        @Html.LabelFor(m => m.Username)
-        @Html.TextBoxFor(m => m.Username)
-    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Username, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Имя пользователя" })
+        </div>
 
-    <div>
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email)
-    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+        </div>
 
-    <div>
-        @Html.LabelFor(m => m.Avatar)
-        <input type="file" name="Avatar" />
-        @if (!string.IsNullOrEmpty(Model.CurrentAvatarUrl))
-        {
-            <img src="@Model.CurrentAvatarUrl" alt="avatar" style="height:100px;" />
+        <div class="form-group">
+            @Html.Label("Аватар", new { @class = "form-label" })
+            <input type="file" name="Avatar" class="form-control-file" />
+
+            @if (!string.IsNullOrEmpty(Model.CurrentAvatarUrl))
+            {
+                <div class="avatar-preview">
+                    <img src="@Model.CurrentAvatarUrl" alt="Аватар" />
+                </div>
+            }
+        </div>
+
+        <button type="submit" class="btn-submit">
+            <span>Сохранить изменения</span>
+            <i class="fas fa-save"></i>
+        </button>
+    }
+</div>
+
+<style>
+    .edit-profile-container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 26px;
+        margin-bottom: 25px;
+        background: linear-gradient(135deg, #FF6CAB, #7366FF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-light);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        color: var(--text-light);
+        font-size: 15px;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #00F5A0;
+            box-shadow: 0 0 8px rgba(0, 245, 160, 0.4);
         }
-    </div>
 
-    <button type="submit">Сохранить</button>
-}
+    .form-control-file {
+        margin-top: 8px;
+        color: var(--text-light);
+    }
+
+    .avatar-preview {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+        .avatar-preview img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #FF6CAB;
+            box-shadow: 0 0 12px rgba(255, 108, 171, 0.5);
+        }
+
+    .btn-submit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #00F5A0, #00D9F5);
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #00d98d, #00c8f0);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 245, 160, 0.3);
+        }
+
+        .btn-submit i {
+            font-size: 16px;
+        }
+</style>

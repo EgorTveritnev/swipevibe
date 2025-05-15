@@ -11,8 +11,8 @@ using SwipeVibe.Domain.Entities.User;
         {
             int Register(UserRegister dto);
 
-            UserReturn Authenticate(string email, string password); // используется при логине
-            void Logout(int userId); // просто очищает сессию
+            UserReturn Authenticate(string email, string password); 
+            void Logout(int userId); 
 
             UserReturn GetById(int id);
             IEnumerable<UserReturn> GetAllUsers();
