@@ -16,7 +16,6 @@
     </div>
     
     <div class="notifications-list">
-        <!-- Уведомление 1 -->
         <div class="notification-item glass-card">
             <div class="notification-left">
                 <div class="notification-avatar glow-effect">
@@ -43,7 +42,6 @@
             </div>
         </div>
         
-        <!-- Уведомление 2 -->
         <div class="notification-item glass-card">
             <div class="notification-left">
                 <div class="notification-avatar glow-effect" style="border-color: #00D9F5;">
@@ -70,7 +68,6 @@
             </div>
         </div>
         
-        <!-- Уведомление 3 -->
         <div class="notification-item glass-card">
             <div class="notification-left">
                 <div class="notification-avatar glow-effect" style="border-color: #00F5A0;">
@@ -93,7 +90,6 @@
             </div>
         </div>
         
-        <!-- Уведомление 4 -->
         <div class="notification-item glass-card">
             <div class="notification-left">
                 <div class="notification-avatar multiple-avatars">
@@ -121,7 +117,6 @@
             </div>
         </div>
         
-        <!-- Уведомление 5 -->
         <div class="notification-item glass-card">
             <div class="notification-left">
                 <div class="notification-avatar glow-effect" style="border-color: #FF8A00;">
@@ -148,7 +143,6 @@
             </div>
         </div>
 
-        <!-- Уведомление 6 -->
         <div class="notification-item glass-card">
             <div class="notification-left">
                 <div class="notification-avatar system-avatar">
@@ -418,8 +412,7 @@
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(255, 165, 0, 0.3);
     }
-    
-    /* Анимация для появления уведомлений */
+
     .notification-item {
         animation: slideIn 0.5s ease forwards;
         opacity: 0;
@@ -444,18 +437,14 @@
 @section scripts {
     <script>
         $(document).ready(function() {
-            // Переключение табов
             $('.tab').click(function() {
                 $('.tab').removeClass('active');
-                $(this).addClass('active');
-                
-                // Здесь логика сортировки уведомлений по типам
+                $(this).addClass('active');               
                 const tabType = $(this).text().toLowerCase();
                 if(tabType === "все") {
                     $('.notification-item').fadeIn(300);
                 } else {
                     $('.notification-item').hide();
-                    // Примерная логика фильтрации - в реальности нужно будет соответствующее API
                     switch(tabType) {
                         case "лайки":
                             $('.notification-item .like-type').parent().parent().fadeIn(300);
@@ -472,19 +461,16 @@
                     }
                 }
                 
-                // Эффект "перетасовки" уведомлений
                 $('.notifications-list').css('opacity', '0.5');
                 setTimeout(function() {
                     $('.notifications-list').css('opacity', '1');
                 }, 300);
             });
             
-            // Переход на видео при нажатии на миниатюру
             $('.notification-video').click(function() {
                 window.location.href = '@Url.Action("Index", "Home")';
             });
             
-            // Обработка кнопки подписки
             $('.notification-follow-btn').click(function() {
                 if($(this).text() === 'Подписаться') {
                     $(this).text('Подписки');
@@ -495,16 +481,12 @@
                 }
             });
 
-            // Обработка кнопки "Отметить"
             $('.notification-celebrate-btn').click(function() {
                 $(this).html('<i class="fas fa-check"></i> Отмечено');
-                $(this).css('background', 'linear-gradient(135deg, #333, #555)');
-                
-                // Создаем эффект конфетти
+                $(this).css('background', 'linear-gradient(135deg, #333, #555)');                
                 createConfetti();
             });
             
-            // Функция создания конфетти
             function createConfetti() {
                 for (let i = 0; i < 50; i++) {
                     const confetti = $('<div class="confetti"></div>');
@@ -525,9 +507,7 @@
                         'opacity': Math.random() + 0.5
                     });
                     
-                    $('body').append(confetti);
-                    
-                    // Анимация падения
+                    $('body').append(confetti);                   
                     const animationDuration = Math.random() * 3 + 2;
                     const fallDistance = Math.random() * 300 + 200;
                     

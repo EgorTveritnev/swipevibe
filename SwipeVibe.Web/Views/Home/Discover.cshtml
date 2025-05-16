@@ -569,13 +569,11 @@
 @section scripts {
     <script>
         $(document).ready(function() {
-            // Переключение категорий с анимацией
             $('.category').click(function() {
                 $('.category').removeClass('active');
                 $(this).addClass('active');
             });
             
-            // Анимация для карточек при скролле
             function checkVisible() {
                 $('.discover-item, .creator-card, .hashtag-card').each(function() {
                     const elementTop = $(this).offset().top;
@@ -589,15 +587,12 @@
                 });
             }
             
-            // Первоначальная проверка видимости
             checkVisible();
             
-            // Проверка при скролле
             $(window).on('scroll', function() {
                 checkVisible();
             });
-            
-            // Анимация для поиска
+
             $('.search-input').focus(function() {
                 $('.search-bar').css('box-shadow', '0 0 0 2px var(--accent-color)');
             }).blur(function() {

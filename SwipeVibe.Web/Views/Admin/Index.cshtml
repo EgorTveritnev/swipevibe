@@ -5,7 +5,6 @@
 }
 
 <style>
-    /* Стили для админ-панели */
     .admin-container {
         padding: 20px;
     }
@@ -272,7 +271,6 @@
         color: white;
     }
     
-    /* Responsive admin panel */
     @@media (max-width: 768px) {
         .admin-cards {
             grid-template-columns: repeat(2, 1fr);
@@ -406,7 +404,6 @@
 
 <script>
     $(document).ready(function() {
-        // Notification for success messages
         @if (TempData["SuccessMessage"] != null)
         {
             <text>
@@ -417,8 +414,7 @@
                     .fadeOut(500, function() { $(this).remove(); });
             </text>
         }
-        
-        // Notification for error messages
+
         @if (TempData["ErrorMessage"] != null)
         {
             <text>

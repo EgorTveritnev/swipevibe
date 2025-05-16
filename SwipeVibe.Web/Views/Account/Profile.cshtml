@@ -465,7 +465,7 @@
 
     .video-item-thumbnail {
         position: relative;
-        padding-top: 177%; /* соотношение сторон как у видео в TikTok */
+        padding-top: 177%;
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -605,8 +605,6 @@
             transform: translateY(-5px) rotate(90deg);
             box-shadow: 0 8px 25px rgba(255, 0, 128, 0.6);
         }
-
-    /* Анимации */
     @@keyframes fadeIn {
         from {
             opacity: 0;
@@ -623,7 +621,6 @@
 @section scripts {
     <script>
         $(document).ready(function() {
-            // Переключение табов профиля
             $('.profile-tab').click(function() {
                 const tabId = $(this).data('tab');
 
@@ -634,7 +631,6 @@
                 $('#' + tabId).addClass('active');
             });
 
-            // Анимация счетчиков
             setTimeout(function() {
                 $('.counter').each(function() {
                     const $this = $(this);
@@ -664,8 +660,6 @@
                 });
             }, 500);
 
-            // Обработчики кнопок
-
             $('.video-item').click(function() {
                 window.location.href = '@Url.Action("Index", "Home")';
             });
@@ -673,7 +667,6 @@
             $('.load-more-btn').click(function() {
                 $(this).html('<i class="fas fa-spinner fa-spin"></i> Загрузка...');
 
-                // Имитация загрузки
                 setTimeout(function() {
                     $('.load-more-btn').html('<i class="fas fa-check"></i> Загружено');
 
@@ -683,12 +676,10 @@
                 }, 1500);
             });
 
-            // Кнопка загрузки видео
             $('.upload-fab').click(function() {
                 alert('Функция загрузки видео будет доступна в следующей версии');
             });
 
-            // Эффект параллакса для обложки профиля
             $(window).scroll(function() {
                 const scrollTop = $(this).scrollTop();
                 if (scrollTop < 200) {

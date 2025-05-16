@@ -26,8 +26,8 @@ namespace SwipeVibe.Web.Controllers
                 cfg.CreateMap<UserRegister, SwipeVibe.Domain.Entities.User.User>();
             }).CreateMapper();
 
-            var repo = new UserRepositoryBL();      // твоя in-memory реализация
-            var session = new SessionBL();        // новая реализация без WebSession
+            var repo = new UserRepositoryBL();      
+            var session = new SessionBL();        
             _userService = new UserApi(repo, session, mapper);
         }
 
@@ -60,7 +60,7 @@ namespace SwipeVibe.Web.Controllers
             }
 
             // ВАЖНО: Сначала сохраняем роль
-            Session["Role"] = user.Role.ToString(); // теперь фильтры будут видеть роль
+            Session["Role"] = user.Role.ToString();
 
             // Затем создаём cookie
             var identityName = string.IsNullOrWhiteSpace(user.Email)
@@ -166,7 +166,7 @@ namespace SwipeVibe.Web.Controllers
             if (user == null)
                 return RedirectToAction("Login");
 
-            return View(user); // 👉 передаем модель
+            return View(user); 
         }
         [UserOnly]
         [HttpGet]

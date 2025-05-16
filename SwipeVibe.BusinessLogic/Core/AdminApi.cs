@@ -8,10 +8,6 @@ using SwipeVibe.BusinessLogic.Interfaces;
 using SwipeVibe.Domain.Entities.User;
 namespace SwipeVibe.BusinessLogic.Core
 {
-    /// <summary>
-    /// Примитивная реализация IAdmin.
-    /// Работает с тем же репозиторием, что и UserApi.
-    /// </summary>
     public sealed class AdminApi : IAdmin
     {
         private readonly IUserRepository _repo;
@@ -45,11 +41,10 @@ namespace SwipeVibe.BusinessLogic.Core
             var user = _repo.ById(id);
             if (user == null)
             return;
-                // --- Защита роли SuperAdmin: ---
             if (user.Role == Role.SuperAdmin)
             throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
             user.Role = newRole;
-            _repo.Update(user); // важно сохранить изменения в БД
+            _repo.Update(user); 
         }
     }
 }

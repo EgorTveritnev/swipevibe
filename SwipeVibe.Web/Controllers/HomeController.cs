@@ -15,8 +15,8 @@ namespace SwipeVibe.Web.Controllers
         private readonly IVideo _videoService = new VideoBL();
         public ActionResult Index()
         {
-            var videos = _videoService.GetAll(); // теперь динамически
-            return View(videos);                 // <<<<<<<<<<
+            var videos = _videoService.GetAll(); 
+            return View(videos);                 
         }
 
         public ActionResult About()
@@ -54,14 +54,12 @@ namespace SwipeVibe.Web.Controllers
             return View();
         }
         
-        // GET: Home/Upload
         public ActionResult Upload()
         {
             ViewBag.Message = "Загрузка нового видео";
             return View();
         }
-        
-        // POST: Home/Upload
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Upload(VideoModel model)
@@ -70,7 +68,6 @@ namespace SwipeVibe.Web.Controllers
             {
                 try
                 {
-                    // Создаем папки для хранения файлов, если они не существуют
                     string videoFolder = Server.MapPath("~/Content/Videos");
                     string thumbnailFolder = Server.MapPath("~/Content/Thumbnails");
                     
@@ -84,10 +81,8 @@ namespace SwipeVibe.Web.Controllers
                         Directory.CreateDirectory(thumbnailFolder);
                     }
                     
-                    // Генерируем уникальное имя файла
                     string fileName = Guid.NewGuid().ToString();
                     
-                    // Обработка видеофайла
                     if (model.VideoFile != null && model.VideoFile.ContentLength > 0)
                     {
                         string fileExtension = Path.GetExtension(model.VideoFile.FileName);
@@ -95,8 +90,7 @@ namespace SwipeVibe.Web.Controllers
                         model.VideoFile.SaveAs(videoPath);
                         model.VideoPath = "/Content/Videos/" + fileName + fileExtension;
                     }
-                    
-                    // Обработка изображения-обложки, если оно было загружено
+
                     if (model.ThumbnailImage != null && model.ThumbnailImage.ContentLength > 0)
                     {
                         string fileExtension = Path.GetExtension(model.ThumbnailImage.FileName);
@@ -105,12 +99,9 @@ namespace SwipeVibe.Web.Controllers
                         model.ThumbnailPath = "/Content/Thumbnails/" + fileName + fileExtension;
                     }
                     
-                    // Заполняем другие свойства модели
                     model.UploadDate = DateTime.Now;
-                    model.Username = "user123"; // В реальном приложении будет использоваться текущий пользователь
-                    model.UserId = "1"; // Идентификатор пользователя из системы аутентификации
-                    
-                    // TODO: Сохранение модели в базу данных
+                    model.Username = "user123"; 
+                    model.UserId = "1";
                     
                     TempData["SuccessMessage"] = "Видео успешно загружено!";
                     return RedirectToAction("Index");

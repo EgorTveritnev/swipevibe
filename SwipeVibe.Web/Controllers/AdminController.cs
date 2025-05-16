@@ -26,7 +26,7 @@ namespace SwipeVibe.Web.Controllers
             }).CreateMapper();
 
             var repo = new UserRepositoryBL();
-            var session = new SessionBL(); // ← используется, чтобы UserApi не вылетал
+            var session = new SessionBL(); 
             _adminService = new AdminApi(repo, mapper);
             _userService = new UserApi(repo, session, mapper);
             _videoService = new VideoBL();
@@ -51,22 +51,17 @@ namespace SwipeVibe.Web.Controllers
 
             return View(dashboardModel);
         }
-
-        // Все видео
         public ActionResult Videos()
         {
             var videos = _videoService.GetAll();
             return View(videos);
         }
-
-        // Все пользователи
         public ActionResult Users()
         {
             var users = _userService.GetAllUsers();
             return View(users);
         }
 
-        // Удаление видео
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteVideo(int id)
@@ -84,7 +79,6 @@ namespace SwipeVibe.Web.Controllers
             return RedirectToAction("Videos");
         }
 
-        // Блокировка или разблокировка пользователя
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BlockUser(int id)
@@ -110,7 +104,6 @@ namespace SwipeVibe.Web.Controllers
             return RedirectToAction("Users");
         }
         
-        // Смена роли пользователя
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangeUserRole(int id)
@@ -121,7 +114,6 @@ namespace SwipeVibe.Web.Controllers
                 if (user == null)
                     throw new Exception("Пользователь не найден");
 
-                // Меняем роль пользователя
                 if (user.Role == Role.SuperAdmin)
                 throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
                 var newRole = user.Role == Role.User

@@ -45,7 +45,6 @@
             position: relative;
         }
 
-        /* Декоративные элементы фона */
         .bg-decoration {
             position: fixed;
             border-radius: 50%;
@@ -145,7 +144,6 @@
             transform: translateY(-5px);
         }
 
-        /* Кнопка для добавления нового контента */
         .add-btn {
             background: var(--primary-gradient);
             border-radius: 50%;
@@ -171,8 +169,6 @@
             color: white;
             font-weight: bold;
         }
-        
-        /* Стеклянный эффект для карточек и панелей */
         .glass-effect {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -181,7 +177,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
         
-        /* Пульсирующий эффект */
         .pulse-effect {
             animation: pulse 2s infinite;
         }
@@ -198,14 +193,12 @@
             }
         }
         
-        /* Градиентный текст */
         .gradient-text {
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
-        /* Анимированный градиентный текст */
+
         .animated-gradient-text {
             background-size: 300% 300%;
             background-image: linear-gradient(45deg, #FF0080, #7928CA, #00D9F5, #FF8A00);
@@ -220,7 +213,6 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* Выпадающее меню профиля */
         .profile-menu {
             display: none;
             position: fixed;
@@ -292,7 +284,6 @@
             text-align: center;
         }
         
-        /* Скрыть стандартный footer */
         footer {
             display: none;
         }
@@ -300,7 +291,7 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Декоративные фоновые элементы -->
+
         <div class="bg-decoration deco-1"></div>
         <div class="bg-decoration deco-2"></div>
         <div class="bg-decoration deco-3"></div>
@@ -368,34 +359,28 @@
     
     <script>
         $(document).ready(function() {
-            // Плавное появление контента
             $('.content-container').css('opacity', 0).animate({
                 opacity: 1
             }, 500);
             
-            // Скрыть нижнюю навигацию при скролле вниз и показать при скролле вверх
             let lastScrollTop = 0;
             $(window).scroll(function() {
                 const st = $(this).scrollTop();
                 if (st > lastScrollTop && st > 100) {
-                    // Скролл вниз
                     $('.bottom-navbar').css('transform', 'translateY(100%)');
                 } else {
-                    // Скролл вверх
                     $('.bottom-navbar').css('transform', 'translateY(0)');
                 }
                 lastScrollTop = st;
             });
-            
-            // Выпадающее меню профиля
+
             $('#profileBtn').click(function(e) {
                 if ($('#profileMenu').is(':visible')) {
                     e.preventDefault();
                     $('#profileMenu').fadeToggle(200);
                 }
             });
-            
-            // Закрытие выпадающего меню при клике вне его области
+
             $(document).click(function(e) {
                 if (!$(e.target).closest('#profileBtn, #profileMenu').length) {
                     $('#profileMenu').fadeOut(200);

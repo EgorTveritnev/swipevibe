@@ -71,7 +71,6 @@
 </div>
 
 <style>
-    /* Основные стили для страниц авторизации */
     .auth-page {
         min-height: 100vh;
         display: flex;
@@ -135,7 +134,6 @@
         box-shadow: 0 0 0 2px rgba(255, 0, 128, 0.25);
     }
     
-    /* Стили для поля с паролем */
     .password-input-wrap {
         position: relative;
     }
@@ -156,7 +154,6 @@
         color: var(--text-light);
     }
     
-    /* Стили для чекбокса и ссылки "Забыли пароль" */
     .form-row {
         display: flex;
         justify-content: space-between;
@@ -319,8 +316,7 @@
     .facebook-btn:hover {
         background-color: #166fe5;
     }
-    
-    /* Анимации */
+
     .auth-container {
         animation: fadeSlideUp 0.6s ease forwards;
     }
@@ -342,7 +338,6 @@
     
     <script>
         $(document).ready(function() {
-            // Показать/скрыть пароль
             $('.toggle-password').click(function() {
                 var passwordInput = $(this).parent().find('input');
                 var icon = $(this).find('i');
@@ -355,8 +350,7 @@
                     icon.removeClass('fa-eye-slash').addClass('fa-eye');
                 }
             });
-            
-            // Анимация для полей формы при фокусе
+
             $('.form-control').focus(function() {
                 $(this).parent().addClass('focused');
             }).blur(function() {
@@ -364,15 +358,13 @@
                     $(this).parent().removeClass('focused');
                 }
             });
-            
-            // Проверка, если в полях есть значения при загрузке
+
             $('.form-control').each(function() {
                 if ($(this).val()) {
                     $(this).parent().addClass('focused');
                 }
             });
-            
-            // Демо-функционал для соц. кнопок
+          
             $('.social-btn').click(function() {
                 alert('Функция входа через соцсети будет доступна в следующей версии');
             });

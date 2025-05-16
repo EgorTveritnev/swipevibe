@@ -6,7 +6,6 @@
 }
 
 <style>
-    /* Стили берутся из предыдущих страниц */
     .user-avatar {
         width: 40px;
         height: 40px;
@@ -153,7 +152,6 @@
                                 </span>
                             </td>
                             <td>
-                                @* Роль *@
                                 <span class="role-badge
                     @(user.Role == Role.SuperAdmin ? "role-superadmin" :
                       user.Role == Role.Admin      ? "role-admin"      :
@@ -164,7 +162,6 @@
                                 </span>
                             </td>
                             <td class="user-actions">
-                                @* Блок/Разблок *@
                                 @if (user.Role != Role.SuperAdmin)
                                 {
                                     <form action="@Url.Action("BlockUser", "Admin")" method="post" style="display:inline">
@@ -178,7 +175,6 @@
                                     </form>
                                 }
 
-                                @* Смена роли — только если не SuperAdmin *@
                                 @if (user.Role != Role.SuperAdmin)
                                 {
                                     <form action="@Url.Action("ChangeUserRole", "Admin")"
@@ -199,7 +195,6 @@
                                 }
                                 else
                                 {
-                                    @* Просто иконка без кнопки *@
                                     <button class="video-action disabled"
                                             title="Роль суперадмина изменить нельзя"
                                             disabled>
@@ -231,7 +226,6 @@
 
 <script>
     $(document).ready(function () {
-        // Поиск по таблице
         $("#searchInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             $(".admin-table tbody tr").filter(function () {
@@ -239,7 +233,6 @@
             });
         });
 
-        // Скрытие уведомлений через 3 секунды
         setTimeout(function () {
             $(".alert").fadeOut(500);
         }, 3000);

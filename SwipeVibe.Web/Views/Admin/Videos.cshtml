@@ -5,7 +5,6 @@
 }
 
 <style>
-    /* Стили для админ-панели уже определены в Index.cshtml */
     .admin-tabs {
         margin-bottom: 30px;
     }
@@ -235,15 +234,12 @@
 
 <script>
     $(document).ready(function() {
-        // Поиск по таблице
         $("#searchInput").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $(".admin-table tbody tr").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
-        
-        // Скрытие уведомлений через 3 секунды
         setTimeout(function() {
             $(".alert").fadeOut(500);
         }, 3000);
