@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<SwipeVibe.Domain.Entities.User.UserReturn>
+@using SwipeVibe.Domain.Entities.User
 @{
     ViewBag.Title = "Управление пользователями";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +13,7 @@
         border-radius: 50%;
         object-fit: cover;
     }
-    
+
     .status-badge {
         display: inline-block;
         padding: 5px 10px;
@@ -20,17 +21,17 @@
         font-size: 12px;
         font-weight: 500;
     }
-    
+
     .status-active {
         background: rgba(0, 245, 160, 0.15);
         color: #00F5A0;
     }
-    
+
     .status-blocked {
         background: rgba(255, 82, 82, 0.15);
         color: #ff5252;
     }
-    
+
     .role-badge {
         display: inline-block;
         padding: 5px 10px;
@@ -38,22 +39,25 @@
         font-size: 12px;
         font-weight: 500;
     }
-    
+
     .role-user {
         background: rgba(64, 158, 255, 0.15);
         color: #409EFF;
     }
-    
+
     .role-admin {
         background: rgba(255, 184, 0, 0.15);
         color: #FFB800;
     }
-    
+    .role-superadmin {
+        background: rgba(156, 39, 176, 0.15);
+        color: #9C27B0;
+    }
     .user-actions {
         display: flex;
         gap: 5px;
     }
-    
+
     .video-action {
         background: transparent;
         border: none;
@@ -63,11 +67,11 @@
         transition: all 0.2s ease;
         color: var(--text-light);
     }
-    
-    .video-action:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--accent-color);
-    }
+
+        .video-action:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent-color);
+        }
 </style>
 
 <div class="admin-container">
@@ -75,7 +79,7 @@
         <h1 class="admin-title">Управление пользователями</h1>
         <p class="admin-subtitle">Мониторинг и управление аккаунтами пользователей</p>
     </div>
-    
+
     <div class="admin-tabs">
         <a href="@Url.Action("Index", "Admin")" class="admin-tab">
             <i class="fas fa-tachometer-alt"></i>
@@ -104,7 +108,7 @@
             @TempData["ErrorMessage"]
         </div>
     }
-    
+
     <div class="admin-section">
         <div class="filter-container">
             <input type="text" id="searchInput" class="filter-input" placeholder="Поиск по имени пользователя или email...">
@@ -113,7 +117,7 @@
                 Найти
             </button>
         </div>
-        
+
         <table class="admin-table">
             <thead>
                 <tr>
@@ -135,8 +139,10 @@
                         <tr>
                             <td>@user.Id</td>
                             <td>
-                                <img src="@(string.IsNullOrEmpty(user.AvatarUrl) ? "/Content/Images/avatars/default.png" : user.AvatarUrl)" 
-                                     alt="@user.Username" class="user-avatar">
+                                <img src="@(string.IsNullOrEmpty(user.AvatarUrl)
+                                ? "/Content/Images/avatars/default.png"
+                                : user.AvatarUrl)"
+                                     alt="@user.Username" class="user-avatar" />
                             </td>
                             <td>@user.Username</td>
                             <td>@user.Email</td>
@@ -147,26 +153,59 @@
                                 </span>
                             </td>
                             <td>
-                                <span class="role-badge @(user.Role == SwipeVibe.Domain.Entities.User.Role.Admin ? "role-admin" : "role-user")">
-                                    @(user.Role == SwipeVibe.Domain.Entities.User.Role.Admin ? "Администратор" : "Пользователь")
+                                @* Роль *@
+                                <span class="role-badge
+                    @(user.Role == Role.SuperAdmin ? "role-superadmin" :
+                      user.Role == Role.Admin      ? "role-admin"      :
+                                                     "role-user")">
+                                    @(user.Role == Role.SuperAdmin ? "Суперадмин" :
+                      user.Role == Role.Admin      ? "Администратор" :
+                                                     "Пользователь")
                                 </span>
                             </td>
                             <td class="user-actions">
-                                <form action="@Url.Action("BlockUser", "Admin")" method="post" style="display: inline;">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@user.Id" />
-                                    <button type="submit" class="video-action" title="@(user.IsBlocked ? "Разблокировать" : "Заблокировать")">
-                                        <i class="fas @(user.IsBlocked ? "fa-unlock" : "fa-ban")"></i>
+                                @* Блок/Разблок *@
+                                @if (user.Role != Role.SuperAdmin)
+                                {
+                                    <form action="@Url.Action("BlockUser", "Admin")" method="post" style="display:inline">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@user.Id" />
+                                        <button type="submit"
+                                                class="video-action"
+                                                title="@(user.IsBlocked ? "Разблокировать" : "Заблокировать")">
+                                            <i class="fas @(user.IsBlocked ? "fa-unlock" : "fa-ban")"></i>
+                                        </button>
+                                    </form>
+                                }
+
+                                @* Смена роли — только если не SuperAdmin *@
+                                @if (user.Role != Role.SuperAdmin)
+                                {
+                                    <form action="@Url.Action("ChangeUserRole", "Admin")"
+                                          method="post"
+                                          style="display:inline">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@user.Id" />
+                                        <button type="submit"
+                                                class="video-action"
+                                                title="@(user.Role == Role.Admin
+                                         ? "Понизить до пользователя"
+                                         : "Повысить до администратора")">
+                                            <i class="fas @(user.Role == Role.Admin
+                                            ? "fa-user"
+                                            : "fa-user-shield")"></i>
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    @* Просто иконка без кнопки *@
+                                    <button class="video-action disabled"
+                                            title="Роль суперадмина изменить нельзя"
+                                            disabled>
+                                        <i class="fas fa-user-secret"></i>
                                     </button>
-                                </form>
-                                
-                                <form action="@Url.Action("ChangeUserRole", "Admin")" method="post" style="display: inline;">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@user.Id" />
-                                    <button type="submit" class="video-action" title="@(user.Role == SwipeVibe.Domain.Entities.User.Role.Admin ? "Понизить до пользователя" : "Повысить до администратора")">
-                                        <i class="fas @(user.Role == SwipeVibe.Domain.Entities.User.Role.Admin ? "fa-user" : "fa-user-shield")"></i>
-                                    </button>
-                                </form>
+                                }
                             </td>
                         </tr>
                     }
@@ -181,7 +220,7 @@
                 }
             </tbody>
         </table>
-        
+
         <div class="pagination">
             <div class="page-item active"><a href="#" class="page-link">1</a></div>
             <div class="page-item"><a href="#" class="page-link">2</a></div>
@@ -191,17 +230,17 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Поиск по таблице
-        $("#searchInput").on("keyup", function() {
+        $("#searchInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
-            $(".admin-table tbody tr").filter(function() {
+            $(".admin-table tbody tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
-        
+
         // Скрытие уведомлений через 3 секунды
-        setTimeout(function() {
+        setTimeout(function () {
             $(".alert").fadeOut(500);
         }, 3000);
     });

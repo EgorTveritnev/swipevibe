@@ -1,5 +1,5 @@
 ﻿@model SwipeVibe.Domain.Entities.User.UserReturn
-
+@using SwipeVibe.Domain.Entities.User
 @{
     ViewBag.Title = "Профиль";
 }
@@ -43,7 +43,7 @@
                 <button class="profile-share-btn glass-card">
                     <i class="fas fa-share-alt"></i>
                 </button>
-                @if (Model.Role == SwipeVibe.Domain.Entities.User.Role.Admin)
+                @if (Model.Role == Role.Admin || Model.Role == Role.SuperAdmin)
                 {
                     <a href="@Url.Action("Index", "Admin")" class="profile-admin-btn glass-card">
                         <i class="fas fa-shield-alt"></i> Админ-панель
@@ -374,17 +374,17 @@
         font-weight: 500;
         text-decoration: none;
     }
-    
-    .profile-admin-btn i {
-        margin-right: 5px;
-    }
-    
-    .profile-admin-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
-        text-decoration: none;
-        color: white;
-    }
+
+        .profile-admin-btn i {
+            margin-right: 5px;
+        }
+
+        .profile-admin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
+            text-decoration: none;
+            color: white;
+        }
 
     .profile-tabs {
         display: flex;

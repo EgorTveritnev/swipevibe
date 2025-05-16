@@ -122,10 +122,12 @@ namespace SwipeVibe.Web.Controllers
                     throw new Exception("Пользователь не найден");
 
                 // Меняем роль пользователя
-                if (user.Role == Role.User)
-                    _adminService.SetRole(id, Role.Admin);
-                else
-                    _adminService.SetRole(id, Role.User);
+                if (user.Role == Role.SuperAdmin)
+                throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
+                var newRole = user.Role == Role.User
+                                          ? Role.Admin
+                                          : Role.User;
+                _adminService.SetRole(id, newRole);
 
                 TempData["SuccessMessage"] = "Роль пользователя успешно изменена";
             }

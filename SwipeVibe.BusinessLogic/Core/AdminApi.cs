@@ -43,11 +43,13 @@ namespace SwipeVibe.BusinessLogic.Core
         public void SetRole(int id, Role newRole)
         {
             var user = _repo.ById(id);
-            if (user != null)
-            {
-                user.Role = newRole;
-                _repo.Update(user); // важно сохранить изменения в БД
-            }
+            if (user == null)
+            return;
+                // --- Защита роли SuperAdmin: ---
+            if (user.Role == Role.SuperAdmin)
+            throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
+            user.Role = newRole;
+            _repo.Update(user); // важно сохранить изменения в БД
         }
     }
 }

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SwipeVibe.Domain.Entities.User
 {
-    public enum Role { User = 0, Admin = 1 }
+    public enum Role { User = 0, Admin = 1, SuperAdmin=2 }
 
     public class User
     {

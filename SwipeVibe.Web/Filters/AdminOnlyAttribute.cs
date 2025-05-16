@@ -11,7 +11,7 @@ namespace SwipeVibe.Web.Filters
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             if (httpContext?.Session?["Role"] is string role)
-                return role == "Admin";
+                return role == "Admin" || role == "SuperAdmin";
 
             return false;
         }
