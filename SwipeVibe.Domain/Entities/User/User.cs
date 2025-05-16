@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SwipeVibe.Domain.Enums;
 
 namespace SwipeVibe.Domain.Entities.User
 {
-    public enum Role { User = 0, Admin = 1, SuperAdmin=2 }
 
     public class User
     {

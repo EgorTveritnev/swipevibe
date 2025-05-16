@@ -49,6 +49,7 @@
     <Compile Include="Entities\User\UserReturn.cs" />
     <Compile Include="Entities\User\UserUpdate.cs" />
     <Compile Include="Entities\Video\Video.cs" />
+    <Compile Include="Enums\URole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,8 +58,6 @@
       <Name>SwipeVibe.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enums\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

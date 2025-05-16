@@ -7,6 +7,7 @@ using SwipeVibe.BusinessLogic.BL;
 using SwipeVibe.BusinessLogic.Core;
 using SwipeVibe.Domain.Entities.User;
 using SwipeVibe.Web.Filters;
+using SwipeVibe.Domain.Enums;
 
 namespace SwipeVibe.Web.Controllers
 {

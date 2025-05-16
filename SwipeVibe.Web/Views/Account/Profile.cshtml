@@ -1,5 +1,6 @@
 ﻿@model SwipeVibe.Domain.Entities.User.UserReturn
 @using SwipeVibe.Domain.Entities.User
+@using SwipeVibe.Domain.Enums
 @{
     ViewBag.Title = "Профиль";
 }
@@ -605,6 +606,7 @@
             transform: translateY(-5px) rotate(90deg);
             box-shadow: 0 8px 25px rgba(255, 0, 128, 0.6);
         }
+
     @@keyframes fadeIn {
         from {
             opacity: 0;

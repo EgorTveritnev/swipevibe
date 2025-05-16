@@ -4,6 +4,7 @@ using System.Linq;
 using AutoMapper;
 using SwipeVibe.BusinessLogic.Interfaces;
 using SwipeVibe.Domain.Entities.User;
+using SwipeVibe.Domain.Enums;
 
 namespace SwipeVibe.BusinessLogic.Core
 {
