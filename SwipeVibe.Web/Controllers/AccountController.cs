@@ -59,10 +59,8 @@ namespace SwipeVibe.Web.Controllers
                 return View(model);
             }
 
-            // ВАЖНО: Сначала сохраняем роль
             Session["Role"] = user.Role.ToString();
 
-            // Затем создаём cookie
             var identityName = string.IsNullOrWhiteSpace(user.Email)
                 ? (string.IsNullOrWhiteSpace(user.Username) ? Guid.NewGuid().ToString() : user.Username)
                 : user.Email;
@@ -166,7 +164,15 @@ namespace SwipeVibe.Web.Controllers
             if (user == null)
                 return RedirectToAction("Login");
 
-            return View(user); 
+            ViewBag.Username = user.Username;
+            ViewBag.Email = user.Email;
+            ViewBag.AvatarUrl = string.IsNullOrWhiteSpace(user.AvatarUrl)
+      ? "https://cdn-icons-png.flaticon.com/512/4140/4140037.png"
+      : user.AvatarUrl;
+            ViewBag.Role = user.Role.ToString();
+            ViewBag.RegisteredDate = user.RegisteredDate.ToString("dd.MM.yyyy");
+
+            return View();
         }
         [UserOnly]
         [HttpGet]

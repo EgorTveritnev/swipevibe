@@ -1,12 +1,27 @@
-﻿@model IEnumerable<SwipeVibe.Domain.Entities.User.UserReturn>
-@using SwipeVibe.Domain.Entities.User
-@using SwipeVibe.Domain.Enums;
-@{
+﻿@{
     ViewBag.Title = "Управление пользователями";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style>
+    .table-responsive {
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .admin-table {
+        width: 100%;
+        min-width: 900px;
+        border-collapse: collapse;
+    }
+
+    .admin-table th, .admin-table td {
+        padding: 10px;
+        text-align: left;
+        vertical-align: middle;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
     .user-avatar {
         width: 40px;
         height: 40px;
@@ -14,7 +29,7 @@
         object-fit: cover;
     }
 
-    .status-badge {
+    .status-badge, .role-badge {
         display: inline-block;
         padding: 5px 10px;
         border-radius: 20px;
@@ -32,14 +47,6 @@
         color: #ff5252;
     }
 
-    .role-badge {
-        display: inline-block;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 500;
-    }
-
     .role-user {
         background: rgba(64, 158, 255, 0.15);
         color: #409EFF;
@@ -49,13 +56,15 @@
         background: rgba(255, 184, 0, 0.15);
         color: #FFB800;
     }
+
     .role-superadmin {
         background: rgba(156, 39, 176, 0.15);
         color: #9C27B0;
     }
+
     .user-actions {
         display: flex;
-        gap: 5px;
+        gap: 6px;
     }
 
     .video-action {
@@ -68,10 +77,26 @@
         color: var(--text-light);
     }
 
-        .video-action:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--accent-color);
+    .video-action:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--accent-color);
+    }
+
+    @@media (max-width: 768px) {
+        .admin-table {
+            font-size: 12px;
         }
+
+        .status-badge, .role-badge {
+            font-size: 10px;
+            padding: 4px 8px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+        }
+    }
 </style>
 
 <div class="admin-container">
@@ -80,147 +105,87 @@
         <p class="admin-subtitle">Мониторинг и управление аккаунтами пользователей</p>
     </div>
 
-    <div class="admin-tabs">
-        <a href="@Url.Action("Index", "Admin")" class="admin-tab">
-            <i class="fas fa-tachometer-alt"></i>
-            Сводка
-        </a>
-        <a href="@Url.Action("Videos", "Admin")" class="admin-tab">
-            <i class="fas fa-video"></i>
-            Видео
-        </a>
-        <a href="@Url.Action("Users", "Admin")" class="admin-tab active">
-            <i class="fas fa-users"></i>
-            Пользователи
-        </a>
-    </div>
-
     @if (TempData["SuccessMessage"] != null)
     {
-        <div class="alert alert-success">
-            @TempData["SuccessMessage"]
-        </div>
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
     }
 
     @if (TempData["ErrorMessage"] != null)
     {
-        <div class="alert alert-danger">
-            @TempData["ErrorMessage"]
-        </div>
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
     }
 
     <div class="admin-section">
         <div class="filter-container">
             <input type="text" id="searchInput" class="filter-input" placeholder="Поиск по имени пользователя или email...">
             <button class="filter-button">
-                <i class="fas fa-search"></i>
-                Найти
+                <i class="fas fa-search"></i> Найти
             </button>
         </div>
 
-        <table class="admin-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Аватар</th>
-                    <th>Имя пользователя</th>
-                    <th>Email</th>
-                    <th>Дата регистрации</th>
-                    <th>Статус</th>
-                    <th>Роль</th>
-                    <th>Действия</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null && Model.Any())
-                {
-                    foreach (var user in Model)
+        <div class="table-responsive">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Аватар</th>
+                        <th>Имя</th>
+                        <th>Email</th>
+                        <th>Дата регистрации</th>
+                        <th>Статус</th>
+                        <th>Роль</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td><img src="@(string.IsNullOrEmpty(user.AvatarUrl) ? "/Content/Images/avatars/default.png" : user.AvatarUrl)" class="user-avatar" alt="@user.Username" /></td>
+                                <td>@user.Username</td>
+                                <td>@user.Email</td>
+                                <td>@user.RegisteredDate.ToString("dd.MM.yyyy")</td>
+                                <td><span class="status-badge @(user.IsBlocked ? "status-blocked" : "status-active")">@(user.IsBlocked ? "Заблокирован" : "Активен")</span></td>
+                                <td><span class="role-badge @(user.Role == "SuperAdmin" ? "role-superadmin" : user.Role == "Admin" ? "role-admin" : "role-user")">@(user.Role == "SuperAdmin" ? "Суперадмин" : user.Role == "Admin" ? "Администратор" : "Пользователь")</span></td>
+                                <td class="user-actions">
+                                    @if (user.Role != "SuperAdmin")
+                                    {
+                                        <form action="@Url.Action("BlockUser", "Admin")" method="post" style="display:inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@user.Id" />
+                                            <button type="submit" class="video-action" title="@(user.IsBlocked ? "Разблокировать" : "Заблокировать")">
+                                                <i class="fas @(user.IsBlocked ? "fa-unlock" : "fa-ban")"></i>
+                                            </button>
+                                        </form>
+                                        <form action="@Url.Action("ChangeUserRole", "Admin")" method="post" style="display:inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@user.Id" />
+                                            <button type="submit" class="video-action" title="Изменить роль">
+                                                <i class="fas fa-user-shield"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <button class="video-action disabled" title="Роль суперадмина изменить нельзя" disabled>
+                                            <i class="fas fa-user-secret"></i>
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
                     {
                         <tr>
-                            <td>@user.Id</td>
-                            <td>
-                                <img src="@(string.IsNullOrEmpty(user.AvatarUrl)
-                                ? "/Content/Images/avatars/default.png"
-                                : user.AvatarUrl)"
-                                     alt="@user.Username" class="user-avatar" />
-                            </td>
-                            <td>@user.Username</td>
-                            <td>@user.Email</td>
-                            <td>@user.RegisteredDate.ToString("dd.MM.yyyy")</td>
-                            <td>
-                                <span class="status-badge @(user.IsBlocked ? "status-blocked" : "status-active")">
-                                    @(user.IsBlocked ? "Заблокирован" : "Активен")
-                                </span>
-                            </td>
-                            <td>
-                                <span class="role-badge
-                    @(user.Role == Role.SuperAdmin ? "role-superadmin" :
-                      user.Role == Role.Admin      ? "role-admin"      :
-                                                     "role-user")">
-                                    @(user.Role == Role.SuperAdmin ? "Суперадмин" :
-                      user.Role == Role.Admin      ? "Администратор" :
-                                                     "Пользователь")
-                                </span>
-                            </td>
-                            <td class="user-actions">
-                                @if (user.Role != Role.SuperAdmin)
-                                {
-                                    <form action="@Url.Action("BlockUser", "Admin")" method="post" style="display:inline">
-                                        @Html.AntiForgeryToken()
-                                        <input type="hidden" name="id" value="@user.Id" />
-                                        <button type="submit"
-                                                class="video-action"
-                                                title="@(user.IsBlocked ? "Разблокировать" : "Заблокировать")">
-                                            <i class="fas @(user.IsBlocked ? "fa-unlock" : "fa-ban")"></i>
-                                        </button>
-                                    </form>
-                                }
-
-                                @if (user.Role != Role.SuperAdmin)
-                                {
-                                    <form action="@Url.Action("ChangeUserRole", "Admin")"
-                                          method="post"
-                                          style="display:inline">
-                                        @Html.AntiForgeryToken()
-                                        <input type="hidden" name="id" value="@user.Id" />
-                                        <button type="submit"
-                                                class="video-action"
-                                                title="@(user.Role == Role.Admin
-                                         ? "Понизить до пользователя"
-                                         : "Повысить до администратора")">
-                                            <i class="fas @(user.Role == Role.Admin
-                                            ? "fa-user"
-                                            : "fa-user-shield")"></i>
-                                        </button>
-                                    </form>
-                                }
-                                else
-                                {
-                                    <button class="video-action disabled"
-                                            title="Роль суперадмина изменить нельзя"
-                                            disabled>
-                                        <i class="fas fa-user-secret"></i>
-                                    </button>
-                                }
-                            </td>
+                            <td colspan="8" class="text-center py-4 text-muted">Нет зарегистрированных пользователей</td>
                         </tr>
                     }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="8" class="text-center py-4 text-muted">
-                            Нет зарегистрированных пользователей
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-        <div class="pagination">
-            <div class="page-item active"><a href="#" class="page-link">1</a></div>
-            <div class="page-item"><a href="#" class="page-link">2</a></div>
-            <div class="page-item"><a href="#" class="page-link">3</a></div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -230,7 +195,7 @@
         $("#searchInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             $(".admin-table tbody tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
             });
         });
 

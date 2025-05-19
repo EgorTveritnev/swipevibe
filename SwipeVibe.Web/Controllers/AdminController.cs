@@ -5,9 +5,11 @@ using AutoMapper;
 using SwipeVibe.Web.Models;
 using SwipeVibe.BusinessLogic.BL;
 using SwipeVibe.BusinessLogic.Core;
-using SwipeVibe.Domain.Entities.User;
-using SwipeVibe.Web.Filters;
 using SwipeVibe.Domain.Enums;
+using SwipeVibe.Web.Filters;
+using SwipeVibe.Domain.Entities.User;
+using System.Collections.Generic;
+using System.Dynamic;
 
 namespace SwipeVibe.Web.Controllers
 {
@@ -17,23 +19,25 @@ namespace SwipeVibe.Web.Controllers
         private readonly AdminApi _adminService;
         private readonly UserApi _userService;
         private readonly VideoBL _videoService;
+        private readonly IMapper _mapper;      
 
         public AdminController()
         {
-            var mapper = new MapperConfiguration(cfg =>
+            var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<SwipeVibe.Domain.Entities.User.User, UserReturn>();
                 cfg.CreateMap<UserRegister, SwipeVibe.Domain.Entities.User.User>();
-            }).CreateMapper();
+            });
+
+            _mapper = config.CreateMapper();
 
             var repo = new UserRepositoryBL();
-            var session = new SessionBL(); 
-            _adminService = new AdminApi(repo, mapper);
-            _userService = new UserApi(repo, session, mapper);
+            var session = new SessionBL();
+
+            _adminService = new AdminApi(repo, _mapper);
+            _userService = new UserApi(repo, session, _mapper);
             _videoService = new VideoBL();
         }
-
-        // Главная панель администратора
         public ActionResult Index()
         {
             var videos = _videoService.GetAll().ToList();
@@ -47,24 +51,50 @@ namespace SwipeVibe.Web.Controllers
                 BlockedUsersCount = users.Count(u => u.IsBlocked),
                 TodayNewUsersCount = users.Count(u => u.RegisteredDate.Date == DateTime.Today),
                 TodayNewVideosCount = videos.Count(v => v.UploadDate.Date == DateTime.Today),
-                LatestVideos = videos.OrderByDescending(v => v.UploadDate).Take(5).ToList()
+                LatestVideos = videos.OrderByDescending(v => v.UploadDate)
+                                             .Take(5)
+                                             .ToList()
             };
 
             return View(dashboardModel);
         }
         public ActionResult Videos()
         {
-            var videos = _videoService.GetAll();
-            return View(videos);
+            var videoList = _videoService.GetAll()
+                                         .Select(v => new
+                                         {
+                                             v.Id,
+                                             v.Username,
+                                             v.Description,
+                                             v.UploadDate,
+                                             v.VideoUrl
+                                         })
+                                         .ToList();
+
+            return View(videoList);  
         }
         public ActionResult Users()
         {
-            var users = _userService.GetAllUsers();
-            return View(users);
-        }
+            var model = _adminService.GetAllUsers()
+                .Select(u =>
+                {
+                    dynamic d = new ExpandoObject();
+                    d.Id = u.Id;
+                    d.Username = u.Username;
+                    d.Email = u.Email;
+                    d.AvatarUrl = string.IsNullOrWhiteSpace(u.AvatarUrl)
+                                       ? "/content/default-avatar.png"
+                                       : u.AvatarUrl;
+                    d.RegisteredDate = u.RegisteredDate;
+                    d.IsBlocked = u.IsBlocked;
+                    d.Role = u.Role.ToString();
+                    return d;                    
+                })
+                .ToList();                    
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+            return View(model);                  
+        }
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult DeleteVideo(int id)
         {
             try
@@ -80,53 +110,46 @@ namespace SwipeVibe.Web.Controllers
             return RedirectToAction("Videos");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult BlockUser(int id)
         {
             try
             {
                 var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
-                if (user == null)
-                    throw new Exception("Пользователь не найден");
+                if (user == null) throw new Exception("Пользователь не найден");
 
-                if (user.IsBlocked)
-                    _adminService.Unblock(id);
-                else
-                    _adminService.Block(id);
+                if (user.IsBlocked) _adminService.Unblock(id);
+                else _adminService.Block(id);
 
-                TempData["SuccessMessage"] = "Статус пользователя изменен";
+                TempData["SuccessMessage"] = "Статус пользователя изменён";
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Ошибка при изменении статуса пользователя: {ex.Message}";
+                TempData["ErrorMessage"] = $"Ошибка при изменении статуса: {ex.Message}";
             }
 
             return RedirectToAction("Users");
         }
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult ChangeUserRole(int id)
         {
             try
             {
                 var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
-                if (user == null)
-                    throw new Exception("Пользователь не найден");
+                if (user == null) throw new Exception("Пользователь не найден");
 
                 if (user.Role == Role.SuperAdmin)
-                throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
-                var newRole = user.Role == Role.User
-                                          ? Role.Admin
-                                          : Role.User;
+                    throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
+
+                var newRole = user.Role == Role.User ? Role.Admin : Role.User;
                 _adminService.SetRole(id, newRole);
 
-                TempData["SuccessMessage"] = "Роль пользователя успешно изменена";
+                TempData["SuccessMessage"] = "Роль пользователя изменена";
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Ошибка при изменении роли пользователя: {ex.Message}";
+                TempData["ErrorMessage"] = $"Ошибка при изменении роли: {ex.Message}";
             }
 
             return RedirectToAction("Users");

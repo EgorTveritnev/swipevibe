@@ -1,6 +1,4 @@
-﻿@model IEnumerable<SwipeVibe.Domain.Entities.Comment.Comment>
-
-@functions{
+﻿@functions{
     string AvatarUrl(string username)
         => "https://i.pravatar.cc/40?u=" + Uri.EscapeDataString(username ?? "guest");
 }

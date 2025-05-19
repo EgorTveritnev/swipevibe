@@ -1,5 +1,4 @@
-﻿@model IEnumerable<SwipeVibe.Domain.Entities.Video.Video>
-@{
+﻿@{
     ViewBag.Title = "Управление видео";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -186,29 +185,23 @@
                 </tr>
             </thead>
             <tbody>
-                @if (Model != null && Model.Any())
+                @{
+                    var videos = ViewBag.VideoList as IEnumerable<dynamic>;
+                }
+
+                @if (videos != null && videos.Any())
                 {
-                    foreach (var video in Model)
+                    foreach (var video in videos)
                     {
                         <tr>
                             <td>@video.Id</td>
-                            <td>
-                                <span class="text-truncate" title="@video.Description">
-                                    @video.Description
-                                </span>
-                            </td>
+                            <td>@video.Description</td>
                             <td>@video.Username</td>
                             <td>@video.UploadDate.ToString("dd.MM.yyyy HH:mm")</td>
                             <td>@video.LikesCount</td>
                             <td>@video.CommentsCount</td>
                             <td>
-                                <form action="@Url.Action("DeleteVideo", "Admin")" method="post" onsubmit="return confirm('Вы уверены, что хотите удалить это видео?')">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@video.Id" />
-                                    <button type="submit" class="video-action delete" title="Удалить видео">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
+                                <!-- действия -->
                             </td>
                         </tr>
                     }

@@ -295,31 +295,33 @@
         <h1 class="admin-title">Панель администрирования</h1>
         <p class="admin-subtitle">Управление пользователями и контентом SwipeVibe</p>
     </div>
-    
-    <div class="admin-cards">
-        <div class="admin-card card-users">
+
+    <a href="@Url.Action("Users", "Admin")" style="text-decoration: none;">
+        <div class="admin-card card-users" style="cursor: pointer;">
             <div class="card-icon">
                 <i class="fas fa-users"></i>
             </div>
             <div class="card-value">@Model.RegisteredUsersCount</div>
             <div class="card-label">Пользователей</div>
         </div>
-        
-        <div class="admin-card card-videos">
+    </a>
+    <a href="@Url.Action("Videos", "Admin")" style="text-decoration: none;">
+        <div class="admin-card card-videos" style="cursor: pointer;">
             <div class="card-icon">
                 <i class="fas fa-video"></i>
             </div>
             <div class="card-value">@Model.TotalVideosCount</div>
             <div class="card-label">Видео</div>
         </div>
-          <div class="admin-card card-active">
+    </a>
+        <div class="admin-card card-active">
             <div class="card-icon">
                 <i class="fas fa-user-check"></i>
             </div>
             <div class="card-value">@Model.ActiveUsersCount</div>
             <div class="card-label">Активных пользователей</div>
         </div>
-        
+
         <div class="admin-card card-blocked">
             <div class="card-icon">
                 <i class="fas fa-user-slash"></i>
@@ -327,7 +329,7 @@
             <div class="card-value">@Model.BlockedUsersCount</div>
             <div class="card-label">Заблокированных</div>
         </div>
-    </div>
+</div>
       <div class="admin-section">
         <div style="display: flex; margin-bottom: 20px;">
             <div style="flex: 1; background: var(--card-bg); border-radius: 10px; padding: 15px; margin-right: 10px;">

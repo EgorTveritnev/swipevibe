@@ -1,7 +1,4 @@
-﻿@model SwipeVibe.Domain.Entities.User.UserReturn
-@using SwipeVibe.Domain.Entities.User
-@using SwipeVibe.Domain.Enums
-@{
+﻿@{
     ViewBag.Title = "Профиль";
 }
 
@@ -10,12 +7,15 @@
         <div class="profile-cover" style="background: linear-gradient(135deg, #FF0080, #7928CA);"></div>
         <div class="profile-info">
             <div class="profile-avatar glow-effect">
-                <img src="@(!string.IsNullOrWhiteSpace(Model.AvatarUrl) ? Model.AvatarUrl : "https://i.pravatar.cc/150?img=13")" alt="User profile">
+                <img src="@(string.IsNullOrWhiteSpace(ViewBag.AvatarUrl)
+    ? "https://cdn.pixabay.com/photo/2021/09/15/10/32/avatar-6622083_1280.png"
+    : ViewBag.AvatarUrl)" alt="Аватар пользователя" />
+
                 <div class="edit-avatar">
                     <i class="fas fa-camera"></i>
                 </div>
             </div>
-            <div class="profile-username animated-gradient-text">@Model.Username</div>
+            <div class="profile-username animated-gradient-text">@ViewBag.Username</div>
             <div class="profile-bio-button glass-card">
                 Создаю контент о путешествиях и еде 🌍🍕<br>
                 Подписывайтесь на мои приключения!
@@ -44,7 +44,7 @@
                 <button class="profile-share-btn glass-card">
                     <i class="fas fa-share-alt"></i>
                 </button>
-                @if (Model.Role == Role.Admin || Model.Role == Role.SuperAdmin)
+                @if (ViewBag.Role == "Admin" || ViewBag.Role == "SuperAdmin")
                 {
                     <a href="@Url.Action("Index", "Admin")" class="profile-admin-btn glass-card">
                         <i class="fas fa-shield-alt"></i> Админ-панель
