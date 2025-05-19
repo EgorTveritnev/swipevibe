@@ -13,7 +13,7 @@ namespace SwipeVibe.BusinessLogic.Interfaces
         IEnumerable<UserReturn> GetAllUsers();
         void Block(int id);
         void Unblock(int id);
-        void SetRole(int id, Role role);
+        void SetRole(int id, string role);
     }
 }
 

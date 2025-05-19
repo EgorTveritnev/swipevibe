@@ -10,7 +10,12 @@ namespace SwipeVibe.BusinessLogic
 {
     public class AutoMapperProfile : Profile
     {
-        public AutoMapperProfile() => CreateMap<User, UserReturn>();
+        public AutoMapperProfile()
+        {
+            CreateMap<User, UserReturn>()
+                .ForMember(d => d.Role,
+                           o => o.MapFrom(s => s.Role.ToString()));
+        }
     }
 
     public static class MapperBootstrap

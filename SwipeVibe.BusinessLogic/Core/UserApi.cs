@@ -37,7 +37,7 @@ namespace SwipeVibe.BusinessLogic.Core
                 Email = user.Email,
                 AvatarUrl = user.AvatarUrl,
                 RegisteredDate = user.CreatedAt,
-                Role = user.Role,
+                Role = user.Role.ToString(),
                 IsBlocked = user.IsBlocked
             };
         }

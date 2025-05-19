@@ -22,7 +22,9 @@ namespace SwipeVibe.Web.Controllers
         {
             var mapper = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<SwipeVibe.Domain.Entities.User.User, UserReturn>();
+                cfg.CreateMap<SwipeVibe.Domain.Entities.User.User, UserReturn>()
+                           .ForMember(d => d.Role,
+                            o => o.MapFrom(s => s.Role));   
                 cfg.CreateMap<UserRegister, SwipeVibe.Domain.Entities.User.User>();
             }).CreateMapper();
 
@@ -59,14 +61,14 @@ namespace SwipeVibe.Web.Controllers
                 return View(model);
             }
 
-            Session["Role"] = user.Role.ToString();
+            Session["Role"] = user.Role;
 
             var identityName = string.IsNullOrWhiteSpace(user.Email)
                 ? (string.IsNullOrWhiteSpace(user.Username) ? Guid.NewGuid().ToString() : user.Username)
                 : user.Email;
 
             FormsAuthentication.SetAuthCookie(identityName, false);
-            var roles = user.Role.ToString();
+            var roles = user.Role;
 
             var ticket = new FormsAuthenticationTicket(
                 1,

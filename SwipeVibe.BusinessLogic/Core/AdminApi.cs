@@ -38,14 +38,16 @@ namespace SwipeVibe.BusinessLogic.Core
                 user.IsBlocked = false;
         }
 
-        public void SetRole(int id, Role newRole)
+        public void SetRole(int id, string newRole)
         {
             var user = _repo.ById(id);
             if (user == null)
             return;
             if (user.Role == Role.SuperAdmin)
             throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
-            user.Role = newRole;
+                 if (!Enum.TryParse<Role>(newRole, true, out var roleEnum))
+                 throw new ArgumentException("Неверная роль", nameof(newRole));
+            user.Role = roleEnum;
             _repo.Update(user); 
         }
     }

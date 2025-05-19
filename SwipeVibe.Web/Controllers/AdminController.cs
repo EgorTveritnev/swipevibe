@@ -25,7 +25,9 @@ namespace SwipeVibe.Web.Controllers
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<SwipeVibe.Domain.Entities.User.User, UserReturn>();
+                cfg.CreateMap<SwipeVibe.Domain.Entities.User.User, UserReturn>()
+                    .ForMember(d => d.Role,
+                    o => o.MapFrom(s => s.Role.ToString()));
                 cfg.CreateMap<UserRegister, SwipeVibe.Domain.Entities.User.User>();
             });
 
@@ -87,7 +89,7 @@ namespace SwipeVibe.Web.Controllers
                                        : u.AvatarUrl;
                     d.RegisteredDate = u.RegisteredDate;
                     d.IsBlocked = u.IsBlocked;
-                    d.Role = u.Role.ToString();
+                    d.Role = u.Role;
                     return d;                    
                 })
                 .ToList();                    
@@ -139,10 +141,12 @@ namespace SwipeVibe.Web.Controllers
                 var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
                 if (user == null) throw new Exception("Пользователь не найден");
 
-                if (user.Role == Role.SuperAdmin)
+                if (string.Equals(user.Role, "SuperAdmin", StringComparison.OrdinalIgnoreCase))
                     throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
 
-                var newRole = user.Role == Role.User ? Role.Admin : Role.User;
+               string newRole = string.Equals(user.Role, "User", StringComparison.OrdinalIgnoreCase)
+                     ? "Admin"
+                     : "User";
                 _adminService.SetRole(id, newRole);
 
                 TempData["SuccessMessage"] = "Роль пользователя изменена";

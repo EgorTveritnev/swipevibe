@@ -163,7 +163,9 @@
                                         <form action="@Url.Action("ChangeUserRole", "Admin")" method="post" style="display:inline">
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="id" value="@user.Id" />
-                                            <button type="submit" class="video-action" title="Изменить роль">
+                                               <button type="submit"
+                                                         class="video-action"
+                                                         title="@(user.Role == "Admin" ? "Понизить роль" : "Повысить роль")">
                                                 <i class="fas fa-user-shield"></i>
                                             </button>
                                         </form>
