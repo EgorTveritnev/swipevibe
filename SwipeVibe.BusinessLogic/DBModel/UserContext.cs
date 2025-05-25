@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using SwipeVibe.Domain.Entities.User;
 
-public class SwipeVibeDbContext : DbContext
+namespace SwipeVibe.BusinessLogic.DBModel
 {
-    public SwipeVibeDbContext() : base("name=SwipeVibeConnection") {}
-    public DbSet<User> Users { get; set; }
+    public class UserContext : DbContext
+    {
+        public UserContext() : base("name=SwipeVibe") { }
+        public DbSet<User> Users { get; set; }
+    }
 }

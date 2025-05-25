@@ -1,99 +1,124 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
-using SwipeVibe.BusinessLogic.Interfaces;
 using SwipeVibe.Domain.Entities.User;
+using SwipeVibe.BusinessLogic.DBModel;
 using SwipeVibe.Domain.Enums;
 
 namespace SwipeVibe.BusinessLogic.Core
 {
-    public class UserApi : IUser
+    public class UserApi
     {
-        private readonly IUserRepository _repo;
-        private readonly ISession _session;
-        private readonly IMapper _m;
-
-        public UserApi(IUserRepository repo, ISession session, IMapper mapper)
+        protected UserReturn ByIdAction(int id)
         {
-            _repo = repo;
-            _session = session;
-            _m = mapper;
-        }
-
-        public UserReturn Authenticate(string email, string password)
-        {
-            var user = _repo.ByEmail(email);
-            if (user == null || user.Password != password || user.IsBlocked)
-                return null;
-
-            _session.SetUserId(user.Id);
-            user.LastLogin = DateTime.Now;
-            _repo.Update(user); 
-            return new UserReturn
+            using (var db = new UserContext())
             {
-                Id = user.Id,
-                Username = user.Username,
-                Email = user.Email,
-                AvatarUrl = user.AvatarUrl,
-                RegisteredDate = user.CreatedAt,
-                Role = user.Role.ToString(),
-                IsBlocked = user.IsBlocked
-            };
+                var u = db.Users.FirstOrDefault(x => x.Id == id);
+                if (u == null) return null;
+
+                return new UserReturn
+                {
+                    Id = u.Id,
+                    Username = u.Username,
+                    Email = u.Email,
+                    AvatarUrl = u.AvatarUrl,
+                    RegisteredDate = u.CreatedAt,
+                    Role = u.Role.ToString(),
+                    IsBlocked = u.IsBlocked
+                };
+            }
         }
 
-        public void Logout(int userId)
+        protected void UpdateAction(int id, UserUpdate upd)
         {
-            _session.Clear();
-        }
-
-        public int Register(UserRegister dto)
-        {
-            if (_repo.ByEmail(dto.Email) != null)
-                throw new ArgumentException("Email уже используется");
-
-            var user = new User
+            using (var db = new UserContext())
             {
-                Username = dto.Username,
-                Email = dto.Email,
-                Password = dto.Password,
-                Role = Role.User,
-                CreatedAt = DateTime.UtcNow,
-                IsBlocked = false
-            };
+                var u = db.Users.FirstOrDefault(x => x.Id == id);
+                if (u == null) return;
 
-            _repo.Add(user);
-            return user.Id;
-        }
-        public void GeneratePasswordResetCode(string email)
-        {
-            var user = _repo.ByEmail(email);
-            if (user == null)
-                throw new ArgumentException("Пользователь не найден");
+                if (!string.IsNullOrWhiteSpace(upd.Username))
+                    u.Username = upd.Username;
 
-            user.ResetPasswordCode = Guid.NewGuid().ToString();
-            user.ResetPasswordCodeExpiration = DateTime.UtcNow.AddHours(1);
+                if (!string.IsNullOrWhiteSpace(upd.Email))
+                    u.Email = upd.Email;
 
-            _repo.Update(user);
-        }        public UserReturn GetById(int id) => _m.Map<UserReturn>(_repo.ById(id));
-        public IEnumerable<UserReturn> GetAllUsers() => _repo.All().Select(_m.Map<UserReturn>);
-        
-        public void UpdateProfile(int id, UserUpdate dto)
-        {
-            var user = _repo.ById(id) ?? throw new KeyNotFoundException();
+                if (!string.IsNullOrWhiteSpace(upd.NewPassword))
+                    u.Password = upd.NewPassword;
 
-            if (!string.IsNullOrWhiteSpace(dto.Username)) user.Username = dto.Username;
-            if (!string.IsNullOrWhiteSpace(dto.Email)) user.Email = dto.Email;
-            if (!string.IsNullOrWhiteSpace(dto.NewPassword)) user.Password = dto.NewPassword;
-
-            _repo.Update(user);
+                db.SaveChanges();
+            }
         }
 
-        public void UpdateAvatar(int userId, string avatarUrl)
+        protected UserLoginResult LoginAction(UserLoginData creds)
         {
-            var user = _repo.ById(userId) ?? throw new KeyNotFoundException("Пользователь не найден");
-            user.AvatarUrl = avatarUrl;
-            _repo.Update(user);
+            using (var db = new UserContext())
+            {
+                var u = db.Users
+                    .FirstOrDefault(x => x.Email == creds.Email && x.Password == creds.Password);
+
+                if (u == null)
+                    return new UserLoginResult
+                    {
+                        Status = false,
+                        StatusMsg = "Invalid email or password.",
+                        UserInfo = null
+                    };
+
+                u.LastLogin = System.DateTime.UtcNow;
+                db.SaveChanges();
+
+                return new UserLoginResult
+                {
+                    Status = true,
+                    StatusMsg = "Login successful.",
+                    UserInfo = new UserReturn
+                    {
+                        Id = u.Id,
+                        Username = u.Username,
+                        Email = u.Email,
+                        AvatarUrl = u.AvatarUrl,
+                        RegisteredDate = u.CreatedAt,
+                        Role = u.Role.ToString(),
+                        IsBlocked = u.IsBlocked
+                    }
+                };
+            }
+        }
+
+        protected UserRegisterResult RegisterAction(UserRegisterData dto)
+        {
+            using (var db = new UserContext())
+            {
+                if (db.Users.Any(x => x.Email == dto.Email))
+                    return new UserRegisterResult
+                    {
+                        Status = false,
+                        StatusMsg = "User already exists."
+                    };
+
+                var u = new User
+                {
+                    Username = dto.Username,
+                    Email = dto.Email,
+                    Password = dto.Password,
+                    CreatedAt = System.DateTime.UtcNow,
+                    Role = Role.User
+                };
+
+                db.Users.Add(u);
+                db.SaveChanges();
+
+                return new UserRegisterResult
+                {
+                    Status = true,
+                    StatusMsg = "Registration successful.",
+                    User = u
+                };
+            }
+        }
+
+        protected void LogoutAction(int userId)
+        {
         }
     }
 }

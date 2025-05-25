@@ -1,37 +1,27 @@
 using System;
+using System.IO;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using AutoMapper;
-using SwipeVibe.Web.Models;
-using SwipeVibe.BusinessLogic.BL;
+using SwipeVibe.BusinessLogic;
 using SwipeVibe.BusinessLogic.Interfaces;
 using SwipeVibe.Domain.Entities.User;
-using System.Web;
-using System.Linq;
 using SwipeVibe.Web.Filters;
-using System.IO;
+using SwipeVibe.Web.Models;
 
 namespace SwipeVibe.Web.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IUser _accountService;        public AccountController()
-        {
-            // Настройка AutoMapper
-            var mapperConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<SwipeVibe.Domain.Entities.User.User, UserReturn>()
-                   .ForMember(d => d.Role, o => o.MapFrom(s => s.Role.ToString()));
-                cfg.CreateMap<UserRegister, SwipeVibe.Domain.Entities.User.User>();
-            });
-            var mapper = mapperConfig.CreateMapper();
+        private readonly IUser _userBL;
+        private readonly ISession _sessionBL;
 
-            // Создание зависимостей
-            var repo = new UserRepositoryBL();
-            var session = new SessionBL();
-            
-            // Создание экземпляра AccountBL
-            _accountService = new AccountBL(repo, session, mapper);
+        public AccountController()
+        {
+            var bl = new BusinessLogic.BusinessLogic();
+            _userBL = bl.User;
+            _sessionBL = bl.Session;
         }
 
         [HttpGet]
@@ -39,7 +29,9 @@ namespace SwipeVibe.Web.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
-        }        [HttpPost]
+        }
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
@@ -48,44 +40,20 @@ namespace SwipeVibe.Web.Controllers
 
             try
             {
-                var user = _accountService.Authenticate(model.Email, model.Password);
-
-                if (user == null)
+                var loginData = new UserLoginData
                 {
-                    ModelState.AddModelError("", "Неверный email или пароль");
-                    return View(model);
-                }
-
-                if (user.IsBlocked)
-                {
-                    ModelState.AddModelError("", "Аккаунт заблокирован");
-                    return View(model);
-                }
-
-                Session["Role"] = user.Role;
-
-                var identityName = string.IsNullOrWhiteSpace(user.Email)
-                    ? (string.IsNullOrWhiteSpace(user.Username) ? Guid.NewGuid().ToString() : user.Username)
-                    : user.Email;
-
-                FormsAuthentication.SetAuthCookie(identityName, false);
-                var roles = user.Role;
-
-                var ticket = new FormsAuthenticationTicket(
-                    1,
-                    user.Email,
-                    DateTime.Now,
-                    DateTime.Now.AddMinutes(30),
-                    false,
-                    roles,
-                    FormsAuthentication.FormsCookiePath);
-
-                string encrypted = FormsAuthentication.Encrypt(ticket);
-                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted)
-                {
-                    HttpOnly = true
+                    Email = model.Email,
+                    Password = model.Password,
+                    LoginIp = Request.UserHostAddress,
+                    LoginDateTime = DateTime.Now
                 };
-                Response.Cookies.Add(cookie);
+
+                var result = _sessionBL.Login(loginData);
+
+                Session["User"] = result.UserInfo;
+                Session["Role"] = result.UserInfo.Role;
+
+                FormsAuthentication.SetAuthCookie(result.UserInfo.Email, model.RememberMe);
 
                 return RedirectToLocal(returnUrl);
             }
@@ -95,10 +63,11 @@ namespace SwipeVibe.Web.Controllers
                 return View(model);
             }
         }
-
+        [UserOnly]
         [HttpGet]
         public ActionResult Logout()
         {
+            Session.Clear();
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
@@ -107,7 +76,9 @@ namespace SwipeVibe.Web.Controllers
         public ActionResult Register()
         {
             return View();
-        }        [HttpPost]
+        }
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
@@ -116,14 +87,16 @@ namespace SwipeVibe.Web.Controllers
 
             try
             {
-                var userRegister = new UserRegister
+                var regData = new UserRegisterData
                 {
                     Username = model.Username,
                     Email = model.Email,
-                    Password = model.Password
+                    Password = model.Password,
+                    RegisterTime = DateTime.UtcNow
                 };
 
-                _accountService.Register(userRegister);
+                var result = _sessionBL.Register(regData);
+                TempData["Success"] = "Регистрация успешна!";
                 return RedirectToAction("Login");
             }
             catch (Exception ex)
@@ -131,14 +104,6 @@ namespace SwipeVibe.Web.Controllers
                 ModelState.AddModelError("", ex.Message);
                 return View(model);
             }
-        }
-
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-                return Redirect(returnUrl);
-
-            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -154,34 +119,24 @@ namespace SwipeVibe.Web.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            try
-            {
-                _accountService.GeneratePasswordResetCode(model.Email);
-                TempData["Message"] = "Ссылка на сброс пароля отправлена (эмуляция)";
-                return RedirectToAction("Login");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View(model);
-            }
+            // Ваша реализация (например: отправка кода на почту)
+            TempData["Message"] = "Ссылка на сброс пароля отправлена (эмуляция)";
+            return RedirectToAction("Login");
         }
 
-        public new ActionResult Profile()
+        [UserOnly]
+        public ActionResult Profile()
         {
-            var email = User.Identity.Name;
-            var user = _accountService.GetAllUsers().FirstOrDefault(u => u.Email == email);
-
-            if (user == null)
+            if (!(Session["User"] is UserReturn user))
                 return RedirectToAction("Login");
 
-            ViewBag.Username = user.Username;
-            ViewBag.Email = user.Email;
-            ViewBag.AvatarUrl = string.IsNullOrWhiteSpace(user.AvatarUrl)
-                ? "https://cdn-icons-png.flaticon.com/512/4140/4140037.png"
-                : user.AvatarUrl;
-            ViewBag.Role = user.Role.ToString();
-            ViewBag.RegisteredDate = user.RegisteredDate.ToString("dd.MM.yyyy");
+            var upToDateUser = _userBL.ById(user.Id);
+
+            ViewBag.Role = upToDateUser.Role;
+            ViewBag.Username = upToDateUser.Username;
+            ViewBag.AvatarUrl = upToDateUser.AvatarUrl;
+            ViewBag.Email = upToDateUser.Email;
+            ViewBag.RegisteredDate = upToDateUser.RegisteredDate.ToString("dd.MM.yyyy");
 
             return View();
         }
@@ -190,45 +145,49 @@ namespace SwipeVibe.Web.Controllers
         [HttpGet]
         public ActionResult EditProfile()
         {
-            var email = User.Identity.Name;
-            var user = _accountService.GetAllUsers().FirstOrDefault(u => u.Email == email);
+            if (!(Session["User"] is UserReturn user))
+                return RedirectToAction("Login");
 
-            if (user == null) return RedirectToAction("Login");
+            var data = _userBL.ById(user.Id);
 
             return View(new EditProfileViewModel
             {
-                Username = user.Username,
-                Email = user.Email,
-                CurrentAvatarUrl = user.AvatarUrl
+                Username = data.Username,
+                Email = data.Email,
+                CurrentAvatarUrl = data.AvatarUrl
             });
-        }        [UserOnly]
+        }
+
+        [UserOnly]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditProfile(EditProfileViewModel model)
         {
-            var email = User.Identity.Name;
-            var user = _accountService.GetAllUsers().FirstOrDefault(u => u.Email == email);
+            if (!(Session["User"] is UserReturn user))
+                return RedirectToAction("Login");
 
-            if (user == null) return RedirectToAction("Login");
+            if (!ModelState.IsValid)
+                return View(model);
 
             try
             {
-                var userUpdate = new UserUpdate
+                var upd = new UserUpdate
                 {
                     Username = model.Username,
                     Email = model.Email
                 };
 
-                // Обновляем основные данные профиля
-                _accountService.UpdateProfile(user.Id, userUpdate);
+                _userBL.Update(user.Id, upd);
 
-                // Обрабатываем аватар отдельно, если он загружен
                 if (model.Avatar != null && model.Avatar.ContentLength > 0)
                 {
                     var avatarUrl = ProcessAvatarUpload(model.Avatar);
-                    _accountService.UpdateAvatar(user.Id, avatarUrl);
+                   // _userBL.UpdateAvatar(user.Id, avatarUrl);
                 }
 
+                Session["User"] = _userBL.ById(user.Id);
+
+                TempData["Success"] = "Профиль обновлён";
                 return RedirectToAction("Profile");
             }
             catch (Exception ex)
@@ -240,29 +199,31 @@ namespace SwipeVibe.Web.Controllers
 
         private string ProcessAvatarUpload(HttpPostedFileBase avatar)
         {
-            // Валидация файла
             var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-            var fileExtension = Path.GetExtension(avatar.FileName).ToLower();
-            
-            if (!allowedExtensions.Contains(fileExtension))
-                throw new InvalidOperationException("Недопустимый формат файла. Разрешены только JPG, PNG, GIF");
+            var extension = Path.GetExtension(avatar.FileName).ToLower();
+            if (!allowedExtensions.Contains(extension))
+                throw new InvalidOperationException("Недопустимый формат файла");
 
-            if (avatar.ContentLength > 5 * 1024 * 1024) // 5MB
-                throw new InvalidOperationException("Размер файла не должен превышать 5MB");
+            if (avatar.ContentLength > 5 * 1024 * 1024)
+                throw new InvalidOperationException("Файл слишком большой (макс. 5MB)");
 
-            // Создаем уникальное имя файла
-            var fileName = Guid.NewGuid().ToString() + fileExtension;
-            var uploadPath = Path.Combine(Server.MapPath("~/"), "Content", "uploads", "avatars");
-            
-            // Создаем папку если её нет
-            if (!Directory.Exists(uploadPath))
-                Directory.CreateDirectory(uploadPath);
+            var fileName = Guid.NewGuid() + extension;
+            var path = Path.Combine(Server.MapPath("~/Content/uploads/avatars"), fileName);
 
-            var filePath = Path.Combine(uploadPath, fileName);
-            avatar.SaveAs(filePath);
+            if (!Directory.Exists(Path.GetDirectoryName(path)))
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
 
-            // Возвращаем относительный путь для веб-приложения
+            avatar.SaveAs(path);
             return "/Content/uploads/avatars/" + fileName;
         }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

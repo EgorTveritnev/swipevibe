@@ -10,10 +10,10 @@ namespace SwipeVibe.BusinessLogic.Interfaces
 {
     public interface IAdmin
     {
-        IEnumerable<UserReturn> GetAllUsers();
-        void Block(int id);
-        void Unblock(int id);
-        void SetRole(int id, string role);
+        IReadOnlyList<UserReturn> AllUsers();
+        void Block(int userId);
+        void Unblock(int userId);
+        void SetRole(int userId, Role newRole);
     }
 }
 

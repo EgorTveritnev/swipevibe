@@ -6,19 +6,13 @@ using System.Threading.Tasks;
 using System.Web;
 using SwipeVibe.Domain.Entities.User;
 
-    namespace SwipeVibe.BusinessLogic.Interfaces
-    {        public interface IUser
-        {
-            int Register(UserRegister dto);
+namespace SwipeVibe.BusinessLogic.Interfaces
+{
+    public interface IUser
+    {
+        UserReturn ById(int id);
 
-            UserReturn Authenticate(string email, string password); 
-            void Logout(int userId); 
+        void Update(int id, UserUpdate updateData);
 
-            UserReturn GetById(int id);
-            IEnumerable<UserReturn> GetAllUsers();
-
-            void UpdateProfile(int id, UserUpdate dto);
-            void UpdateAvatar(int userId, string avatarUrl);
-            void GeneratePasswordResetCode(string email);
-        }
     }
+}

@@ -1,83 +1,57 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using AutoMapper;
-using SwipeVibe.Web.Models;
-using SwipeVibe.BusinessLogic.BL;
-using SwipeVibe.BusinessLogic.Core;
+using SwipeVibe.BusinessLogic;
+using SwipeVibe.BusinessLogic.Interfaces;
 using SwipeVibe.Domain.Enums;
-using SwipeVibe.Web.Filters;
 using SwipeVibe.Domain.Entities.User;
-using System.Collections.Generic;
+using SwipeVibe.Web.Models;
 using System.Dynamic;
+using System.Collections.Generic;
+using SwipeVibe.Web.Filters;
 
 namespace SwipeVibe.Web.Controllers
 {
     [AdminOnly]
     public class AdminController : Controller
     {
-        private readonly AdminApi _adminService;
-        private readonly UserApi _userService;
-        private readonly VideoBL _videoService;
-        private readonly IMapper _mapper;      
+        private readonly IAdmin _adminBL;
+        private readonly IUser _userBL;
+        private readonly IVideo _videoBL;
 
         public AdminController()
         {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<SwipeVibe.Domain.Entities.User.User, UserReturn>()
-                    .ForMember(d => d.Role,
-                    o => o.MapFrom(s => s.Role.ToString()));
-                cfg.CreateMap<UserRegister, SwipeVibe.Domain.Entities.User.User>();
-            });
-
-            _mapper = config.CreateMapper();
-
-            var repo = new UserRepositoryBL();
-            var session = new SessionBL();
-
-            _adminService = new AdminApi(repo, _mapper);
-            _userService = new UserApi(repo, session, _mapper);
-            _videoService = new VideoBL();
+            var bl = new BusinessLogic.BusinessLogic();
+            _adminBL = bl.Admin;
+            _userBL = bl.User;
+            _videoBL = bl.Video;
         }
+
         public ActionResult Index()
         {
-            var videos = _videoService.GetAll().ToList();
-            var users = _userService.GetAllUsers().ToList();
+            var allUsers = _adminBL.AllUsers();
+            var allVideos = _videoBL.GetAll();
 
-            var dashboardModel = new AdminDashboardViewModel
+            var model = new AdminDashboardViewModel
             {
-                RegisteredUsersCount = users.Count,
-                TotalVideosCount = videos.Count,
-                ActiveUsersCount = users.Count(u => !u.IsBlocked),
-                BlockedUsersCount = users.Count(u => u.IsBlocked),
-                TodayNewUsersCount = users.Count(u => u.RegisteredDate.Date == DateTime.Today),
-                TodayNewVideosCount = videos.Count(v => v.UploadDate.Date == DateTime.Today),
-                LatestVideos = videos.OrderByDescending(v => v.UploadDate)
-                                             .Take(5)
-                                             .ToList()
+                RegisteredUsersCount = allUsers.Count,
+                ActiveUsersCount = allUsers.Count(u => !u.IsBlocked),
+                BlockedUsersCount = allUsers.Count(u => u.IsBlocked),
+                TodayNewUsersCount = allUsers.Count(u => u.RegisteredDate.Date == DateTime.Today),
+
+                TotalVideosCount = allVideos.Count(),
+                TodayNewVideosCount = allVideos.Count(v => v.UploadDate.Date == DateTime.Today),
+                LatestVideos = allVideos.OrderByDescending(v => v.UploadDate)
+                                        .Take(5)
+                                        .ToList()
             };
 
-            return View(dashboardModel);
+            return View(model);
         }
-        public ActionResult Videos()
-        {
-            var videoList = _videoService.GetAll()
-                                         .Select(v => new
-                                         {
-                                             v.Id,
-                                             v.Username,
-                                             v.Description,
-                                             v.UploadDate,
-                                             v.VideoUrl
-                                         })
-                                         .ToList();
 
-            return View(videoList);  
-        }
         public ActionResult Users()
         {
-            var model = _adminService.GetAllUsers()
+            var model = _adminBL.AllUsers()
                 .Select(u =>
                 {
                     dynamic d = new ExpandoObject();
@@ -90,25 +64,40 @@ namespace SwipeVibe.Web.Controllers
                     d.RegisteredDate = u.RegisteredDate;
                     d.IsBlocked = u.IsBlocked;
                     d.Role = u.Role;
-                    return d;                    
+                    return d;
                 })
-                .ToList();                    
+                .ToList();
 
-            return View(model);                  
+            return View(model);
         }
+
+        public ActionResult Videos()
+        {
+            var model = _videoBL.GetAll()
+                .Select(v => new
+                {
+                    v.Id,
+                    v.Username,
+                    v.Description,
+                    v.UploadDate,
+                    v.VideoUrl
+                }).ToList();
+
+            return View(model);
+        }
+
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult DeleteVideo(int id)
         {
             try
             {
-                _videoService.Delete(id);
-                TempData["SuccessMessage"] = "Видео успешно удалено";
+                _videoBL.Delete(id);
+                TempData["SuccessMessage"] = "Видео удалено успешно.";
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Ошибка при удалении видео: {ex.Message}";
+                TempData["ErrorMessage"] = $"Ошибка удаления видео: {ex.Message}";
             }
-
             return RedirectToAction("Videos");
         }
 
@@ -117,19 +106,18 @@ namespace SwipeVibe.Web.Controllers
         {
             try
             {
-                var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
+                var user = _userBL.ById(id);
                 if (user == null) throw new Exception("Пользователь не найден");
 
-                if (user.IsBlocked) _adminService.Unblock(id);
-                else _adminService.Block(id);
+                if (user.IsBlocked) _adminBL.Unblock(id);
+                else _adminBL.Block(id);
 
                 TempData["SuccessMessage"] = "Статус пользователя изменён";
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Ошибка при изменении статуса: {ex.Message}";
+                TempData["ErrorMessage"] = $"Ошибка изменения статуса: {ex.Message}";
             }
-
             return RedirectToAction("Users");
         }
 
@@ -138,24 +126,21 @@ namespace SwipeVibe.Web.Controllers
         {
             try
             {
-                var user = _userService.GetAllUsers().FirstOrDefault(u => u.Id == id);
+                var user = _userBL.ById(id);
                 if (user == null) throw new Exception("Пользователь не найден");
 
-                if (string.Equals(user.Role, "SuperAdmin", StringComparison.OrdinalIgnoreCase))
-                    throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
+                if (user.Role == "SuperAdmin")
+                    throw new UnauthorizedAccessException("Нельзя изменить роль SuperAdmin");
 
-               string newRole = string.Equals(user.Role, "User", StringComparison.OrdinalIgnoreCase)
-                     ? "Admin"
-                     : "User";
-                _adminService.SetRole(id, newRole);
+                var newRole = user.Role == "User" ? Role.Admin : Role.User;
+                _adminBL.SetRole(id, newRole);
 
                 TempData["SuccessMessage"] = "Роль пользователя изменена";
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Ошибка при изменении роли: {ex.Message}";
+                TempData["ErrorMessage"] = $"Ошибка изменения роли: {ex.Message}";
             }
-
             return RedirectToAction("Users");
         }
     }

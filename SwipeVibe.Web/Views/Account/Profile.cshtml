@@ -44,6 +44,12 @@
                 <button class="profile-share-btn glass-card">
                     <i class="fas fa-share-alt"></i>
                 </button>
+                <form action="@Url.Action("Login", "Account")" method="post" style="display:inline;">
+                    @Html.AntiForgeryToken()
+                    <button class="profile-share-btn glass-card" title="Выйти из аккаунта">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </form>
                 @if (ViewBag.Role == "Admin" || ViewBag.Role == "SuperAdmin")
                 {
                     <a href="@Url.Action("Index", "Admin")" class="profile-admin-btn glass-card">

@@ -43,9 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Comment\Comment.cs" />
+    <Compile Include="Entities\User\Session.cs" />
     <Compile Include="Entities\User\User.cs" />
-    <Compile Include="Entities\User\UserLogin.cs" />
-    <Compile Include="Entities\User\UserRegister.cs" />
+    <Compile Include="Entities\User\UserLoginData.cs" />
+    <Compile Include="Entities\User\UserLoginResult.cs" />
+    <Compile Include="Entities\User\UserRegisterData.cs" />
+    <Compile Include="Entities\User\UserRegisterResult.cs" />
     <Compile Include="Entities\User\UserReturn.cs" />
     <Compile Include="Entities\User\UserUpdate.cs" />
     <Compile Include="Entities\Video\Video.cs" />

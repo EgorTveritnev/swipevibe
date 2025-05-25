@@ -7,12 +7,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SwipeVibe.Domain.Entities.User
 {
-    public class UserLogin
+    public class UserLoginData
     {
         [Required, EmailAddress]
         public string Email { get; set; }
 
         [Required]
         public string Password { get; set; }
+        public string LoginIp { get; set; }
+        public DateTime LoginDateTime { get; set; } = DateTime.UtcNow;
     }
 }

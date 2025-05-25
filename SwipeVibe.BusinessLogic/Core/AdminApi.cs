@@ -3,52 +3,89 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
-using SwipeVibe.BusinessLogic.Interfaces;
+using System.Xml.Linq;
+using SwipeVibe.BusinessLogic.DBModel;
 using SwipeVibe.Domain.Entities.User;
 using SwipeVibe.Domain.Enums;
 
 namespace SwipeVibe.BusinessLogic.Core
 {
-    public sealed class AdminApi : IAdmin
+    public class AdminApi
+{
+    protected IReadOnlyList<UserReturn> GetAllUsersAction()
     {
-        private readonly IUserRepository _repo;
-        private readonly IMapper _mapper;
-
-        public AdminApi(IUserRepository repo, IMapper mapper)
+        using (var db = new UserContext())
         {
-            _repo = repo;
-            _mapper = mapper;
-        }
-
-        public IEnumerable<UserReturn> GetAllUsers()
-            => _repo.All().Select(u => _mapper.Map<UserReturn>(u));
-
-        public void Block(int id)
-        {
-            var user = _repo.ById(id);
-            if (user != null)
-                user.IsBlocked = true;
-        }
-
-        public void Unblock(int id)
-        {
-            var user = _repo.ById(id);
-            if (user != null)
-                user.IsBlocked = false;
-        }
-
-        public void SetRole(int id, string newRole)
-        {
-            var user = _repo.ById(id);
-            if (user == null)
-            return;
-            if (user.Role == Role.SuperAdmin)
-            throw new UnauthorizedAccessException("Нельзя изменить роль суперадмина");
-                 if (!Enum.TryParse<Role>(newRole, true, out var roleEnum))
-                 throw new ArgumentException("Неверная роль", nameof(newRole));
-            user.Role = roleEnum;
-            _repo.Update(user); 
+            return db.Users.Select(u => new UserReturn
+            {
+                Id = u.Id,
+                Username = u.Username,
+                Email = u.Email,
+                AvatarUrl = u.AvatarUrl,
+                RegisteredDate = u.CreatedAt,
+                Role = u.Role.ToString(),
+                IsBlocked = u.IsBlocked
+            }).ToList();
         }
     }
+
+    protected UserReturn ByIdAction(int id)
+    {
+        using (var db = new UserContext())
+        {
+            var u = db.Users.FirstOrDefault(x => x.Id == id);
+            if (u == null) return null;
+
+            return new UserReturn
+            {
+                Id = u.Id,
+                Username = u.Username,
+                Email = u.Email,
+                AvatarUrl = u.AvatarUrl,
+                RegisteredDate = u.CreatedAt,
+                Role = u.Role.ToString(),
+                IsBlocked = u.IsBlocked
+            };
+        }
+    }
+
+    protected void BlockAction(int id)
+    {
+        using (var db = new UserContext())
+        {
+            var u = db.Users.FirstOrDefault(x => x.Id == id);
+            if (u != null)
+            {
+                u.IsBlocked = true;
+                db.SaveChanges();
+            }
+        }
+    }
+
+    protected void UnblockAction(int id)
+    {
+        using (var db = new UserContext())
+        {
+            var u = db.Users.FirstOrDefault(x => x.Id == id);
+            if (u != null)
+            {
+                u.IsBlocked = false;
+                db.SaveChanges();
+            }
+        }
+    }
+
+    protected void SetRoleAction(int id, Role newRole)
+    {
+        using (var db = new UserContext())
+        {
+            var u = db.Users.FirstOrDefault(x => x.Id == id);
+            if (u != null)
+            {
+                u.Role = newRole;
+                db.SaveChanges();
+            }
+        }
+    }
+}
 }
