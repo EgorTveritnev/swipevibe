@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using SwipeVibe.Domain.Entities.User;
 
     namespace SwipeVibe.BusinessLogic.Interfaces
-    {
-        public interface IUser
+    {        public interface IUser
         {
             int Register(UserRegister dto);
 
@@ -18,5 +18,7 @@ using SwipeVibe.Domain.Entities.User;
             IEnumerable<UserReturn> GetAllUsers();
 
             void UpdateProfile(int id, UserUpdate dto);
+            void UpdateAvatar(int userId, string avatarUrl);
+            void GeneratePasswordResetCode(string email);
         }
     }

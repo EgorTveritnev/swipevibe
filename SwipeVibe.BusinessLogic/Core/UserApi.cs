@@ -75,10 +75,9 @@ namespace SwipeVibe.BusinessLogic.Core
             user.ResetPasswordCodeExpiration = DateTime.UtcNow.AddHours(1);
 
             _repo.Update(user);
-        }
-        public UserReturn GetById(int id) => _m.Map<UserReturn>(_repo.ById(id));
+        }        public UserReturn GetById(int id) => _m.Map<UserReturn>(_repo.ById(id));
         public IEnumerable<UserReturn> GetAllUsers() => _repo.All().Select(_m.Map<UserReturn>);
-
+        
         public void UpdateProfile(int id, UserUpdate dto)
         {
             var user = _repo.ById(id) ?? throw new KeyNotFoundException();
@@ -87,6 +86,13 @@ namespace SwipeVibe.BusinessLogic.Core
             if (!string.IsNullOrWhiteSpace(dto.Email)) user.Email = dto.Email;
             if (!string.IsNullOrWhiteSpace(dto.NewPassword)) user.Password = dto.NewPassword;
 
+            _repo.Update(user);
+        }
+
+        public void UpdateAvatar(int userId, string avatarUrl)
+        {
+            var user = _repo.ById(userId) ?? throw new KeyNotFoundException("Пользователь не найден");
+            user.AvatarUrl = avatarUrl;
             _repo.Update(user);
         }
     }

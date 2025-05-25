@@ -18,13 +18,14 @@ namespace SwipeVibe.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            DependencyConfig.RegisterDependencies();
         }
 
         protected void Application_BeginRequest()
         {
-            Response.Charset = "UTF-8";
-            Response.ContentEncoding = Encoding.UTF8;
+            Response.Charset = "UTF-8";            Response.ContentEncoding = Encoding.UTF8;
         }
+        
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
             var authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];

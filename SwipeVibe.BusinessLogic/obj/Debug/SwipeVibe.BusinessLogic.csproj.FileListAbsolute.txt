@@ -73,3 +73,26 @@ C:\Users\egorc\OneDrive\Рабочий стол\SWIPEDB\swipevibe\SwipeVibe.Busi
 C:\Users\egorc\OneDrive\Рабочий стол\SWIPEDB\swipevibe\SwipeVibe.BusinessLogic\obj\Debug\SwipeVib.84C84DEC.Up2Date
 C:\Users\egorc\OneDrive\Рабочий стол\SWIPEDB\swipevibe\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.dll
 C:\Users\egorc\OneDrive\Рабочий стол\SWIPEDB\swipevibe\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.pdb
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\SwipeVibe.BusinessLogic.dll.config
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\SwipeVibe.BusinessLogic.dll
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\SwipeVibe.BusinessLogic.pdb
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\AutoMapper.dll
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\SwipeVibe.Domain.dll
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\SwipeVibe.Helpers.dll
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\SwipeVibe.Domain.pdb
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\SwipeVibe.Helpers.pdb
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\AutoMapper.pdb
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\AutoMapper.xml
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.Migrations.InitialCreate.resources
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.Migrations.Initial.resources
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.Migrations.UpdateUserFields.resources
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.csproj.GenerateResource.cache
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVib.84C84DEC.Up2Date
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.dll
+C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.pdb
