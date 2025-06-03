@@ -12,7 +12,12 @@ namespace SwipeVibe.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IVideo _videoService = new VideoBL();
+        private readonly IVideo _videoService;
+        public HomeController()
+        {
+            var bl = new BusinessLogic.BusinessLogic();
+            _videoService = bl.GetVideoBL();
+        }
         public ActionResult Index()
         {
             var videos = _videoService.GetAll(); 

@@ -13,7 +13,8 @@ namespace SwipeVibe.Web.Controllers
 
         public CommentController()
         {
-            _commentService = new CommentBL();
+            var bl = new SwipeVibe.BusinessLogic.BusinessLogic();
+            _commentService = bl.GetCommentBL();
         }
 
         [HttpGet]
