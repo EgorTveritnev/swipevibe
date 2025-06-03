@@ -10,18 +10,26 @@ namespace SwipeVibe.BusinessLogic
 {
     public class BusinessLogic
     {
-        public IAdmin Admin { get; }
-        public IUser User { get; }
-        public ISession Session { get; }
-        public IVideo Video { get; }
-        public BusinessLogic()
+        public IAdmin GetAdminBL()
         {
-            var userBl = new UserBL();
+            return new AdminBL();
+        }
+        public IUser GetUserBL()
+        {
+            return new UserBL();
+        }
+        public ISession GetSessionBL()
+        {
+            return new UserBL();
+        }
 
-            Admin = new AdminBL();
-            User = userBl;
-            Session = userBl;
-            Video = new VideoBL();
+        public IVideo GetVideoBL()
+        {
+            return new VideoBL();
+        }
+        public IComment GetCommentBL()
+        {
+            return new CommentBL();
         }
     }
 }

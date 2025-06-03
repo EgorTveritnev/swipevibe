@@ -22,9 +22,9 @@ namespace SwipeVibe.Web.Controllers
         public AdminController()
         {
             var bl = new BusinessLogic.BusinessLogic();
-            _adminBL = bl.Admin;
-            _userBL = bl.User;
-            _videoBL = bl.Video;
+            _adminBL = bl.GetAdminBL();
+            _userBL = bl.GetUserBL();
+            _videoBL = bl.GetVideoBL();
         }
 
         public ActionResult Index()

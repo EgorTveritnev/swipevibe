@@ -20,8 +20,8 @@ namespace SwipeVibe.Web.Controllers
         public AccountController()
         {
             var bl = new BusinessLogic.BusinessLogic();
-            _userBL = bl.User;
-            _sessionBL = bl.Session;
+            _userBL = bl.GetUserBL();
+            _sessionBL = bl.GetSessionBL();
         }
 
         [HttpGet]
