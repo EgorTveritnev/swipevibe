@@ -93,3 +93,5 @@ C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessL
 C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVib.84C84DEC.Up2Date
 C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.dll
 C:\Users\egorc\Desktop\swm\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.pdb
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.MigrationsVideo.InitialCreate.resources
+C:\Users\user\Desktop\swipeuser\swipevibe\SwipeVibe.BusinessLogic\obj\Debug\SwipeVibe.BusinessLogic.MigrationsVideo.InitVideo.resources

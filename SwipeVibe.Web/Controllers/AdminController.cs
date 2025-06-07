@@ -40,8 +40,8 @@ namespace SwipeVibe.Web.Controllers
                 TodayNewUsersCount = allUsers.Count(u => u.RegisteredDate.Date == DateTime.Today),
 
                 TotalVideosCount = allVideos.Count(),
-                TodayNewVideosCount = allVideos.Count(v => v.UploadDate.Date == DateTime.Today),
-                LatestVideos = allVideos.OrderByDescending(v => v.UploadDate)
+                TodayNewVideosCount = allVideos.Count(v => v.UploadDateUtc.Date == DateTime.Today),
+                LatestVideos = allVideos.OrderByDescending(v => v.UploadDateUtc)
                                         .Take(5)
                                         .ToList()
             };
@@ -73,17 +73,27 @@ namespace SwipeVibe.Web.Controllers
 
         public ActionResult Videos()
         {
-            var model = _videoBL.GetAll()
-                .Select(v => new
-                {
-                    v.Id,
-                    v.Username,
-                    v.Description,
-                    v.UploadDate,
-                    v.VideoUrl
-                }).ToList();
+            var videos = _videoBL.GetAll().ToList();
+            var model = videos.Select(v =>
+            {
+                var user = _userBL.ById(v.UserId);
+                dynamic d = new ExpandoObject();
+                d.Id = v.Id;
+                d.Title = v.Title;
+                d.Description = v.Description;
+                d.UploadDateUtc = v.UploadDateUtc;
+                d.FileUrl = v.FileUrl;
+                d.AuthorName = user?.Username;
+                d.AuthorAvatarUrl = string.IsNullOrWhiteSpace(user?.AvatarUrl)
+                                    ? "/content/default-avatar.png"
+                                    : user.AvatarUrl;
+                d.LikesCount = v.LikesCount;
+                d.CommentsCount = v.CommentsCount;
+                return d;
+            }).ToList();
 
-            return View(model);
+           ViewBag.Videos = model; 
+    return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]

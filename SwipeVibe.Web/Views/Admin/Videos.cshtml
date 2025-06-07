@@ -185,23 +185,34 @@
                 </tr>
             </thead>
             <tbody>
-                @{
-                    var videos = ViewBag.VideoList as IEnumerable<dynamic>;
-                }
-
-                @if (videos != null && videos.Any())
+                @if (ViewBag.Videos != null && ((IEnumerable<dynamic>)ViewBag.Videos).Any())
                 {
-                    foreach (var video in videos)
+                    foreach (dynamic v in ViewBag.Videos)
                     {
                         <tr>
-                            <td>@video.Id</td>
-                            <td>@video.Description</td>
-                            <td>@video.Username</td>
-                            <td>@video.UploadDate.ToString("dd.MM.yyyy HH:mm")</td>
-                            <td>@video.LikesCount</td>
-                            <td>@video.CommentsCount</td>
+                            <td>@v.Id</td>
+                            <td class="text-truncate">
+                                @if (!string.IsNullOrWhiteSpace((string)v.Description))
+                                {
+                                    <span>@v.Description</span>
+                                }
+                            </td>
                             <td>
-                                <!-- действия -->
+                                <img src="@v.AuthorAvatarUrl" alt="аватар" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-right:6px;" />
+                                @v.AuthorName
+                            </td>
+                            <td>@v.UploadDateUtc.ToLocalTime().ToString("g")</td>
+                            <td>@v.LikesCount</td>
+                            <td>@v.CommentsCount</td>
+                            <td>
+                                <video src="@v.FileUrl" controls style="width:90px; height:50px; background:#111;border-radius:6px;"></video>
+                                <form action="@Url.Action("DeleteVideo", "Admin")" method="post" style="display:inline;" onsubmit="return confirm('Удалить это видео?');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@v.Id" />
+                                    <button type="submit" class="btn btn-danger btn-sm mt-2">
+                                        <i class="fas fa-trash"></i> Удалить
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     }

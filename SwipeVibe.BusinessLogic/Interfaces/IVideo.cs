@@ -11,8 +11,8 @@ namespace SwipeVibe.BusinessLogic.Interfaces
     {
         IEnumerable<Video> GetAll();
         Video GetById(int id);
-
         void Add(Video video);
+        void Update(Video video);
         void Delete(int id);
         void IncrementLikes(int id);
         void IncrementComments(int id);

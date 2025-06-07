@@ -1,0 +1,311 @@
+﻿@{
+    ViewBag.Title = "Загрузка видео - SwipeVibe";
+}
+
+<div class="upload-container glass-effect">
+    <div class="upload-header">
+        <h2 class="gradient-text">Загрузить новое видео</h2>
+        <p>Поделитесь своим творчеством с миллионами пользователей</p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (ViewBag.Errors != null)
+    {
+        <div class="alert alert-danger">
+            @foreach (var error in (IEnumerable<string>)ViewBag.Errors)
+            {
+                <div>@error</div>
+            }
+        </div>
+    }
+
+    @using (Html.BeginForm("Upload", "Video", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="upload-section file-upload-section">
+            <div class="upload-preview" id="uploadPreview">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Перетащите файл видео сюда или нажмите для выбора</p>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Видео файл</label>
+                <input type="file" name="File" accept="video/*" class="form-control file-input" id="videoFileInput" />
+                <small class="form-text text-muted">Поддерживаемые форматы: MP4, MOV, AVI. Максимальный размер: 100MB</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Название</label>
+            <input type="text" name="UploadTitle" class="form-control" placeholder="Введите яркое название для вашего видео" value="@ViewBag.TitleValue" />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Описание</label>
+            <textarea name="UploadDescription" class="form-control" rows="3" placeholder="Опишите ваше видео...">@ViewBag.DescriptionValue</textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Хештеги</label>
+            <input type="text" name="Hashtags" class="form-control" placeholder="#swipevibe #viral #trending" value="@ViewBag.HashtagsValue" />
+            <small class="form-text text-muted">Разделяйте хештеги пробелами, например: #swipevibe #dance #fun</small>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Обложка (необязательно)</label>
+            <input type="file" name="ThumbnailImage" accept="image/*" class="form-control" id="thumbnailInput" />
+            <small class="form-text text-muted">Выберите изображение-обложку для видео (необязательно)</small>
+            <div id="thumbnailPreview" class="thumbnail-preview"></div>
+        </div>
+
+        <div class="form-group upload-actions">
+            <button type="submit" class="btn btn-upload pulse-effect">
+                <i class="fas fa-paper-plane"></i> Опубликовать
+            </button>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-cancel">
+                <i class="fas fa-times"></i> Отмена
+            </a>
+        </div>
+    }
+</div>
+
+<style>
+    .upload-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .upload-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .upload-header h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    
+    .upload-header p {
+        color: var(--text-dim);
+    }
+    
+    .upload-section {
+        margin-bottom: 25px;
+    }
+    
+    .file-upload-section {
+        text-align: center;
+    }
+    
+    .upload-preview {
+        border: 2px dashed rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 50px 20px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .upload-preview:hover {
+        border-color: var(--primary-color);
+        background: rgba(255, 0, 128, 0.05);
+    }
+    
+    .upload-preview i {
+        font-size: 48px;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+    
+    .upload-preview.active {
+        border-color: var(--primary-color);
+        background: rgba(255, 0, 128, 0.1);
+    }
+    
+    .file-input {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .control-label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
+    }
+    
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+        border-radius: 8px;
+        padding: 12px 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        border-color: var(--primary-color);
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 3px rgba(255, 0, 128, 0.2);
+        outline: none;
+    }
+    
+    .form-text {
+        margin-top: 5px;
+        font-size: 0.8rem;
+    }
+    
+    .thumbnail-preview {
+        margin-top: 10px;
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .thumbnail-preview img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    .upload-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 30px;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .btn-upload {
+        background: var(--primary-gradient);
+        color: white;
+        box-shadow: 0 5px 15px rgba(255, 0, 128, 0.3);
+    }
+    
+    .btn-upload:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 0, 128, 0.5);
+    }
+    
+    .btn-cancel {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+    }
+    
+    .btn-cancel:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+    
+    .text-danger {
+        color: #ff3e6c;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .alert {
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .alert-success {
+        background-color: rgba(0, 245, 160, 0.15);
+        border: 1px solid rgba(0, 245, 160, 0.3);
+        color: #00F5A0;
+    }
+</style>
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            const uploadPreview = $('#uploadPreview');
+            const videoFileInput = $('#videoFileInput');
+            
+            uploadPreview.on('click', function() {
+                videoFileInput.click();
+            });
+            
+            videoFileInput.on('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const fileName = e.target.files[0].name;
+                    
+                    uploadPreview.addClass('active');
+                    uploadPreview.html(`
+                        <i class="fas fa-check-circle"></i>
+                        <p>Файл выбран: ${fileName}</p>
+                    `);
+                }
+            });
+            
+            $('#thumbnailInput').on('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        $('#thumbnailPreview').html(`<img src="${event.target.result}" alt="Превью обложки">`);
+                    }
+                    
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            
+            uploadPreview.on('dragover', function(e) {
+                e.preventDefault();
+                uploadPreview.addClass('active');
+            });
+            
+            uploadPreview.on('dragleave', function(e) {
+                e.preventDefault();
+                if (!videoFileInput.val()) {
+                    uploadPreview.removeClass('active');
+                }
+            });
+            
+            uploadPreview.on('drop', function(e) {
+                e.preventDefault();
+                
+                if (e.originalEvent.dataTransfer.files && e.originalEvent.dataTransfer.files[0]) {
+                    videoFileInput[0].files = e.originalEvent.dataTransfer.files;
+                    const fileName = e.originalEvent.dataTransfer.files[0].name;
+                    
+                    uploadPreview.addClass('active');
+                    uploadPreview.html(`
+                        <i class="fas fa-check-circle"></i>
+                        <p>Файл выбран: ${fileName}</p>
+                    `);
+                }
+            });
+        });
+    </script>
+    
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -58,12 +58,23 @@
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="Core\AdminApi.cs" />
     <Compile Include="Core\UserApi.cs" />
+    <Compile Include="Core\VideoApi.cs" />
     <Compile Include="DBModel\UserContext.cs" />
+    <Compile Include="DBModel\VideoContext.cs" />
     <Compile Include="Interfaces\IAdmin.cs" />
     <Compile Include="Interfaces\IComment.cs" />
     <Compile Include="Interfaces\ISession.cs" />
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Interfaces\IVideo.cs" />
+    <Compile Include="MigrationsVideo\202506071244291_InitialCreate.cs" />
+    <Compile Include="MigrationsVideo\202506071244291_InitialCreate.Designer.cs">
+      <DependentUpon>202506071244291_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MigrationsVideo\202506071329238_InitVideo.cs" />
+    <Compile Include="MigrationsVideo\202506071329238_InitVideo.Designer.cs">
+      <DependentUpon>202506071329238_InitVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MigrationsVideo\Configuration.cs" />
     <Compile Include="Migrations\202505141157170_InitialCreate.cs" />
     <Compile Include="Migrations\202505141157170_InitialCreate.Designer.cs">
       <DependentUpon>202505141157170_InitialCreate.cs</DependentUpon>
@@ -90,6 +101,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MigrationsVideo\202506071244291_InitialCreate.resx">
+      <DependentUpon>202506071244291_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MigrationsVideo\202506071329238_InitVideo.resx">
+      <DependentUpon>202506071329238_InitVideo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202505141157170_InitialCreate.resx">
       <DependentUpon>202505141157170_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>

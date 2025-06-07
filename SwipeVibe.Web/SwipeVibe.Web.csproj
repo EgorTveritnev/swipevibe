@@ -134,6 +134,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Filters\AdminOnlyAttribute.cs" />
     <Compile Include="Filters\UserOnlyAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -201,7 +202,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Discover.cshtml" />
     <Content Include="Views\Home\Notifications.cshtml" />
-    <Content Include="Views\Home\Upload.cshtml" />
+    <Content Include="Views\Video\Upload.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
@@ -215,6 +216,7 @@
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
     <Content Include="Views\Home\AccessDenied.cshtml" />
+    <Content Include="Views\Video\MyVideos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

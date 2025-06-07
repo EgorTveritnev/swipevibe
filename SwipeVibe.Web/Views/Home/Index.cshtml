@@ -3,62 +3,64 @@
 }
 
 <div id="swipeContainer" class="swipe-container" tabindex="0">
-    @foreach (var v in Model)
+    @if (ViewBag.Videos != null)
     {
-        <div class="video-container" data-videoid="@v.Id">
-            <div class="video-placeholder" style="background:@v.GradientCss">
-                @if (!string.IsNullOrEmpty(v.VideoUrl))
-                {
-                    <video autoplay muted loop playsinline
-                           style="width: 100%; height: 100%; object-fit: cover;"
-                           src="@Url.Content(v.VideoUrl)">
-                        Ваш браузер не поддерживает видео.
-                    </video>
-                }
-                else
-                {
-                    <i class="fas fa-play-circle"></i>
-                }
-            </div>
-
-            <div class="video-info">
-                <div class="user-info">
-                    <div class="user-avatar glow-effect">
-                        <img src="@v.AvatarUrl" alt="User avatar" />
+        foreach (var v in ViewBag.Videos)
+        {
+            <div class="video-container" data-videoid="@v.Id">
+                <div class="video-placeholder" style="background:linear-gradient(120deg,#7928CA,#FF0080)">
+                    @if (!string.IsNullOrEmpty(v.FileUrl))
+                    {
+                        <video autoplay muted loop playsinline
+                               style="width: 100%; height: 100%; object-fit: cover;"
+                               src="@Url.Content(v.FileUrl)">
+                            Ваш браузер не поддерживает видео.
+                        </video>
+                    }
+                    else
+                    {
+                        <i class="fas fa-play-circle"></i>
+                    }
+                </div>
+                <div class="video-info">
+                    <div class="user-info">
+                        <div class="user-avatar glow-effect">
+                            <img src="@(string.IsNullOrWhiteSpace(v.AuthorAvatarUrl)
+                                ? "https://cdn.pixabay.com/photo/2021/09/15/10/32/avatar-6622083_1280.png"
+                                : v.AuthorAvatarUrl)" alt="User avatar" />
+                        </div>
+                        <div class="username">@("@" + v.AuthorName)</div>
                     </div>
-                    <div class="username">@("@" + v.Username)</div>
+                    <div class="video-description">
+                        @Html.Raw(v.Description)
+                    </div>
                 </div>
-
-                <div class="video-description">
-                    @Html.Raw(v.Description)
+                <div class="video-actions">
+                    <div class="action-item">
+                        <div class="action-icon-wrapper heart-icon"><i class="fas fa-heart"></i></div>
+                        <span>@(v.LikesCount / 1000M)K</span>
+                    </div>
+                    <div class="action-item">
+                        <button type="button" class="action-icon-wrapper comment-icon comment-button">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <span>@(v.CommentsCount / 1000M)K</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-icon-wrapper share-icon"><i class="fas fa-share"></i></div>
+                        <span>@(v.SharesCount / 1000M)K</span>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-icon-wrapper bookmark-icon"><i class="fas fa-bookmark"></i></div>
+                    </div>
+                    <div class="music-disc"><i class="fas fa-music"></i></div>
                 </div>
             </div>
-
-            <div class="video-actions">
-                <div class="action-item">
-                    <div class="action-icon-wrapper heart-icon"><i class="fas fa-heart"></i></div>
-                    <span>@(v.LikesCount / 1000M)K</span>
-                </div>
-
-                <div class="action-item">
-                    <button type="button" class="action-icon-wrapper comment-icon comment-button">
-                        <i class="fas fa-comment"></i>
-                    </button>
-                    <span>@(v.CommentsCount / 1000M)K</span>
-                </div>
-
-                <div class="action-item">
-                    <div class="action-icon-wrapper share-icon"><i class="fas fa-share"></i></div>
-                    <span>@(v.SharesCount / 1000M)K</span>
-                </div>
-
-                <div class="action-item">
-                    <div class="action-icon-wrapper bookmark-icon"><i class="fas fa-bookmark"></i></div>
-                </div>
-
-                <div class="music-disc"><i class="fas fa-music"></i></div>
-            </div>
-        </div>
+        }
+    }
+    else
+    {
+        <div class="text-center text-muted p-5">Нет загруженных видео.</div>
     }
 </div>
 <div class="modal fade" id="commentsModal" tabindex="-1" aria-hidden="true">

@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Мои видео";
+}
+
+<h2 class="mb-4">Мои видео</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@if (ViewBag.Videos == null || !((IEnumerable<object>)ViewBag.Videos).Any())
+{
+    <div class="alert alert-info">У вас пока нет загруженных видео.</div>
+}
+else
+{
+<div class="row">
+    @foreach (dynamic v in ViewBag.Videos)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <video src="@v.FileUrl" controls style="width:100%;height:200px;background:#111;border-radius:12px;"></video>
+                <div class="card-body">
+                    <h5>@v.Title</h5>
+                    @if (!string.IsNullOrWhiteSpace((string)v.Description))
+                    {
+                        <p class="text-muted" style="font-size:0.95em;">@v.Description</p>
+                    }
+                    ...
+                </div>
+            </div>
+        </div>
+    }
+</div>
+}

@@ -330,78 +330,66 @@
             <div class="card-label">Заблокированных</div>
         </div>
 </div>
-      <div class="admin-section">
-        <div style="display: flex; margin-bottom: 20px;">
-            <div style="flex: 1; background: var(--card-bg); border-radius: 10px; padding: 15px; margin-right: 10px;">
-                <h4 style="margin-bottom: 10px; color: var(--accent-color);">Новые пользователи сегодня</h4>
-                <div style="font-size: 24px; font-weight: 700;">@Model.TodayNewUsersCount</div>
-            </div>
-            <div style="flex: 1; background: var(--card-bg); border-radius: 10px; padding: 15px; margin-left: 10px;">
-                <h4 style="margin-bottom: 10px; color: var(--secondary-color);">Новые видео сегодня</h4>
-                <div style="font-size: 24px; font-weight: 700;">@Model.TodayNewVideosCount</div>
-            </div>
+<div class="admin-section">
+    <div style="display: flex; margin-bottom: 20px;">
+        <div style="flex: 1; background: var(--card-bg); border-radius: 10px; padding: 15px; margin-right: 10px;">
+            <h4 style="margin-bottom: 10px; color: var(--accent-color);">Новые пользователи сегодня</h4>
+            <div style="font-size: 24px; font-weight: 700;">@Model.TodayNewUsersCount</div>
         </div>
-        
-        <div class="section-header">
-            <h2 class="section-title">Последние загруженные видео</h2>
-            <a href="@Url.Action("Videos", "Admin")" class="section-link">Все видео <i class="fas fa-arrow-right"></i></a>
+        <div style="flex: 1; background: var(--card-bg); border-radius: 10px; padding: 15px; margin-left: 10px;">
+            <h4 style="margin-bottom: 10px; color: var(--secondary-color);">Новые видео сегодня</h4>
+            <div style="font-size: 24px; font-weight: 700;">@Model.TodayNewVideosCount</div>
         </div>
-        
-        @if (Model.LatestVideos != null && Model.LatestVideos.Any())
+    </div>
+
+    <div class="section-header">
+        <h2 class="section-title">Последние загруженные видео</h2>
+        <a href="@Url.Action("Videos", "Admin")" class="section-link">Все видео <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    @if (Model.LatestVideos != null && Model.LatestVideos.Any())
+    {
+        foreach (var video in Model.LatestVideos)
         {
-            foreach (var video in Model.LatestVideos)
-            {
-                <div class="video-item">
-                    @if (!string.IsNullOrEmpty(video.GradientCss))
-                    {
-                        <div class="video-empty-thumbnail" style="background: @video.GradientCss">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="video-empty-thumbnail">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    }
-                    
-                    <div class="video-info">
-                        <h3 class="video-title">@video.Description</h3>
-                        <div class="video-meta">
-                            <span>@video.Username</span>
-                            <span class="mx-2">&bull;</span>
-                            <span>@(video.UploadDate.ToShortDateString())</span>
-                        </div>
-                    </div>
-                    
-                    <div class="video-stats">
-                        <div class="video-stat">
-                            <i class="fas fa-heart"></i>
-                            <span>@video.LikesCount</span>
-                        </div>
-                        <div class="video-stat">
-                            <i class="fas fa-comment"></i>
-                            <span>@video.CommentsCount</span>
-                        </div>
-                    </div>
-                    
-                    <div class="video-actions">
-                        <form action="@Url.Action("DeleteVideo", "Admin")" method="post" onsubmit="return confirm('Вы уверены, что хотите удалить это видео?')">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="id" value="@video.Id" />
-                            <button type="submit" class="video-action delete" title="Удалить видео">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </form>
+            <div class="video-item">
+                <div class="video-empty-thumbnail">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">@video.Description</h3>
+                    <div class="video-meta">
+                        <span>@video.Title</span>
+                        <span class="mx-2">&bull;</span>
+                        <span>@(video.UploadDateUtc.ToShortDateString())</span>
                     </div>
                 </div>
-            }
+                <div class="video-stats">
+                    <div class="video-stat">
+                        <i class="fas fa-heart"></i>
+                        <span>@video.LikesCount</span>
+                    </div>
+                    <div class="video-stat">
+                        <i class="fas fa-comment"></i>
+                        <span>@video.CommentsCount</span>
+                    </div>
+                </div>
+                <div class="video-actions">
+                    <form action="@Url.Action("DeleteVideo", "Admin")" method="post" onsubmit="return confirm('Вы уверены, что хотите удалить это видео?')">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@video.Id" />
+                        <button type="submit" class="video-action delete" title="Удалить видео">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
         }
-        else
-        {
-            <p class="text-center text-muted my-4">Нет загруженных видео</p>
-        }
-    </div>
+    }
+    else
+    {
+        <p class="text-center text-muted my-4">Нет загруженных видео</p>
+    }
+</div>
 </div>
 
 <script>
