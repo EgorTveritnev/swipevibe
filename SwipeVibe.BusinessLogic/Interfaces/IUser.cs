@@ -13,6 +13,7 @@ namespace SwipeVibe.BusinessLogic.Interfaces
         UserReturn ById(int id);
 
         void Update(int id, UserUpdate updateData);
+        void UpdateAvatar(int userId, string avatarUrl);
 
     }
 }

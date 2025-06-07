@@ -119,7 +119,6 @@ namespace SwipeVibe.Web.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Ваша реализация (например: отправка кода на почту)
             TempData["Message"] = "Ссылка на сброс пароля отправлена (эмуляция)";
             return RedirectToAction("Login");
         }
@@ -138,8 +137,32 @@ namespace SwipeVibe.Web.Controllers
             ViewBag.Email = upToDateUser.Email;
             ViewBag.RegisteredDate = upToDateUser.RegisteredDate.ToString("dd.MM.yyyy");
 
+            var bl = new BusinessLogic.BusinessLogic();
+            var videoBL = bl.GetVideoBL();
+            var videos = videoBL.GetAll()
+                .Where(v => v.UserId == upToDateUser.Id)
+                .OrderByDescending(v => v.UploadDateUtc)
+                .ToList();
+
+            ViewBag.Videos = videos.Select(v => new VideoViewModel
+            {
+                Id = v.Id,
+                FileUrl = v.FileUrl,
+                Title = v.Title,
+                Description = v.Description,
+                DurationSec = v.DurationSec,
+                LikesCount = v.LikesCount,
+                CommentsCount = v.CommentsCount,
+                SharesCount = v.SharesCount,
+                UploadDateUtc = v.UploadDateUtc,
+                AuthorId = upToDateUser.Id,
+                AuthorName = upToDateUser.Username,
+                AuthorAvatarUrl = upToDateUser.AvatarUrl
+            }).ToList();
+
             return View();
         }
+
 
         [UserOnly]
         [HttpGet]
@@ -182,7 +205,7 @@ namespace SwipeVibe.Web.Controllers
                 if (model.Avatar != null && model.Avatar.ContentLength > 0)
                 {
                     var avatarUrl = ProcessAvatarUpload(model.Avatar);
-                   // _userBL.UpdateAvatar(user.Id, avatarUrl);
+                    _userBL.UpdateAvatar(user.Id, avatarUrl);
                 }
 
                 Session["User"] = _userBL.ById(user.Id);

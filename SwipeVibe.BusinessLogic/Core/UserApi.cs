@@ -116,7 +116,16 @@ namespace SwipeVibe.BusinessLogic.Core
                 };
             }
         }
-
+        public void UpdateAvatar(int userId, string avatarUrl)
+        {
+            using (var db = new UserContext())
+            {
+                var user = db.Users.FirstOrDefault(u => u.Id == userId);
+                if (user == null) throw new Exception("User not found");
+                user.AvatarUrl = avatarUrl;
+                db.SaveChanges();
+            }
+        }
         protected void LogoutAction(int userId)
         {
         }

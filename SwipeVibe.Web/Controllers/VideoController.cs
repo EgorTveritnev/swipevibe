@@ -24,36 +24,7 @@ namespace SwipeVibe.Web.Controllers
             _userBL = bl.GetUserBL();
         }
 
-        [UserOnly]
-        public ActionResult MyVideos()
-        {
-            if (!(Session["User"] is UserReturn user))
-                return RedirectToAction("Login", "Account");
-
-            var videos = _videoBL.GetAll()
-                .Where(v => v.UserId == user.Id)
-                .OrderByDescending(v => v.UploadDateUtc)
-                .ToList();
-
-            ViewBag.Videos = videos.Select(v => new VideoViewModel
-            {
-                Id = v.Id,
-                FileUrl = v.FileUrl,
-                Title = v.Title,
-                Description = v.Description,
-                DurationSec = v.DurationSec,
-                LikesCount = v.LikesCount,
-                CommentsCount = v.CommentsCount,
-                SharesCount = v.SharesCount,
-                UploadDateUtc = v.UploadDateUtc,
-                AuthorId = user.Id,
-                AuthorName = user.Username,
-                AuthorAvatarUrl = user.AvatarUrl
-            }).ToList();
-
-            return View();
-        }
-
+       
         public ActionResult Details(int id)
         {
             var v = _videoBL.GetById(id);
@@ -126,7 +97,37 @@ namespace SwipeVibe.Web.Controllers
                 return View(model);
             }
         }
+        public ActionResult Profile()
+        {
+            var user = (UserReturn)Session["User"];
+            if (user == null) return RedirectToAction("Login", "Account");
 
+            var videos = _videoBL.GetAll()
+                .Where(v => v.UserId == user.Id)
+                .OrderByDescending(v => v.UploadDateUtc)
+                .ToList();
+
+            ViewBag.Videos = videos.Select(v => new VideoViewModel
+            {
+                Id = v.Id,
+                FileUrl = v.FileUrl,
+                Title = v.Title,
+                Description = v.Description,
+                DurationSec = v.DurationSec,
+                LikesCount = v.LikesCount,
+                CommentsCount = v.CommentsCount,
+                SharesCount = v.SharesCount,
+                UploadDateUtc = v.UploadDateUtc,
+                AuthorId = user.Id,
+                AuthorName = user.Username,
+                AuthorAvatarUrl = user.AvatarUrl
+            }).ToList();
+            ViewBag.Username = user.Username;
+            ViewBag.AvatarUrl = user.AvatarUrl;
+            ViewBag.Role = user.Role;
+
+            return View();
+        }
         [UserOnly]
         [HttpPost]
         [ValidateAntiForgeryToken]

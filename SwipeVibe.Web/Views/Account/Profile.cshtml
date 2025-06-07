@@ -9,11 +9,7 @@
             <div class="profile-avatar glow-effect">
                 <img src="@(string.IsNullOrWhiteSpace(ViewBag.AvatarUrl)
     ? "https://cdn.pixabay.com/photo/2021/09/15/10/32/avatar-6622083_1280.png"
-    : ViewBag.AvatarUrl)" alt="Аватар пользователя" />
-
-                <div class="edit-avatar">
-                    <i class="fas fa-camera"></i>
-                </div>
+    : ViewBag.AvatarUrl)" alt="Аватар пользователя" />         
             </div>
             <div class="profile-username animated-gradient-text">@ViewBag.Username</div>
             <div class="profile-bio-button glass-card">
@@ -77,87 +73,40 @@
 
     <div class="profile-content">
         <div class="tab-content active" id="videos">
-            <div class="video-grid">
-                <div class="video-item">
-                    <div class="video-item-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x500/?travel) center/cover;">
-                        <div class="video-info-overlay">
-                            <i class="fas fa-play play-icon"></i>
-                            <div class="video-stats">
-                                <span><i class="fas fa-eye"></i> 56K</span>
-                                <span><i class="fas fa-heart"></i> 5.2K</span>
-                                <span><i class="fas fa-comment"></i> 342</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-item-text">Путешествие в горы #travel</div>
+            @if (ViewBag.Videos == null || !((IEnumerable<object>)ViewBag.Videos).Any())
+            {
+                <div class="empty-state" style="grid-column: 1 / -1">
+                    <i class="fas fa-video-slash empty-icon"></i>
+                    <h3>У вас пока нет загруженных видео.</h3>
                 </div>
-                <div class="video-item">
-                    <div class="video-item-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x500/?food) center/cover;">
-                        <div class="video-info-overlay">
-                            <i class="fas fa-play play-icon"></i>
-                            <div class="video-stats">
-                                <span><i class="fas fa-eye"></i> 128K</span>
-                                <span><i class="fas fa-heart"></i> 12.4K</span>
-                                <span><i class="fas fa-comment"></i> 876</span>
+            }
+            else
+            {
+                <div class="video-grid">
+                    @foreach (dynamic v in ViewBag.Videos)
+                    {
+                        if (string.IsNullOrEmpty(v.FileUrl)) { continue; }
+                        <div class="video-item">
+                            <div class="video-item-thumbnail" style="background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('@(v.FileUrl ?? "/Content/img/no-preview.jpg")') center/cover;">
+                                <video src="@v.FileUrl" controls style="width:100%;height:100%;border-radius:12px;"></video>
+                                <div class="video-info-overlay">
+                                    <i class="fas fa-play play-icon"></i>
+                                    <div class="video-stats">
+                                        <span><i class="fas fa-heart"></i> @v.LikesCount</span>
+                                        <span><i class="fas fa-comment"></i> @v.CommentsCount</span>
+                                        <span><i class="fas fa-share"></i> @v.SharesCount</span>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="video-item-text">@v.Title</div>
+                            <form method="post" action="@Url.Action("Delete", "Video", new { id = v.Id })" style="margin-top:5px">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Удалить</button>
+                            </form>
                         </div>
-                    </div>
-                    <div class="video-item-text">Готовлю лучшую пасту #food</div>
+                    }
                 </div>
-                <div class="video-item">
-                    <div class="video-item-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x500/?beach) center/cover;">
-                        <div class="video-info-overlay">
-                            <i class="fas fa-play play-icon"></i>
-                            <div class="video-stats">
-                                <span><i class="fas fa-eye"></i> 45K</span>
-                                <span><i class="fas fa-heart"></i> 3.7K</span>
-                                <span><i class="fas fa-comment"></i> 204</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-item-text">Тайская пляжная вечеринка #beach</div>
-                </div>
-                <div class="video-item">
-                    <div class="video-item-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x500/?city) center/cover;">
-                        <div class="video-info-overlay">
-                            <i class="fas fa-play play-icon"></i>
-                            <div class="video-stats">
-                                <span><i class="fas fa-eye"></i> 92K</span>
-                                <span><i class="fas fa-heart"></i> 8.3K</span>
-                                <span><i class="fas fa-comment"></i> 512</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-item-text">Секреты ночного города #city</div>
-                </div>
-                <div class="video-item">
-                    <div class="video-item-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x500/?coffee) center/cover;">
-                        <div class="video-info-overlay">
-                            <i class="fas fa-play play-icon"></i>
-                            <div class="video-stats">
-                                <span><i class="fas fa-eye"></i> 78K</span>
-                                <span><i class="fas fa-heart"></i> 6.1K</span>
-                                <span><i class="fas fa-comment"></i> 305</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-item-text">Лучшие кофейни Европы #coffee</div>
-                </div>
-                <div class="video-item">
-                    <div class="video-item-thumbnail" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(https://source.unsplash.com/random/300x500/?dance) center/cover;">
-                        <div class="video-info-overlay">
-                            <i class="fas fa-play play-icon"></i>
-                            <div class="video-stats">
-                                <span><i class="fas fa-eye"></i> 104K</span>
-                                <span><i class="fas fa-heart"></i> 9.6K</span>
-                                <span><i class="fas fa-comment"></i> 428</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-item-text">Танцую на закате #dance</div>
-                </div>
-            </div>
-
+            }
             <div class="load-more">
                 <button class="load-more-btn glass-card">
                     <i class="fas fa-spinner"></i> Загрузить больше
@@ -667,11 +616,6 @@
                     });
                 });
             }, 500);
-
-            $('.video-item').click(function() {
-                window.location.href = '@Url.Action("Index", "Home")';
-            });
-
             $('.load-more-btn').click(function() {
                 $(this).html('<i class="fas fa-spinner fa-spin"></i> Загрузка...');
 
